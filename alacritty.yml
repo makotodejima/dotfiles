@@ -1,0 +1,25 @@
+window:
+  position:
+    x: 200
+    y: 0
+
+  dimensions:
+    columns: 140
+    lines: 100
+
+  padding:
+    x: 2
+    y: 0 
+
+font:
+  normal:
+    style: Regular
+  size: 17.0
+
+cursor:
+  style:
+    blinking: Always
+
+colors:
+  normal:
+    green:   '#ADF0CD'
