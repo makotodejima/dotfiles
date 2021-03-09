@@ -19,3 +19,4 @@ eval "$(direnv hook zsh)"
 
 # alias
 alias killbuild='lsof -i :3000 | grep node | head -n 1 | awk "{print \$2}" | xargs kill -9'
+alias gs='git status'

@@ -1,7 +1,7 @@
 syntax on
+filetype plugin indent on
 
 set backspace=indent,eol,start
-set clipboard=unnamed
 set cmdheight=2
 set cursorline
 set encoding=utf-8
@@ -31,7 +31,7 @@ set updatetime=50
 set wildmenu
 set wildmode=list:longest,full
 
-" Disable LSP feature for ALE in favour of Coc 
+" Disable LSP feature for ALE in favour of Coc
 " - this must happen before plugin loading
 let g:ale_disable_lsp = 1
 
@@ -42,40 +42,49 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-vinegar'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary'
+  Plug 'justinmk/vim-sneak'
+  Plug 'machakann/vim-highlightedyank'
+  Plug 'mbbill/undotree'
+  Plug 'itchyny/lightline.vim'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'dense-analysis/ale'
+
+  " git
   Plug 'tpope/vim-fugitive'
   Plug 'airblade/vim-gitgutter'
   Plug 'junegunn/gv.vim'
   Plug 'stsewd/fzf-checkout.vim'
-  Plug 'justinmk/vim-sneak'
-  Plug 'machakann/vim-highlightedyank'
-  Plug 'itchyny/lightline.vim'
-  Plug 'dense-analysis/ale'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+  " Rust
+  Plug 'rust-lang/rust.vim'
+
+  " JS/TS
   Plug 'pangloss/vim-javascript'
   Plug 'leafgarland/typescript-vim'
-  Plug 'maxmellon/vim-jsx-pretty' 
-  Plug 'mbbill/undotree'
+  Plug 'maxmellon/vim-jsx-pretty'
   Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
+
+  " Color scheme
   Plug 'ulwlu/elly.vim'
 call plug#end()
 
 set t_Co=256
 set background=dark
 colorscheme elly
-highlight CursorLine guibg=#18282D 
-highlight CursorLineNr guibg=#18282D 
+highlight CursorLine guibg=#0F1E23
 
-" ALE linters
 let g:ale_linters = {
-      \'javascript': ['prettier', 'eslint'], 
+      \'rust': ['analyzer'],
+      \'javascript': ['prettier', 'eslint'],
       \'typescript': ['tslint'],
       \'typescriptreact': ['tslint'],
       \'json': ['prettier'],
       \}
 
-" ALE fixers
 let g:ale_fixers = {
-      \'javascript': ['prettier', 'eslint'], 
+      \'*': ['remove_trailing_lines'],
+      \'rust': ['rustfmt'],
+      \'javascript': ['prettier', 'eslint'],
       \'typescript': ['tslint'],
       \'typescriptreact': ['tslint'],
       \'json': ['prettier'],
@@ -89,6 +98,8 @@ let g:ale_lint_delay = 40
 let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ 'coc-spell-checker',
+  \ 'coc-rls',
+  \ 'coc-rust-analyzer',
   \ ]
 
 " Highlight yank duration
@@ -97,7 +108,7 @@ let g:highlightedyank_highlight_duration = 100
 " ag
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 
-" ag ignore matches in file name
+" ag ignore match in file name
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 " GitGutter statusline
@@ -135,7 +146,7 @@ let g:lightline = {
         \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'filename', 'gitbranch', 'gitgutter', 'aleStatus'] ]
       \ },
-      \ 'component_function': { 
+      \ 'component_function': {
         \ 'filename': 'LightlineFilename',
         \ 'aleStatus': 'LinterStatus',
         \ 'gitbranch': 'FugitiveHead',
@@ -148,6 +159,7 @@ let mapleader = " "
 " Save and quit
 nmap <leader>w :w<cr>
 nmap <leader>q :q<cr>
+nmap <leader>wq :wq<cr>
 
 " Undotree
 nnoremap <leader>u :UndotreeToggle<CR>
@@ -169,13 +181,14 @@ xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Coc trigger autocomplete
-inoremap <silent><expr> <C-k> coc#refresh()
+inoremap <silent><expr>K coc#refresh()
 
-" Import order
+" Coc tsserver
 nmap <leader>im :CocCommand tsserver.organizeImports<cr>
+nmap <leader>if :CocCommand tsserver.executeAutofix<cr>
 
-" K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" Show documentation in preview window
+nnoremap <silent> gh :call <SID>show_documentation()<CR>
 function! s:show_documentation()
  if (index(['vim','help'], &filetype) >= 0)
    execute 'h '.expand('<cword>')
@@ -200,11 +213,17 @@ nnoremap <C-b> :Buffers<CR>
 nnoremap <C-g> :Ag<CR>
 
 " buffer resize
-nnoremap <Leader>+ :resize +5<CR>
-nnoremap <Leader>- :resize -5<CR>
-nnoremap <Leader>< :vertical resize +5<CR>
-nnoremap <Leader>> :vertical resize -5<CR>
+nnoremap <Leader>vi :resize +5<CR>
+nnoremap <Leader>vd :resize -5<CR>
+nnoremap <Leader>hi :vertical resize +5<CR>
+nnoremap <Leader>hd :vertical resize -5<CR>
 
 " Move line up/down
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+
+" +register
+nnoremap <leader>yy "+yy
+vnoremap <leader>y "+y
+nnoremap <leader>p "+p
+vnoremap <leader>p "+p

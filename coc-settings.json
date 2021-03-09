@@ -1,5 +1,6 @@
 {
+  "diagnostic.displayByAle": true,
+  "diagnostic.infoSign": "^",
   "list.maxPreviewHeight": 42,
-  "suggest.noselect": false,
-  "diagnostic.checkCurrentLine": true
+  "suggest.noselect": false
 }
