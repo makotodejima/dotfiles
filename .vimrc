@@ -27,7 +27,7 @@ set termguicolors
 set timeoutlen=1000 ttimeoutlen=0
 set undodir=~/.vim/undodir
 set undofile
-set updatetime=50
+set updatetime=40
 set wildmenu
 set wildmode=list:longest,full
 
@@ -73,32 +73,19 @@ set background=dark
 colorscheme elly
 highlight CursorLine guibg=#0F1E23
 
-let g:ale_linters = {
-      \'rust': ['analyzer'],
-      \'javascript': ['prettier', 'eslint'],
-      \'typescript': ['tslint'],
-      \'typescriptreact': ['tslint'],
-      \'json': ['prettier'],
-      \}
 
-let g:ale_fixers = {
-      \'*': ['remove_trailing_lines'],
-      \'rust': ['rustfmt'],
-      \'javascript': ['prettier', 'eslint'],
-      \'typescript': ['tslint'],
-      \'typescriptreact': ['tslint'],
-      \'json': ['prettier'],
-      \}
-
-" ALE auto fix
+" ALE
 let g:ale_fix_on_save = 1
 let g:ale_lint_delay = 40
+let g:ale_fixers = {
+      \'*': ['remove_trailing_lines', 'trim_whitespace'],
+      \'json': ['prettier'],
+      \}
 
-" Coc config
+" COC
 let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ 'coc-spell-checker',
-  \ 'coc-rls',
   \ 'coc-rust-analyzer',
   \ ]
 
@@ -157,15 +144,17 @@ let g:lightline = {
 let mapleader = " "
 
 " Save and quit
-nmap <leader>w :w<cr>
-nmap <leader>q :q<cr>
-nmap <leader>wq :wq<cr>
+nnoremap <leader>w :w
+nnoremap <leader>q :q
+nnoremap <leader>wq :wq
 
 " Undotree
 nnoremap <leader>u :UndotreeToggle<CR>
 
-" Lint file
+" ALE
 nnoremap <leader>= :ALEFix<CR>
+nnoremap <silent>]a :ALENext<CR>
+nnoremap <silent>[a :ALEPrevious<CR>
 
 " Navigate Coc completion list with Tab key
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
