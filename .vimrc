@@ -73,6 +73,11 @@ set background=dark
 colorscheme elly
 highlight CursorLine guibg=#0F1E23
 
+" Prevent losing colors in tmux
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
 
 " ALE
 let g:ale_fix_on_save = 1
@@ -91,6 +96,10 @@ let g:coc_global_extensions = [
 
 " Highlight yank duration
 let g:highlightedyank_highlight_duration = 100
+
+" fzf layout
+let g:fzf_layout = { 'down': '70%' }
+let g:fzf_preview_window = ['up:65%', 'ctrl-/']
 
 " ag
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
@@ -216,3 +225,10 @@ nnoremap <leader>yy "+yy
 vnoremap <leader>y "+y
 nnoremap <leader>p "+p
 vnoremap <leader>p "+p
+
+nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
