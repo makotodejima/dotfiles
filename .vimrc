@@ -73,6 +73,9 @@ set background=dark
 colorscheme elly
 highlight CursorLine guibg=#0F1E23
 
+" Use new regular expression engine
+set re=0
+
 " Prevent losing colors in tmux
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -179,7 +182,7 @@ xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Coc trigger autocomplete
-inoremap <silent><expr>K coc#refresh()
+inoremap <silent><expr> <C-r> coc#refresh()
 
 " Coc tsserver
 nmap <leader>im :CocCommand tsserver.organizeImports<cr>
@@ -226,9 +229,10 @@ vnoremap <leader>y "+y
 nnoremap <leader>p "+p
 vnoremap <leader>p "+p
 
-nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+" Popup window scroll
+nnoremap <silent><nowait><expr> <C-e> coc#float#has_scroll() ? coc#float#scroll(1,2) : "\<C-e>"
+nnoremap <silent><nowait><expr> <C-y> coc#float#has_scroll() ? coc#float#scroll(0,2) : "\<C-y>"
+" inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+" inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+" vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+" vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
