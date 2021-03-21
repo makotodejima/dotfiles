@@ -14,7 +14,7 @@ set laststatus=2 " To show lightline
 set nobackup
 set nocompatible
 set noswapfile
-set nowrap
+" set nowrap
 set nu
 set number
 set scrolloff=6
@@ -36,18 +36,23 @@ set wildmode=list:longest,full
 let g:ale_disable_lsp = 1
 
 call plug#begin('~/.vim/plugged')
-  Plug 'christoomey/vim-tmux-navigator'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-  Plug 'tpope/vim-vinegar'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary'
-  Plug 'justinmk/vim-sneak'
   Plug 'machakann/vim-highlightedyank'
   Plug 'mbbill/undotree'
   Plug 'itchyny/lightline.vim'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'dense-analysis/ale'
+
+  " Nav
+  Plug 'christoomey/vim-tmux-navigator'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  Plug 'tpope/vim-vinegar'
+  Plug 'justinmk/vim-sneak'
+
+  " Color scheme
+  Plug 'ulwlu/elly.vim'
 
   " git
   Plug 'tpope/vim-fugitive'
@@ -64,8 +69,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
 
-  " Color scheme
-  Plug 'ulwlu/elly.vim'
+  " GraphQL
+  Plug 'jparise/vim-graphql'
+
+  " Terraform
+  Plug 'hashivim/vim-terraform'
+
 call plug#end()
 
 set t_Co=256
@@ -83,6 +92,7 @@ if exists('+termguicolors')
 endif
 
 " ALE
+let g:ale_linters_explicit = 1
 let g:ale_fix_on_save = 1
 let g:ale_lint_delay = 40
 let g:ale_fixers = {
@@ -99,6 +109,14 @@ let g:coc_global_extensions = [
 
 " Highlight yank duration
 let g:highlightedyank_highlight_duration = 100
+
+" Terraform and Packer
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
+augroup filetype_hcl
+  autocmd!
+  au BufWritePre *.hcl :TerraformFmt
+augroup END
 
 " fzf layout
 let g:fzf_layout = { 'down': '70%' }
