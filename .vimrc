@@ -11,6 +11,7 @@ set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2 " To show lightline
+set mouse=a
 set nobackup
 set nocompatible
 set noswapfile
@@ -19,6 +20,7 @@ set nu
 set number
 set scrolloff=6
 set shiftwidth=2
+set showcmd
 set signcolumn=yes
 set smartcase
 set smartindent
@@ -56,6 +58,7 @@ call plug#begin('~/.vim/plugged')
 
   " git
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb'
   Plug 'airblade/vim-gitgutter'
   Plug 'junegunn/gv.vim'
   Plug 'stsewd/fzf-checkout.vim'
@@ -65,7 +68,8 @@ call plug#begin('~/.vim/plugged')
 
   " JS/TS
   Plug 'pangloss/vim-javascript'
-  Plug 'leafgarland/typescript-vim'
+  " Plug 'leafgarland/typescript-vim'
+  Plug 'HerringtonDarkholme/yats.vim'
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
 
@@ -146,14 +150,23 @@ function! LinterStatus() abort
         \)
 endfunction
 
-" Show file path relative to project root
+" Show abbreviated relative file path
 function! LightlineFilename()
-  let root = fnamemodify(get(b:, 'git_dir'), ':h')
-  let path = expand('%:p')
-  if path[:len(root)-1] ==# root
-    return path[len(root)+1:]
-  endif
-  return expand('%')
+  let name = ""
+  let subs = split(expand('%'), "/")
+  let i = 1
+  for s in subs
+    let parent = name
+    if  i == len(subs)
+      let name = parent . '/' . s
+    elseif i == len(subs) - 1
+      let name = parent . '/' . s
+    else
+      let name = parent . '/' . strpart(s, 0, 2)
+    endif
+    let i += 1
+  endfor
+  return name
 endfunction
 
 " Lightline layout
@@ -161,15 +174,16 @@ let g:lightline = {
       \ 'colorscheme': 'landscape',
       \ 'active': {
         \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'gitbranch', 'gitgutter', 'aleStatus'] ]
+      \             [ 'readonly', 'gitbranch', 'filename', 'gitgutter', 'aleStatus' ] ]
       \ },
       \ 'component_function': {
         \ 'filename': 'LightlineFilename',
         \ 'aleStatus': 'LinterStatus',
+        \ 'gitgutter': 'GitStatus',
         \ 'gitbranch': 'FugitiveHead',
-        \ 'gitgutter': 'GitStatus'
       \ },
       \ }
+
 
 let mapleader = " "
 
@@ -178,13 +192,29 @@ nnoremap <leader>w :w
 nnoremap <leader>q :q
 nnoremap <leader>wq :wq
 
+" netrw
+let g:netrw_liststyle=1
+let g:netrw_browse_split=2
+let g:netrw_banner=0
+let g:netrw_winsize=40
+nnoremap <c-n> :Vexplore<CR>
+
+" Remove last highlight
+nnoremap <Leader><space> :noh<cr>
+
 " Undotree
 nnoremap <leader>u :UndotreeToggle<CR>
 
 " ALE
 nnoremap <leader>= :ALEFix<CR>
-nnoremap <silent>]a :ALENext<CR>
-nnoremap <silent>[a :ALEPrevious<CR>
+nnoremap ]a :ALENext<CR>zz
+nnoremap [a :ALEPrevious<CR>zz
+
+" Quickfixlist
+nnoremap ]q :cnext<CR>zz
+nnoremap [q :cprev<CR>zz
+nnoremap [Q :<C-u>cfirst<CR>zz
+nnoremap ]Q :<C-u>clast<CR>zz
 
 " Navigate Coc completion list with Tab key
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -216,16 +246,6 @@ function! s:show_documentation()
  endif
 endfunction
 
-" netrw
-let g:netrw_liststyle = 1
-let g:netrw_browse_split=2
-let g:netrw_banner=0
-let g:netrw_winsize=25
-nnoremap <c-n> :Vexplore<CR>
-
-" Remove last highlight
-nnoremap <Leader><space> :noh<cr>
-
 " Search
 nnoremap <C-p> :Files<CR>
 nnoremap <C-b> :Buffers<CR>
@@ -247,6 +267,11 @@ vnoremap <leader>y "+y
 nnoremap <leader>p "+p
 vnoremap <leader>p "+p
 
+" Fugitive
+nmap <leader>gs :G<CR>
+nmap <leader>gh :diffget //2<CR>
+nmap <leader>gl :diffget //3<CR>
+
 " Popup window scroll
 nnoremap <silent><nowait><expr> <C-e> coc#float#has_scroll() ? coc#float#scroll(1,2) : "\<C-e>"
 nnoremap <silent><nowait><expr> <C-y> coc#float#has_scroll() ? coc#float#scroll(0,2) : "\<C-y>"
@@ -254,3 +279,16 @@ nnoremap <silent><nowait><expr> <C-y> coc#float#has_scroll() ? coc#float#scroll(
 " inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
 " vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 " vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+
+function! ToggleQuickFix()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+        copen
+    else
+        cclose
+    endif
+endfunction
+
+nnoremap <silent> <C-q> :call ToggleQuickFix()<CR>
+
+" :Tsc adds compiler errors to quickfix list
+command! -nargs=0 Tsc :call CocAction('runCommand', 'tsserver.watchBuild')
