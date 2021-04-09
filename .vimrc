@@ -50,8 +50,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
-  Plug 'tpope/vim-vinegar'
   Plug 'justinmk/vim-sneak'
+  Plug 'tpope/vim-vinegar'
+  Plug 'tpope/vim-unimpaired'
 
   " Color scheme
   Plug 'ulwlu/elly.vim'
@@ -275,10 +276,6 @@ nmap <leader>gl :diffget //3<CR>
 " Popup window scroll
 nnoremap <silent><nowait><expr> <C-e> coc#float#has_scroll() ? coc#float#scroll(1,2) : "\<C-e>"
 nnoremap <silent><nowait><expr> <C-y> coc#float#has_scroll() ? coc#float#scroll(0,2) : "\<C-y>"
-" inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-" inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-" vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-" vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 
 function! ToggleQuickFix()
     if empty(filter(getwininfo(), 'v:val.quickfix'))
