@@ -15,11 +15,11 @@ set mouse=a
 set nobackup
 set nocompatible
 set noswapfile
-" set nowrap
 set nu
 set number
 set scrolloff=6
 set shiftwidth=2
+set shortmess-=S
 set showcmd
 set signcolumn=yes
 set smartcase
@@ -45,6 +45,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'itchyny/lightline.vim'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'dense-analysis/ale'
+  Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
+  Plug 'tpope/vim-dispatch'
+  Plug 'tpope/vim-markdown'
+  Plug 'simeji/winresizer'
 
   " Nav
   Plug 'christoomey/vim-tmux-navigator'
@@ -53,6 +57,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'justinmk/vim-sneak'
   Plug 'tpope/vim-vinegar'
   Plug 'tpope/vim-unimpaired'
+  Plug 'junegunn/vim-peekaboo'
 
   " Color scheme
   Plug 'ulwlu/elly.vim'
@@ -69,6 +74,7 @@ call plug#begin('~/.vim/plugged')
 
   " JS/TS
   Plug 'pangloss/vim-javascript'
+  Plug 'vim-test/vim-test'
   " Plug 'leafgarland/typescript-vim'
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'maxmellon/vim-jsx-pretty'
@@ -80,12 +86,17 @@ call plug#begin('~/.vim/plugged')
   " Terraform
   Plug 'hashivim/vim-terraform'
 
+  Plug 'soywod/himalaya', {'rtp': 'vim'}
+
 call plug#end()
 
 set t_Co=256
 set background=dark
 colorscheme elly
 highlight CursorLine guibg=#0F1E23
+
+" sneak highlight color
+highlight Sneak guifg=black guibg=#FFD5D1
 
 " Use new regular expression engine
 set re=0
@@ -131,7 +142,7 @@ let g:fzf_preview_window = ['up:65%', 'ctrl-/']
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 
 " ag ignore match in file name
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--hidden', {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 " GitGutter statusline
 function! GitStatus()
@@ -206,6 +217,9 @@ nnoremap <Leader><space> :noh<cr>
 " Undotree
 nnoremap <leader>u :UndotreeToggle<CR>
 
+" peekaboo
+let g:peekaboo_window='vert bo 50new'
+
 " ALE
 nnoremap <leader>= :ALEFix<CR>
 nnoremap ]a :ALENext<CR>zz
@@ -216,6 +230,10 @@ nnoremap ]q :cnext<CR>zz
 nnoremap [q :cprev<CR>zz
 nnoremap [Q :<C-u>cfirst<CR>zz
 nnoremap ]Q :<C-u>clast<CR>zz
+
+" markdown note
+let g:markdown_fenced_languages = ['html', 'python', 'javascript', 'bash=sh']
+nnoremap <leader>no :e ~/Library/Mobile\ Documents/27N4MQEA55~pro~writer/Documents/vim-note.md<CR>
 
 " Navigate Coc completion list with Tab key
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -231,7 +249,7 @@ xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Coc trigger autocomplete
-inoremap <silent><expr> <C-r> coc#refresh()
+inoremap <silent><expr> <C-k> coc#refresh()
 
 " Coc tsserver
 nmap <leader>im :CocCommand tsserver.organizeImports<cr>
@@ -268,10 +286,13 @@ vnoremap <leader>y "+y
 nnoremap <leader>p "+p
 vnoremap <leader>p "+p
 
+vnoremap <leader>s :sort<CR>
+
 " Fugitive
 nmap <leader>gs :G<CR>
 nmap <leader>gh :diffget //2<CR>
 nmap <leader>gl :diffget //3<CR>
+nmap <leader>gw :Gwrite <CR>
 
 " Popup window scroll
 nnoremap <silent><nowait><expr> <C-e> coc#float#has_scroll() ? coc#float#scroll(1,2) : "\<C-e>"
@@ -289,3 +310,21 @@ nnoremap <silent> <C-q> :call ToggleQuickFix()<CR>
 
 " :Tsc adds compiler errors to quickfix list
 command! -nargs=0 Tsc :call CocAction('runCommand', 'tsserver.watchBuild')
+
+" copy file path
+nnoremap <leader>cp :let @+ = expand("%")<cr>
+
+" Jest file pattern matching 'test.db'
+let g:test#javascript#jest#file_pattern = '\v(__tests__/.*|(spec|test|test.db))\.(js|jsx|ts|tsx)$'
+
+" vim-test
+let test#strategy = "vimterminal"
+nmap <leader>tn :TestNearest<CR>
+nmap <leader>tl :TestLast<CR>
+nmap <leader>tf :TestFile<CR>
+nmap <leader>tv :TestVisit<CR>
+
+" window resize
+let g:winresizer_start_key = '<C-z>'
+
+nnoremap <leader>b :ls<CR> :b # <CR>
