@@ -1,20 +1,15 @@
 window:
-  position:
-    x: 200
-    y: 0
-
   dimensions:
     columns: 140
     lines: 100
-
   padding:
     x: 2
-    y: 0 
+    y: 0
 
 font:
   normal:
     style: Regular
-  size: 17.0
+  size: 16.0
 
 cursor:
   style:
@@ -22,4 +17,4 @@ cursor:
 
 colors:
   normal:
-    green:   '#ADF0CD'
+    green: '#ADF0CD'
