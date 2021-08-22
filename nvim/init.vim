@@ -48,6 +48,7 @@ call plug#begin()
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-dispatch'
+  Plug 'tpope/vim-abolish'
 
   " Spell - ZT to toggle
   Plug 'kamykn/spelunker.vim'
@@ -60,7 +61,6 @@ call plug#begin()
   Plug 'neovim/nvim-lsp'
   Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
   Plug 'hrsh7th/nvim-compe'
-  Plug 'ray-x/lsp_signature.nvim'
 
   " Color
   Plug 'ulwlu/elly.vim'
@@ -74,7 +74,7 @@ call plug#begin()
   " telescope requirements
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
-  "  Plug 'nvim-telescope/telescope.nvim'
+  " Plug 'nvim-telescope/telescope.nvim'
 
   " fzf
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -100,7 +100,7 @@ call plug#end()
 
 let mapleader = " "
 
-" Treesitter
+lua require("mkd")
 lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 
 " Spell - default off
@@ -204,7 +204,7 @@ nnoremap <leader>cp :let @+ = expand("%")<cr>
 
 augroup highlight_yank
     autocmd!
-    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40})
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 30})
 augroup END
 
 " disable syntax highlighting for large files

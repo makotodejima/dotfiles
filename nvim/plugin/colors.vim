@@ -13,15 +13,13 @@ fun! ColorMyPencils()
         colorscheme elly
     endif
 
-    " highlight Normal guibg=none
     highlight CursorLine guibg=#001E2D
     " highlight ColorColumn ctermbg=0 guibg=grey
     " highlight SignColumn guibg=none
     " highlight CursorLineNR guifg=red
-    " highlight LineNr guifg=#5A5A5A
+    highlight LineNr guifg=#243C43
     " highlight netrwDir guifg=#5eacd3
-    " highlight qfFileName guifg=#aed75f
-
+    highlight qfFileName guifg=#74879C
     " sneak highlight color
     highlight Sneak guifg=#002335 guibg=#FFD5D1
 endfun

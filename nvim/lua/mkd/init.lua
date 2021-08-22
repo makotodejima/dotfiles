@@ -1,4 +1,5 @@
-require("mkd.statusline")
+-- Do i even need this file?
+require("mkd.lsp")
 
 P = function(v)
   print(vim.inspect(v))
