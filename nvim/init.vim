@@ -174,7 +174,7 @@ nnoremap <leader>yy "+yy
 vnoremap <leader>y "+y
 nnoremap <leader>p "+p
 vnoremap <leader>p "+p
-vnoremap <leader>yp "_dP
+vnoremap <leader>jp "_dP
 
 vnoremap <leader>s :sort<CR>
 
