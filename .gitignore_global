@@ -1,0 +1,12 @@
+*~
+.DS_Store
+
+.vscode
+*.tags
+tags
+tags.lock
+tags.temp
+
+globalConfig.json
+
+.envrc
