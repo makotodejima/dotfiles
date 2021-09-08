@@ -1,0 +1,21 @@
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches
+	wip = commit -m 'wip' --no-verify
+
+[core]
+	excludesfile = /Users/makotodejima/.gitignore_global
+	pager = diff-so-fancy | less --tabs=4 -RFX
+	editor = nvim
+
+[user]
+	name = Makoto Dejima
+	email = makotodejima@gmail.com
+
+[commit]
+	template = /Users/makotodejima/.stCommitMsg
+
+[init]
+	templatedir = ~/.git_template
+
+[delta]
+        line-numbers = true
