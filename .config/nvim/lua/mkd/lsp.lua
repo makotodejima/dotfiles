@@ -1,0 +1,36 @@
+local lspconfig = require('lspconfig')
+
+-- Correct colors for diagnostics
+vim.cmd([[ autocmd ColorScheme * :lua require('vim.lsp.diagnostic')._define_default_signs_and_highlights() ]])
+
+local on_attach = function(client, bufnr)
+  -- do something
+end
+
+lspconfig.tsserver.setup {
+  on_attach = function(client, bufnr)
+    -- ts_utils
+    local ts_utils = require("nvim-lsp-ts-utils")
+    ts_utils.setup {
+      enable_import_on_completion = true,
+      -- update_imports_on_move = true,
+      -- require_confirmation_on_move = true,
+    }
+    -- required to fix code action ranges
+    ts_utils.setup_client(client)
+
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>oi", ":TSLspOrganize<CR>", {silent = true})
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>fc", ":TSLspFixCurrent<CR>", {silent = true})
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":TSLspRenameFile<CR>", {silent = true})
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>im", ":TSLspImportAll<CR>", {silent = true})
+
+  end
+}
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+lspconfig.rust_analyzer.setup({
+  on_attach=on_attach,
+  capabilities=capabilities
+})
