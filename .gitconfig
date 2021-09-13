@@ -15,7 +15,7 @@
 	template = /Users/makotodejima/.stCommitMsg
 
 [init]
-	templatedir = ~/.git_template
+	; templatedir = ~/.git_template
 
 [delta]
         line-numbers = true
