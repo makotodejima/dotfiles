@@ -10,3 +10,5 @@ tags.temp
 globalConfig.json
 
 .envrc
+
+.exrc

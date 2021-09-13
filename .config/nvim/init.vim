@@ -6,6 +6,7 @@ set cmdheight=2
 set cursorline
 set encoding=utf-8
 set expandtab
+set exrc
 set guicursor=
 set hidden
 set hlsearch
@@ -17,6 +18,7 @@ set noswapfile
 set nowrap
 set nu
 set scrolloff=6
+set secure
 set shiftwidth=2
 set shortmess-=S
 set showcmd
@@ -38,8 +40,8 @@ set wildmode=list:longest,full
 " ALE
 " Disable LSP feature for ALE in favour of native lsp support
 " - this must happen before plugin loading
-let g:ale_disable_lsp = 1
-let g:ale_linters_explicit = 1
+" let g:ale_disable_lsp = 1
+" let g:ale_linters_explicit = 1
 
 call plug#begin()
   Plug 'hoob3rt/lualine.nvim'
@@ -54,7 +56,7 @@ call plug#begin()
   Plug 'kamykn/spelunker.vim'
 
   " Linter
-  Plug 'dense-analysis/ale'
+  " Plug 'dense-analysis/ale'
   Plug 'sbdchd/neoformat'
 
   " LSP
@@ -64,6 +66,7 @@ call plug#begin()
 
   " Color
   Plug 'ulwlu/elly.vim'
+  Plug 'gruvbox-community/gruvbox'
 
   " git
   Plug 'tpope/vim-fugitive'
@@ -113,15 +116,11 @@ lua require'nvim-treesitter.configs'.setup { indent = { enable = true }, highlig
 let g:enable_spelunker_vim = 0
 
 " ALE
-let g:ale_fix_on_save = 1
-let g:ale_lint_delay = 40
-let g:ale_fixers = {
-      \'*': ['remove_trailing_lines', 'trim_whitespace'],
-      \'json': ['prettier'],
-      \}
+" let g:ale_fixers = {
+"       \'*': ['remove_trailing_lines', 'trim_whitespace'],
+"       \}
 
 " Neoformat
-" let g:neoformat_enabled_typescript = ['tslint']
 nnoremap <leader><space> :Neoformat<cr>
 
 " Search
