@@ -19,6 +19,7 @@ fun! Color()
     highlight qfFileName guifg=#74879C
     highlight Sneak guifg=#002335 guibg=#FFD5D1
     highlight MatchParen gui=bold,underline guibg=none guifg=none
+    highlight Search guibg=#2A4850 guifg=none
 endfun
 
 call Color()
