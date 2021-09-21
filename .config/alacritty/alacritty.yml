@@ -8,8 +8,9 @@ window:
 
 font:
   normal:
+    # family: IBM Plex Mono
     style: Regular
-  size: 16.0
+  size: 15.0
 
 cursor:
   style:

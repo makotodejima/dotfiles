@@ -37,42 +37,37 @@ set wildmode=list:longest,full
 
 " let &verbose = 1
 
-" ALE
-" Disable LSP feature for ALE in favour of native lsp support
-" - this must happen before plugin loading
-" let g:ale_disable_lsp = 1
-" let g:ale_linters_explicit = 1
-
 call plug#begin()
   Plug 'hoob3rt/lualine.nvim'
   Plug 'mbbill/undotree'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-dispatch'
-  Plug 'tpope/vim-abolish'
+  Plug 'tpope/vim-surround'
 
   " Spell - ZT to toggle
   Plug 'kamykn/spelunker.vim'
 
   " Linter
-  " Plug 'dense-analysis/ale'
   Plug 'sbdchd/neoformat'
 
   " LSP
   Plug 'neovim/nvim-lsp'
   Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+
+  " Completion
   Plug 'hrsh7th/nvim-compe'
 
   " Color
   Plug 'ulwlu/elly.vim'
-  Plug 'gruvbox-community/gruvbox'
+  " Plug 'gruvbox-community/gruvbox'
 
   " git
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
-  Plug 'airblade/vim-gitgutter'
   Plug 'junegunn/gv.vim'
+  Plug 'lewis6991/gitsigns.nvim'
 
   " telescope requirements
   Plug 'nvim-lua/popup.nvim'
@@ -114,11 +109,6 @@ lua require'nvim-treesitter.configs'.setup { indent = { enable = true }, highlig
 
 " Spell - default off
 let g:enable_spelunker_vim = 0
-
-" ALE
-" let g:ale_fixers = {
-"       \'*': ['remove_trailing_lines', 'trim_whitespace'],
-"       \}
 
 " Neoformat
 nnoremap <leader><space> :Neoformat<cr>
@@ -246,3 +236,15 @@ nnoremap <leader>s :lua require("harpoon.ui").nav_file(2)<CR>
 nnoremap <leader>d :lua require("harpoon.ui").nav_file(3)<CR>
 nnoremap <leader>f :lua require("harpoon.ui").nav_file(4)<CR>
 nnoremap <leader>hl :lua require("harpoon.ui").toggle_quick_menu()<CR>
+
+lua <<EOF
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.hcl_mictchellh = {
+  install_info = {
+    url = "./tree-sitter-hcl", -- local path or git repo
+    files = { "src/parser.c" }
+  },
+  filetype = "tf", -- if filetype does not agrees with parser name
+  used_by = {"tf", "hcl"} -- additional filetypes that use this parser
+}
+EOF
