@@ -7,6 +7,9 @@ local on_attach = function(client, bufnr)
   -- do something
 end
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 lspconfig.tsserver.setup {
   on_attach = function(client, bufnr)
     -- ts_utils
@@ -23,14 +26,32 @@ lspconfig.tsserver.setup {
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>fc", ":TSLspFixCurrent<CR>", {silent = true})
     -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":TSLspRenameFile<CR>", {silent = true})
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>im", ":TSLspImportAll<CR>", {silent = true})
-
   end
 }
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 lspconfig.rust_analyzer.setup({
   on_attach=on_attach,
   capabilities=capabilities
+})
+
+local cmp = require'cmp'
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  mapping = {
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  },
+  sorting = {
+    priority_weight = 3.,
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'vsnip' },
+    { name = 'path' },
+    { name = 'buffer' },
+  },
 })

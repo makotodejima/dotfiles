@@ -1,5 +1,6 @@
 require("mkd.lsp")
 require("mkd.tmux")
+require("mkd.tree-sitter")
 
 P = function(v)
   print(vim.inspect(v))

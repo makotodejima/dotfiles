@@ -43,6 +43,7 @@ call plug#begin()
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-commentary'
+  Plug 'JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-surround'
 
@@ -57,11 +58,16 @@ call plug#begin()
   Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 
   " Completion
-  Plug 'hrsh7th/nvim-compe'
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/vim-vsnip'
+  Plug 'hrsh7th/cmp-path'
+  Plug 'hrsh7th/cmp-buffer'
 
   " Color
   Plug 'ulwlu/elly.vim'
   " Plug 'gruvbox-community/gruvbox'
+  " Plug 'arzg/vim-substrata'
 
   " git
   Plug 'tpope/vim-fugitive'
@@ -105,7 +111,6 @@ set t_Co=256
 set re=0
 
 lua require("mkd")
-lua require'nvim-treesitter.configs'.setup { indent = { enable = true }, highlight = { enable = true }, incremental_selection = { enable = true, keymaps = { node_incremental = 'ii', node_decremental = 'II' } } }
 
 " Spell - default off
 let g:enable_spelunker_vim = 0
@@ -236,15 +241,3 @@ nnoremap <leader>s :lua require("harpoon.ui").nav_file(2)<CR>
 nnoremap <leader>d :lua require("harpoon.ui").nav_file(3)<CR>
 nnoremap <leader>f :lua require("harpoon.ui").nav_file(4)<CR>
 nnoremap <leader>hl :lua require("harpoon.ui").toggle_quick_menu()<CR>
-
-lua <<EOF
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-parser_config.hcl_mictchellh = {
-  install_info = {
-    url = "./tree-sitter-hcl", -- local path or git repo
-    files = { "src/parser.c" }
-  },
-  filetype = "tf", -- if filetype does not agrees with parser name
-  used_by = {"tf", "hcl"} -- additional filetypes that use this parser
-}
-EOF
