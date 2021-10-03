@@ -1,5 +1,5 @@
 export ZSH="/Users/makotodejima/.oh-my-zsh"
-export TERM=xterm-256color
+# export TERM=xterm-256color
 ZSH_THEME="lambda"
 plugins=(Z fzf-zsh zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
