@@ -39,7 +39,7 @@ require'lualine'.setup {
       {
         'diff',
         colored = true,
-        color_added = '#32A0B4',
+        color_added = '#ADF0CD',
         color_modified = '#E6B450',
         color_removed = '#B40000',
         symbols = {added = '+', modified = '~', removed = '-'}
