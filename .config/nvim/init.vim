@@ -56,6 +56,7 @@ call plug#begin()
   " LSP
   Plug 'neovim/nvim-lsp'
   Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+  Plug 'onsails/lspkind-nvim'
 
   " Completion
   Plug 'hrsh7th/nvim-cmp'
@@ -66,14 +67,13 @@ call plug#begin()
 
   " Color
   Plug 'ulwlu/elly.vim'
-  " Plug 'gruvbox-community/gruvbox'
-  " Plug 'arzg/vim-substrata'
 
   " git
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
   Plug 'junegunn/gv.vim'
   Plug 'lewis6991/gitsigns.nvim'
+  Plug 'sindrets/diffview.nvim'
 
   " telescope requirements
   Plug 'nvim-lua/popup.nvim'
@@ -117,6 +117,9 @@ let g:enable_spelunker_vim = 0
 
 " Neoformat
 nnoremap <leader><space> :Neoformat<cr>
+let g:neoformat_lua_luaFormat = {'exe': 'lua-format', 'args': ['--column-limit=100', '--indent-width=2'] }
+let g:neoformat_enabled_lua = ['luaFormat']
+let g:neoformat_basic_format_trim = 1
 
 " Search
 nnoremap <C-p> :Files<CR>
