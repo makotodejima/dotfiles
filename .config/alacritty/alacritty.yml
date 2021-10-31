@@ -18,4 +18,9 @@ cursor:
 
 colors:
   normal:
-    green: '#ADF0CD'
+    green: "#ADF0CD"
+
+scrolling:
+  # How many lines of scrollback to keep,
+  # '0' will disable scrolling.
+  history: 40000
