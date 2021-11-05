@@ -24,3 +24,7 @@ scrolling:
   # How many lines of scrollback to keep,
   # '0' will disable scrolling.
   history: 40000
+
+# XON/XOFF flow control workaround
+key_bindings:
+  - { key: Q, mods: Control, chars: "\x11" }
