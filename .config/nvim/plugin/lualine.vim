@@ -39,9 +39,11 @@ require'lualine'.setup {
       {
         'diff',
         colored = true,
-        color_added = '#ADF0CD',
-        color_modified = '#E6B450',
-        color_removed = '#B40000',
+        diff_color = { 
+          added = {fg = '#32A0B4'},
+          modified = {fg = '#E6B450'},
+          removed = {fg= '#B40000'}
+        },
         symbols = {added = '+', modified = '~', removed = '-'}
       },
       lsp_info
