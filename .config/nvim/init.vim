@@ -78,12 +78,12 @@ call plug#begin()
   " telescope requirements
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
-  " Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
   " fzf
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
-  Plug 'stsewd/fzf-checkout.vim'
 
   " navigation
   Plug 'justinmk/vim-sneak'
@@ -128,10 +128,7 @@ nnoremap <C-g> :Ag<CR>
 
 " fzf layout
 let g:fzf_layout = { 'down': '70%' }
-let g:fzf_preview_window = ['up:65%', 'ctrl-/']
-
-" fzf checkout
-nnoremap <leader>gc :GBranches<CR>
+let g:fzf_preview_window = ['up:65%']
 
 " ag
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
@@ -242,5 +239,11 @@ nnoremap <leader>hh :lua require("harpoon.mark").add_file()<CR>
 nnoremap <leader>a :lua require("harpoon.ui").nav_file(1)<CR>
 nnoremap <leader>s :lua require("harpoon.ui").nav_file(2)<CR>
 nnoremap <leader>d :lua require("harpoon.ui").nav_file(3)<CR>
-nnoremap <leader>f :lua require("harpoon.ui").nav_file(4)<CR>
 nnoremap <leader>hl :lua require("harpoon.ui").toggle_quick_menu()<CR>
+
+" Telescope
+nnoremap <leader>co <cmd>lua require'telescope.builtin'.find_files({cwd='~/.config',hidden=true,search_dirs={'nvim/init.vim','nvim/lua','nvim/plugin','nvim/spell','alacritty','karabiner'}})<CR>
+nnoremap <leader>ff :Telescope find_files<CR>
+nnoremap <leader>fg :Telescope live_grep<CR>
+nnoremap <leader>fb :Telescope git_branches<CR>
+nnoremap <leader>/ :Telescope current_buffer_fuzzy_find sorting_strategy=ascending <CR>

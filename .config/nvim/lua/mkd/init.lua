@@ -2,6 +2,7 @@ require("mkd.lsp")
 require("mkd.tmux")
 require("mkd.tree-sitter")
 require("mkd.diffview")
+require("mkd.telescope")
 
 P = function(v)
   print(vim.inspect(v))
