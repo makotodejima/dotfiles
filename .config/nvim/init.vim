@@ -41,11 +41,13 @@ call plug#begin()
   Plug 'hoob3rt/lualine.nvim'
   Plug 'mbbill/undotree'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-treesitter/nvim-treesitter-textobjects'
   Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-commentary'
   Plug 'JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-surround'
+  Plug 'lewis6991/spellsitter.nvim'
 
   " Spell - ZT to toggle
   Plug 'kamykn/spelunker.vim'
@@ -90,6 +92,7 @@ call plug#begin()
   Plug 'tpope/vim-vinegar'
   Plug 'tpope/vim-unimpaired'
   Plug 'aserowy/tmux.nvim'
+  Plug 'phaazon/hop.nvim'
 
   " harpoon man
   Plug 'ThePrimeagen/harpoon'
@@ -111,6 +114,7 @@ set t_Co=256
 set re=0
 
 lua require("mkd")
+lua require'hop'.setup()
 
 " Spell - default off
 let g:enable_spelunker_vim = 0
@@ -143,7 +147,7 @@ nnoremap <leader>q :q
 nnoremap <leader>wq :wq
 
 " Remove last highlight
-nnoremap <Leader>cl :noh<cr>
+nnoremap <Leader>l :noh<cr>
 
 " Quickfixlist
 nnoremap ]q :cnext<CR>zz
@@ -156,8 +160,8 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 nnoremap Y y$
-nnoremap n nzzzv
-nnoremap N Nzzzv
+" nnoremap n nzzzv
+" nnoremap N Nzzzv
 
 inoremap , ,<C-g>u
 inoremap . .<C-g>u
@@ -176,6 +180,7 @@ let g:netrw_liststyle=1
 let g:netrw_browse_split=2
 let g:netrw_banner=0
 let g:netrw_winsize=40
+let g:netrw_maxfilenamelen=65
 let g:netrw_localrmdir='rm -r'
 nnoremap <leader>vs :vsplit<CR>
 
@@ -246,4 +251,6 @@ nnoremap <leader>co <cmd>lua require'telescope.builtin'.find_files({cwd='~/.conf
 nnoremap <leader>ff :Telescope find_files<CR>
 nnoremap <leader>fg :Telescope live_grep<CR>
 nnoremap <leader>fb :Telescope git_branches<CR>
-nnoremap <leader>/ :Telescope current_buffer_fuzzy_find sorting_strategy=ascending <CR>
+
+nnoremap <leader>/ :HopChar2<CR>
+nnoremap <C-_> :HopChar1<CR>
