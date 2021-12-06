@@ -9,6 +9,7 @@ nnoremap gt :lua vim.lsp.buf.type_definition()<CR>
 nnoremap <leader>rn :lua vim.lsp.buf.rename()<CR>
 nnoremap <leader>ca :lua vim.lsp.buf.code_action()<CR>
 nnoremap gh :lua vim.lsp.buf.hover()<CR>
-nnoremap <leader>e :lua vim.lsp.diagnostic.show_line_diagnostics(); vim.lsp.util.show_line_diagnostics()<CR>
+nnoremap <leader>e :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 nnoremap [d :lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap ]d :lua vim.lsp.diagnostic.goto_next()<CR>
+" nnoremap :lua vim.lsp.buf.formatting()<CR>
