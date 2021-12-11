@@ -1,10 +1,7 @@
 local lspconfig = require('lspconfig')
 local lspkind = require('lspkind')
 local cmp_lsp = require('cmp_nvim_lsp')
-
-local on_attach = function(client, bufnr)
-  -- do something
-end
+local on_attach = require('mkd.on-attach')
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -22,7 +19,7 @@ lspconfig.tsserver.setup {
       enable_import_on_completion = true,
       update_imports_on_move = true,
       -- require_confirmation_on_move = true,
-      --
+
       -- inlay hints
       auto_inlay_hints = false,
       inlay_hints_highlight = "Comment"
@@ -34,11 +31,18 @@ lspconfig.tsserver.setup {
     -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>fc", ":TSLspFixCurrent<CR>", {silent = false})
     -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":TSLspRenameFile<CR>", {silent = true})
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>im", ":TSLspImportAll<CR>", {silent = false})
+    on_attach(client, bufnr)
   end
 }
 
 -- Rust
 lspconfig.rust_analyzer.setup({on_attach = on_attach, capabilities = capabilities})
+
+-- eslint
+-- lspconfig.eslint.setup{}
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#eslint
+
+lspconfig.graphql.setup {filetypes = {"graphql", "gql"}}
 
 -- Lua
 local sumneko_binary = vim.fn.exepath('lua-language-server')
