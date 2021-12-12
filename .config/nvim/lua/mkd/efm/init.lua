@@ -23,13 +23,10 @@ local efm_languages = {
   css = {prettier},
   graphql = {prettier},
   html = {prettier},
-  javascript = {eslint, prettier},
-  javascriptreact = {eslint, prettier},
+  javascript = {eslint},
+  javascriptreact = {eslint},
   json = {prettier},
-  less = {prettier},
   markdown = {prettier},
-  sass = {prettier},
-  scss = {prettier},
   typescript = {eslint},
   typescriptreact = {eslint},
   yaml = {prettier}
@@ -37,7 +34,10 @@ local efm_languages = {
 
 lspconfig.efm.setup({
   cmd = {"efm-langserver", "-c", efm_config, "-logfile", efm_log_dir .. "efm.log"},
-  filetype = {'javascript', 'javascriptreact', 'typescript', 'typescriptreact'},
+  filetypes = {
+    'javascript', 'javascriptreact', 'typescript', 'typescriptreact', "json", "graphql", "html",
+    "yaml"
+  },
   on_attach = on_attach,
   root_dir = lspconfig.util.root_pattern(unpack(efm_root_markers)),
   init_options = {documentFormatting = true},

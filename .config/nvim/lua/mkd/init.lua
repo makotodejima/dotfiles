@@ -1,9 +1,10 @@
+require("mkd.diffview")
+require("mkd.efm")
 require("mkd.lsp")
+require("mkd.lualine")
+require("mkd.telescope")
 require("mkd.tmux")
 require("mkd.tree-sitter")
-require("mkd.diffview")
-require("mkd.telescope")
-require("mkd.efm")
 
 P = function(v)
   print(vim.inspect(v))
