@@ -1,6 +1,8 @@
 syntax on
 filetype plugin indent on
 
+" let &verbose = 1
+
 set backspace=indent,eol,start
 set cmdheight=2
 set cursorline
@@ -17,7 +19,9 @@ set nocompatible
 set noswapfile
 set nowrap
 set nu
-set scrolloff=6
+set nu rnu
+set number relativenumber
+set scrolloff=4
 set secure
 set shiftwidth=2
 set shortmess-=S
@@ -35,19 +39,26 @@ set updatetime=40
 set wildmenu
 set wildmode=list:longest,full
 
-" let &verbose = 1
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+:  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+:augroup END
 
 call plug#begin()
   Plug 'hoob3rt/lualine.nvim'
   Plug 'mbbill/undotree'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+  Plug 'nvim-treesitter/playground'
   Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-commentary'
   Plug 'JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-surround'
-  Plug 'lewis6991/spellsitter.nvim'
+
+  " Color
+  Plug 'ulwlu/elly.vim'
 
   " Spell - ZT to toggle
   Plug 'kamykn/spelunker.vim'
@@ -66,9 +77,8 @@ call plug#begin()
   Plug 'hrsh7th/vim-vsnip'
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-buffer'
-
-  " Color
-  Plug 'ulwlu/elly.vim'
+  Plug 'hrsh7th/cmp-cmdline'
+  Plug 'andersevenrud/cmp-tmux'
 
   " git
   Plug 'tpope/vim-fugitive'
@@ -97,10 +107,6 @@ call plug#begin()
   " harpoon man
   Plug 'ThePrimeagen/harpoon'
 
-  " lang
-  Plug 'tpope/vim-markdown'
-  Plug 'jparise/vim-graphql'
-
   " test
   Plug 'vim-test/vim-test'
 call plug#end()
@@ -127,7 +133,7 @@ let g:neoformat_basic_format_trim = 1
 
 " Search
 nnoremap <C-p> :Files<CR>
-nnoremap <C-b> :Buffers<CR>
+" nnoremap <C-b> :Buffers<CR>
 nnoremap <C-g> :Ag<CR>
 
 " fzf layout
@@ -139,7 +145,6 @@ let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 
 " ag ignore match in file name
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--hidden', {'options': '--delimiter : --nth 4..'}, <bang>0)
-
 
 " Save and quit
 nnoremap <leader>w :up
@@ -251,6 +256,13 @@ nnoremap <leader>co <cmd>lua require'telescope.builtin'.find_files({cwd='~/.conf
 nnoremap <leader>ff :Telescope find_files<CR>
 nnoremap <leader>fg :Telescope live_grep<CR>
 nnoremap <leader>fb :Telescope git_branches<CR>
+nnoremap <C-b> :Telescope buffers<CR>
 
 nnoremap <leader>/ :HopChar2<CR>
-nnoremap <C-_> :HopChar1<CR>
+nnoremap <C-_> :HopLine<CR>
+
+" Prevent netrw from creating No Name buffer when toggle between directories
+" augroup AutoDeleteNetrwHiddenBuffers
+"   au!
+"   au FileType netrw setlocal bufhidden=wipe
+" augroup end
