@@ -30,8 +30,8 @@ require'lualine'.setup {
   options = {
     icons_enabled = false,
     theme = 'auto',
-    component_separators = {left = '', right =  ''},
-    section_separators = {left = '', right =  ''},
+    component_separators = {left = '', right = ''},
+    section_separators = {left = '', right = ''},
     disabled_filetypes = {}
   },
   sections = {
@@ -57,7 +57,7 @@ require'lualine'.setup {
     lualine_a = {},
     lualine_b = {},
     lualine_c = {'filename'},
-    lualine_x = {'location'},
+    lualine_x = {'filetype', 'location'},
     lualine_y = {},
     lualine_z = {}
   },
