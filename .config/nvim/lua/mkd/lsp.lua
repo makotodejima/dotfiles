@@ -36,7 +36,7 @@ lspconfig.tsserver.setup {
 }
 
 -- Rust
-lspconfig.rust_analyzer.setup({on_attach = on_attach, capabilities = capabilities})
+lspconfig.rust_analyzer.setup({ capabilities = capabilities})
 
 -- eslint
 -- lspconfig.eslint.setup{}
@@ -69,10 +69,12 @@ local cmp = require 'cmp'
 cmp.setup({
   snippet = {expand = function(args) vim.fn["vsnip#anonymous"](args.body) end},
   mapping = {['<CR>'] = cmp.mapping.confirm({select = true})},
-  sources = {{name = 'nvim_lsp'}, {name = 'vsnip'}, {name = 'path'}},
+  sources = {
+    {name = 'nvim_lsp'}, {name = 'vsnip'}, {name = 'path'}, {name = 'tmux', keyword_length = 3}
+  },
   formatting = {
     format = lspkind.cmp_format({
-      menu = {buffer = 'buf', nvim_lsp = 'lsp', path = 'path', luasnip = 'snip'},
+      menu = {buffer = 'buf', nvim_lsp = 'lsp', path = 'path', luasnip = 'snip', tmux = 'tmux'},
       symbol_map = {
         Text = "",
         Method = "",
@@ -103,3 +105,5 @@ cmp.setup({
     })
   }
 })
+
+cmp.setup.cmdline(':', {sources = {{name = 'cmdline', keyword_length = 3}}})
