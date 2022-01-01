@@ -1,4 +1,5 @@
 let g:my_colorscheme = "elly"
+" let g:my_colorscheme = "vimdark"
 
 fun! Color()
     if exists('+termguicolors')
@@ -14,12 +15,16 @@ fun! Color()
         colorscheme elly
     endif
 
-    highlight CursorLine guibg=#001E2D
-    highlight LineNr guifg=#243C43
-    highlight qfFileName guifg=#74879C
+    " highlight CursorLine guibg=#001E2D
+    " highlight LineNr guifg=#243C43
+    " highlight qfFileName guifg=#74879C
     highlight Sneak guifg=#002335 guibg=#FFD5D1
     highlight MatchParen gui=bold,underline guibg=none guifg=none
-    highlight Search guibg=#2A4850 guifg=none
+    highlight HopNextKey guifg=#FFD5D1 guibg=#002335
+    highlight HopNextKey1 guifg=#ACDBD8 guibg=none
+    highlight HopNextKey2 guifg=#66A790 guibg=none
+    highlight HopUnmatched guifg=#2A4850 guifg=none
+    highlight SpelunkerSpellBad gui=underline guifg=#DA1700
 endfun
 
 call Color()
