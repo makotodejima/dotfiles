@@ -1,5 +1,4 @@
 let g:my_colorscheme = "elly"
-" let g:my_colorscheme = "vimdark"
 
 fun! Color()
     if exists('+termguicolors')
@@ -11,7 +10,6 @@ fun! Color()
     if has('nvim')
         call luaeval('vim.cmd("colorscheme " .. _A[1])', [g:my_colorscheme])
     else
-        " TODO: What the way to use g:theprimeagen_colorscheme
         colorscheme elly
     endif
 
