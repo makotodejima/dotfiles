@@ -70,7 +70,7 @@ cmp.setup({
   snippet = {expand = function(args) vim.fn["vsnip#anonymous"](args.body) end},
   mapping = {['<CR>'] = cmp.mapping.confirm({select = true})},
   sources = {
-    {name = 'nvim_lsp'}, {name = 'vsnip'}, {name = 'path'}, {name = 'tmux', keyword_length = 3}
+    {name = 'nvim_lsp'}, {name = 'vsnip'}, {name = 'path'}, {name = 'tmux', keyword_length = 5}
   },
   formatting = {
     format = lspkind.cmp_format({
