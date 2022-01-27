@@ -14,13 +14,12 @@ set hidden
 set hlsearch
 set ignorecase
 set incsearch
+set mouse=a
 set nobackup
 set nocompatible
 set noswapfile
 set nowrap
-set nu
 set nu rnu
-set number relativenumber
 set scrolloff=4
 set secure
 set shiftwidth=2
@@ -39,26 +38,34 @@ set updatetime=40
 set wildmenu
 set wildmode=list:longest,full
 
-:augroup numbertoggle
-:  autocmd!
-:  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
-:  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
-:augroup END
+" :augroup numbertoggle
+" :  autocmd!
+" :  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+" :  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+" :augroup END
 
 call plug#begin()
+  Plug 'ThePrimeagen/vim-be-good'
   Plug 'hoob3rt/lualine.nvim'
   Plug 'mbbill/undotree'
+  Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+
+  " color
+  Plug 'ulwlu/abyss.vim'
+  Plug 'ulwlu/elly.vim'
+  Plug 'whatyouhide/vim-gotham'
+
+  " treesitter
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
   Plug 'nvim-treesitter/playground'
+  Plug 'RRethy/nvim-treesitter-textsubjects'
+
+  " tpope essentials
   Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-commentary'
-  Plug 'JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-surround'
-
-  " Color
-  Plug 'ulwlu/elly.vim'
 
   " Spell - ZT to toggle
   Plug 'kamykn/spelunker.vim'
@@ -71,7 +78,7 @@ call plug#begin()
   Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
   Plug 'onsails/lspkind-nvim'
 
-  " Completion
+  " cmp
   Plug 'hrsh7th/nvim-cmp'
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/vim-vsnip'
