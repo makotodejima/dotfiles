@@ -19,5 +19,6 @@
 
 [delta]
         line-numbers = true
+
 [pull]
 	rebase = false
