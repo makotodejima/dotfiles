@@ -36,7 +36,7 @@ lspconfig.tsserver.setup {
 }
 
 -- Rust
-lspconfig.rust_analyzer.setup({ capabilities = capabilities})
+lspconfig.rust_analyzer.setup({capabilities = capabilities})
 
 -- eslint
 -- lspconfig.eslint.setup{}

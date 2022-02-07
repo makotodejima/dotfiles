@@ -1,4 +1,5 @@
 let g:my_colorscheme = "elly"
+" let g:my_colorscheme = "rose-pine"
 
 fun! Color()
     if exists('+termguicolors')
@@ -23,6 +24,9 @@ fun! Color()
     highlight HopNextKey2 guifg=#66A790 guibg=none
     highlight HopUnmatched guifg=#2A4850 guifg=none
     highlight SpelunkerSpellBad gui=underline guifg=#DA1700
+    " highlight GitSignsAdd guifg=#32A0B4
+    " highlight GitSignsChange guifg=#E6B450
+    " highlight GitSignsDelete guifg=#B40000
 endfun
 
 call Color()
