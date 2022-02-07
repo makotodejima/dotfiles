@@ -54,6 +54,10 @@ call plug#begin()
   Plug 'ulwlu/abyss.vim'
   Plug 'ulwlu/elly.vim'
   Plug 'whatyouhide/vim-gotham'
+  Plug 'rose-pine/neovim'
+
+  " color code highlighting
+  Plug 'chrisbra/Colorizer'
 
   " treesitter
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -170,6 +174,10 @@ nnoremap ]Q :<C-u>clast<CR>zz
 " Move line up/down
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+
+" Select same lines after >ed
+vnoremap >> >gv
+vnoremap << <gv
 
 nnoremap Y y$
 " nnoremap n nzzzv
