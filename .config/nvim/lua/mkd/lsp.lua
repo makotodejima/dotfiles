@@ -10,7 +10,15 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 lspconfig.tsserver.setup {
   capabilities = cmp_lsp.update_capabilities(capabilities),
   -- for inlay hints
-  init_options = require("nvim-lsp-ts-utils").init_options,
+  -- init_options = vim.tbl_extend("error", require("nvim-lsp-ts-utils").init_options, {plugins = {}}),
+  init_options = {
+    plugins = {
+      {
+        name = "typescript-styled-plugin",
+        location = os.getenv('HOME') .. '/.nvm/versions/node/v12.14.0/lib'
+      }
+    }
+  },
 
   on_attach = function(client, bufnr)
     -- ts_utils
@@ -106,4 +114,5 @@ cmp.setup({
   }
 })
 
+-- cmp.setup.cmdline('/', {sources = {{name = 'buffer', keyword_length = 3}}})
 cmp.setup.cmdline(':', {sources = {{name = 'cmdline', keyword_length = 3}}})
