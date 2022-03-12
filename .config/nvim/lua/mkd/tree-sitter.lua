@@ -1,15 +1,16 @@
 require"nvim-treesitter.configs".setup {
   ensure_installed = {
-    "bash", "c", "comment", "cpp", "css", "graphql", "html", "javascript", "json", "lua",
+    "bash", "c", "comment", "cpp", "css", "graphql", "hcl", "html", "javascript", "json", "lua",
     "markdown", "python", "regex", "rust", "toml", "tsx", "typescript", "vim", "yaml"
   },
-  indent = {enable = true},
+  -- indent = {enable = true},
   highlight = {enable = true},
   incremental_selection = {
     enable = true,
     keymaps = {node_incremental = "ii", node_decremental = "II"}
   },
   context_commentstring = {enable = true},
+  autotag = {enable = true},
   textobjects = {
     select = {
       enable = true,
