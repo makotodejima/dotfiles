@@ -49,6 +49,7 @@ call plug#begin()
   Plug 'hoob3rt/lualine.nvim'
   Plug 'mbbill/undotree'
   Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+  Plug 'windwp/nvim-ts-autotag'
 
   " color
   Plug 'ulwlu/abyss.vim'
@@ -119,13 +120,15 @@ call plug#begin()
   Plug 'ThePrimeagen/harpoon'
 
   " test
-  Plug 'vim-test/vim-test'
+  " Plug 'vim-test/vim-test'
+  Plug 'David-Kunz/jester'
+  Plug 'mfussenegger/nvim-dap'
 call plug#end()
 
 let mapleader = " "
 
 " no idea - fix color in tmux
-set t_Co=256
+" set t_Co=256
 
 " Use new regular expression engine
 set re=0
@@ -240,11 +243,9 @@ let g:test#javascript#jest#file_pattern = '\v(__tests__/.*|(spec|test|test.db))\
 let test#neovim#term_position = "vert"
 
 " vim-test
-let test#strategy = "neovim"
-nmap <leader>tn :TestNearest<CR>
-nmap <leader>tl :TestLast<CR>
-nmap <leader>tf :TestFile<CR>
-nmap <leader>tv :TestVisit<CR>
+" let test#strategy = "neovim"
+nmap <leader>tn :lua require"jester".run({path_to_jest='./node_modules/jest/bin/jest.js'})<CR>
+nmap <leader>tf :lua require"jester".run_file({path_to_jest='./node_modules/jest/bin/jest.js'})<CR>
 
 " terminal normal mode
 tnoremap <C-o> <C-\><C-n>
