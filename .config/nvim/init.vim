@@ -4,7 +4,7 @@ filetype plugin indent on
 " let &verbose = 1
 
 set backspace=indent,eol,start
-set cmdheight=2
+set cmdheight=1
 set cursorline
 set encoding=utf-8
 set expandtab
@@ -45,32 +45,37 @@ set wildmode=list:longest,full
 " :augroup END
 
 call plug#begin()
-  Plug 'ThePrimeagen/vim-be-good'
   Plug 'hoob3rt/lualine.nvim'
   Plug 'mbbill/undotree'
   Plug 'JoosepAlviste/nvim-ts-context-commentstring'
-  Plug 'windwp/nvim-ts-autotag'
+  Plug 'chentau/marks.nvim'
+  Plug 'jose-elias-alvarez/null-ls.nvim'
 
   " color
   Plug 'ulwlu/abyss.vim'
   Plug 'ulwlu/elly.vim'
   Plug 'whatyouhide/vim-gotham'
-  Plug 'rose-pine/neovim'
+  Plug 'rebelot/kanagawa.nvim'
+  Plug 'Mofiqul/adwaita.nvim'
+  Plug 'habamax/vim-gruvbit'
+  Plug 'fenetikm/falcon'
 
   " color code highlighting
   Plug 'chrisbra/Colorizer'
 
   " treesitter
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-  Plug 'nvim-treesitter/nvim-treesitter-textobjects'
   Plug 'nvim-treesitter/playground'
+  Plug 'nvim-treesitter/nvim-treesitter-textobjects'
   Plug 'RRethy/nvim-treesitter-textsubjects'
+  Plug 'SmiteshP/nvim-gps'
 
   " tpope essentials
   Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-repeat'
 
   " Spell - ZT to toggle
   Plug 'kamykn/spelunker.vim'
@@ -82,10 +87,12 @@ call plug#begin()
   Plug 'neovim/nvim-lsp'
   Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
   Plug 'onsails/lspkind-nvim'
+  Plug 'j-hui/fidget.nvim'
 
   " cmp
   Plug 'hrsh7th/nvim-cmp'
   Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
   Plug 'hrsh7th/vim-vsnip'
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-buffer'
@@ -105,6 +112,10 @@ call plug#begin()
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
+  " registers
+  Plug 'AckslD/nvim-neoclip.lua'
+  Plug 'tami5/sqlite.lua'
+
   " fzf
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
@@ -114,7 +125,6 @@ call plug#begin()
   Plug 'tpope/vim-vinegar'
   Plug 'tpope/vim-unimpaired'
   Plug 'aserowy/tmux.nvim'
-  Plug 'phaazon/hop.nvim'
 
   " harpoon man
   Plug 'ThePrimeagen/harpoon'
@@ -134,7 +144,6 @@ let mapleader = " "
 set re=0
 
 lua require("mkd")
-lua require'hop'.setup()
 
 " Spell - default off
 let g:enable_spelunker_vim = 0
@@ -146,7 +155,7 @@ let g:neoformat_enabled_lua = ['luaFormat']
 let g:neoformat_basic_format_trim = 1
 
 " Search
-nnoremap <C-p> :Files<CR>
+" nnoremap <C-p> :Files<CR>
 " nnoremap <C-b> :Buffers<CR>
 nnoremap <C-g> :Ag<CR>
 
@@ -266,16 +275,6 @@ nnoremap <leader>a :lua require("harpoon.ui").nav_file(1)<CR>
 nnoremap <leader>s :lua require("harpoon.ui").nav_file(2)<CR>
 nnoremap <leader>d :lua require("harpoon.ui").nav_file(3)<CR>
 nnoremap <leader>hl :lua require("harpoon.ui").toggle_quick_menu()<CR>
-
-" Telescope
-nnoremap <leader>co <cmd>lua require'telescope.builtin'.find_files({cwd='~/.config',hidden=true,search_dirs={'nvim/init.vim','nvim/lua','nvim/plugin','nvim/spell','alacritty','karabiner'}})<CR>
-nnoremap <leader>ff :Telescope find_files<CR>
-nnoremap <leader>fg :Telescope live_grep<CR>
-nnoremap <leader>fb :Telescope git_branches<CR>
-nnoremap <C-b> :Telescope buffers<CR>
-
-nnoremap <leader>/ :HopChar2<CR>
-nnoremap <C-_> :HopLine<CR>
 
 " Prevent netrw from creating No Name buffer when toggle between directories
 " augroup AutoDeleteNetrwHiddenBuffers
