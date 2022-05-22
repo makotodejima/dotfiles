@@ -12,4 +12,4 @@ nnoremap gh :lua vim.lsp.buf.hover()<CR>
 nnoremap <leader>e :lua vim.diagnostic.open_float()<CR>
 nnoremap [d :lua vim.diagnostic.goto_prev()<CR>
 nnoremap ]d :lua vim.diagnostic.goto_next()<CR>
-nnoremap gll :lua vim.lsp.buf.formatting()<CR>
+nnoremap gll :lua vim.lsp.buf.format({async = true})<CR>
