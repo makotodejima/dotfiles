@@ -1,4 +1,6 @@
-require"nvim-treesitter.configs".setup {
+local tree_sitter_configs = require "nvim-treesitter.configs";
+
+tree_sitter_configs.setup {
   ensure_installed = {
     "bash", "c", "comment", "cpp", "css", "graphql", "hcl", "html", "javascript", "json", "lua",
     "markdown", "python", "regex", "rust", "toml", "tsx", "typescript", "vim", "yaml"
@@ -7,7 +9,7 @@ require"nvim-treesitter.configs".setup {
   highlight = {enable = true},
   incremental_selection = {
     enable = true,
-    keymaps = {node_incremental = "ii", node_decremental = "II"}
+    keymaps = {node_incremental = "ni", node_decremental = "nd"}
   },
   context_commentstring = {enable = true},
   autotag = {enable = true},
