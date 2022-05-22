@@ -48,7 +48,10 @@ local diff = {
   symbols = {added = '+', modified = '~', removed = '-'}
 }
 
-require'lualine'.setup {
+local lualine = require('lualine')
+local gps = require('nvim-gps')
+
+lualine.setup {
   options = {
     icons_enabled = false,
     theme = 'auto',
@@ -59,7 +62,7 @@ require'lualine'.setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch', path},
-    lualine_c = {diff, diagnostics, components.lsp_status},
+    lualine_c = {diff, diagnostics, {gps.get_location, cond = gps.is_available}},
     lualine_x = {'encoding', 'fileformat', 'filetype', 'filesize'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
