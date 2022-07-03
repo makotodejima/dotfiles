@@ -2,6 +2,7 @@ syntax on
 filetype plugin indent on
 
 " let &verbose = 1
+"
 
 set backspace=indent,eol,start
 set cmdheight=1
@@ -48,17 +49,18 @@ call plug#begin()
   Plug 'hoob3rt/lualine.nvim'
   Plug 'mbbill/undotree'
   Plug 'JoosepAlviste/nvim-ts-context-commentstring'
-  Plug 'chentau/marks.nvim'
+  Plug 'chentoast/marks.nvim'
   Plug 'jose-elias-alvarez/null-ls.nvim'
+  Plug 'gbprod/yanky.nvim'
 
   " color
-  Plug 'ulwlu/abyss.vim'
   Plug 'ulwlu/elly.vim'
   Plug 'whatyouhide/vim-gotham'
   Plug 'rebelot/kanagawa.nvim'
   Plug 'Mofiqul/adwaita.nvim'
   Plug 'habamax/vim-gruvbit'
   Plug 'fenetikm/falcon'
+  Plug 'kvrohit/rasmus.nvim'
 
   " color code highlighting
   Plug 'chrisbra/Colorizer'
@@ -77,15 +79,12 @@ call plug#begin()
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
 
-  " Spell - ZT to toggle
-  Plug 'kamykn/spelunker.vim'
-
   " Linter
   Plug 'sbdchd/neoformat'
 
   " LSP
   Plug 'neovim/nvim-lsp'
-  Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+  Plug 'jose-elias-alvarez/typescript.nvim'
   Plug 'onsails/lspkind-nvim'
   Plug 'j-hui/fidget.nvim'
 
@@ -105,12 +104,14 @@ call plug#begin()
   Plug 'junegunn/gv.vim'
   Plug 'lewis6991/gitsigns.nvim'
   Plug 'sindrets/diffview.nvim'
+  Plug 'ThePrimeagen/git-worktree.nvim'
 
   " telescope requirements
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+  Plug 'nvim-telescope/telescope-dap.nvim'
 
   " registers
   Plug 'AckslD/nvim-neoclip.lua'
@@ -128,6 +129,7 @@ call plug#begin()
 
   " harpoon man
   Plug 'ThePrimeagen/harpoon'
+  Plug 'ThePrimeagen/refactoring.nvim'
 
   " test
   " Plug 'vim-test/vim-test'
@@ -144,9 +146,6 @@ let mapleader = " "
 set re=0
 
 lua require("mkd")
-
-" Spell - default off
-let g:enable_spelunker_vim = 0
 
 " Neoformat
 nnoremap <leader><space> :Neoformat<cr>
@@ -281,3 +280,12 @@ nnoremap <leader>hl :lua require("harpoon.ui").toggle_quick_menu()<CR>
 "   au!
 "   au FileType netrw setlocal bufhidden=wipe
 " augroup end
+"
+" autocmd FileType typescript set formatprg=prettier-eslint\ --stdin
+
+" Use ripgrep for :grep
+if executable("rg")
+  set grepprg=rg\ --smart-case\ --vimgrep
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
