@@ -5,40 +5,28 @@ local cmp_lsp = require('cmp_nvim_lsp')
 local capabilities = cmp_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+-- uncomment to see logs under .cache/
+-- vim.lsp.set_log_level("debug")
+
 -- TS
 lspconfig.tsserver.setup {
   capabilities = capabilities,
-  -- for inlay hints
-  init_options = vim.tbl_extend("error", require("nvim-lsp-ts-utils").init_options, {
+  init_options = {
     plugins = {
       {
         name = "typescript-styled-plugin",
-        location = os.getenv('HOME') .. '/.nvm/versions/node/v12.14.0/lib'
+        location = os.getenv('HOME') .. '/.nvm/versions/node/v16.15.1/lib'
       }
     }
-  }),
-
-  on_attach = function(client, bufnr)
-    -- ts_utils
-    local ts_utils = require("nvim-lsp-ts-utils")
-    ts_utils.setup {
-      enable_import_on_completion = true,
-      update_imports_on_move = true,
-      -- require_confirmation_on_move = true,
-
-      -- inlay hints
-      auto_inlay_hints = false,
-      inlay_hints_highlight = "Comment"
-    }
-    -- required to fix code action ranges
-    ts_utils.setup_client(client)
-
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>oi", ":TSLspOrganize<CR>", {silent = false})
-    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>fc", ":TSLspFixCurrent<CR>", {silent = false})
-    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":TSLspRenameFile<CR>", {silent = true})
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>im", ":TSLspImportAll<CR>", {silent = false})
-  end
+  }
 }
+
+require("typescript").setup()
+
+vim.api.nvim_set_keymap('n', '<leader>oi', ':TypescriptOrganizeImports<CR>',
+                        {noremap = true, silent = false})
+vim.api.nvim_set_keymap('n', '<leader>im', ":TypescriptAddMissingImports<CR>",
+                        {noremap = true, silent = false})
 
 -- Rust
 lspconfig.rust_analyzer.setup({capabilities = capabilities})
@@ -72,11 +60,16 @@ lspconfig.sumneko_lua.setup {
 -- cmp
 local cmp = require 'cmp'
 cmp.setup({
-  snippet = {expand = function(args) vim.fn["vsnip#anonymous"](args.body) end},
+  snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+    end
+  },
   mapping = cmp.mapping.preset.insert({['<CR>'] = cmp.mapping.confirm({select = true})}),
   sources = cmp.config.sources({
     {name = 'nvim_lsp'}, {name = 'vsnip'}, {name = 'path'}, {name = 'tmux', keyword_length = 5},
     {name = 'nvim_lsp_signature_help'}
+    -- , {name = 'buffer', keyword_length = 4}
   }),
   formatting = {
     format = lspkind.cmp_format({
