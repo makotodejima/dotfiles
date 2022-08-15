@@ -17,12 +17,17 @@ require("telescope").setup({
       ignore_current_buffer = true,
       sort_mru = true,
       mappings = {i = {["<c-d>"] = "delete_buffer"}}
+    },
+    live_grep = {
+      glob_pattern = "!*lock.json"
     }
   }
 })
 
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('neoclip')
+require('telescope').load_extension('dap')
+require("telescope").load_extension("git_worktree")
 
 vim.api.nvim_set_keymap('n', '<C-t>', ':Telescope <CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>co', [[<cmd>lua require'telescope.builtin'.find_files({cwd='~/.config',hidden=true,search_dirs={'nvim/init.vim','nvim/lua','nvim/plugin','nvim/spell','alacritty','karabiner'}})<CR>]], {noremap = true, silent = true})
@@ -31,3 +36,4 @@ vim.api.nvim_set_keymap('n', '<C-b>', ':Telescope buffers<CR>', {noremap = true,
 vim.api.nvim_set_keymap('n', '<leader>fg', ':Telescope live_grep<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>fb', ':Telescope buffers<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>rr', [[<cmd>lua require('telescope').extensions.neoclip.default()<CR>]], {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>gwt', [[<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>]], {noremap = true, silent = true})
