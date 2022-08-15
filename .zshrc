@@ -2,7 +2,8 @@
 export ZSH="/Users/makotodejima/.oh-my-zsh"
 # export TERM=xterm-256color
 ZSH_THEME="lambda"
-plugins=(Z fzf-zsh zsh-autosuggestions zsh-syntax-highlighting)
+
+plugins=(Z fzf-zsh zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
@@ -26,3 +27,5 @@ eval "$(mcfly init zsh)"
 alias config='/usr/bin/git --git-dir=/Users/makotodejima/.cfg/ --work-tree=/Users/makotodejima'
 
 alias luamake=/Users/makotodejima/dev/lua-language-server/3rd/luamake/luamake
+export PATH="/usr/local/opt/mongodb-community@4.2/bin:$PATH"
+
