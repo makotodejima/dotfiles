@@ -275,17 +275,8 @@ nnoremap <leader>s :lua require("harpoon.ui").nav_file(2)<CR>
 nnoremap <leader>d :lua require("harpoon.ui").nav_file(3)<CR>
 nnoremap <leader>hl :lua require("harpoon.ui").toggle_quick_menu()<CR>
 
-" Prevent netrw from creating No Name buffer when toggle between directories
-" augroup AutoDeleteNetrwHiddenBuffers
-"   au!
-"   au FileType netrw setlocal bufhidden=wipe
-" augroup end
-"
-" autocmd FileType typescript set formatprg=prettier-eslint\ --stdin
-
 " Use ripgrep for :grep
 if executable("rg")
   set grepprg=rg\ --smart-case\ --vimgrep
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
-

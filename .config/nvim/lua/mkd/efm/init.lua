@@ -38,7 +38,7 @@ local efm_languages = {
 --     'javascript', 'javascriptreact', 'typescript', 'typescriptreact', "json", "graphql", "html",
 --     "yaml", "markdown"
 --   },
---   on_attach = on_attach,
+--   -- on_attach = on_attach,
 --   root_dir = lspconfig.util.root_pattern(unpack(efm_root_markers)),
 --   init_options = {documentFormatting = true},
 --   settings = {rootMarkers = efm_root_markers, languages = efm_languages}

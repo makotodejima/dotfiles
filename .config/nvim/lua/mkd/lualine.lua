@@ -29,8 +29,6 @@ local function path()
   return str
 end
 
-local components = require("mkd.lsp-status")
-
 local diagnostics = {
   'diagnostics',
   sources = {'nvim_lsp'},
@@ -41,8 +39,16 @@ local diagnostics = {
   always_visible = false
 }
 
+local function diff_source()
+  local gitsigns = vim.b.gitsigns_status_dict
+  if gitsigns then
+    return {added = gitsigns.added, modified = gitsigns.changed, removed = gitsigns.removed}
+  end
+end
+
 local diff = {
   'diff',
+  source = diff_source,
   colored = true,
   diff_color = {added = {fg = '#32A0B4'}, modified = {fg = '#E6B450'}, removed = {fg = '#B40000'}},
   symbols = {added = '+', modified = '~', removed = '-'}
