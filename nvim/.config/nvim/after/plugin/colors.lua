@@ -1,8 +1,9 @@
 function Color()
   vim.opt.background = "dark"
 
-  vim.cmd("colorscheme " .. "gruvbit")
-  -- vim.cmd("colorscheme " .. "elly")
+  -- vim.cmd("colorscheme " .. "gruvbit")
+  vim.cmd("colorscheme " .. "elly")
+  -- vim.cmd("colorscheme " .. "rose-pine")
 
   local hl = function(thing, opts)
     vim.api.nvim_set_hl(0, thing, opts)
@@ -10,11 +11,6 @@ function Color()
 
   hl("CursorLine", {
     bg = "none",
-  })
-
-  hl("ColorColumn", {
-    ctermbg = 0,
-    bg = "#2B79A0",
   })
 
   hl("Sneak", {
