@@ -7,7 +7,6 @@ local cmp = require('cmp')
 -- vim.lsp.set_log_level("debug")
 
 local capabilities = cmp_lsp.default_capabilities()
--- capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 require("typescript").setup({
   server = {
@@ -27,37 +26,10 @@ require("typescript").setup({
   }
 })
 
-require'lspconfig'.eslint.setup{}
+-- eslint - https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#eslint
+lspconfig.eslint.setup {}
 
--- TS -- config with 'lspconfig' not needed. "typescript.nvim" set it up on behalf
---
--- lspconfig.tsserver.setup {
---   capabilities = capabilities,
---   on_attach = function(client, bufnr)
---     client.server_capabilities.documentFormattingProvider = false
-
---     -- if client.supports_method("textDocument/formatting") then
---     --   vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
---     -- vim.api.nvim_create_autocmd("BufWritePre", {
---     --   group = augroup,
---     --   buffer = bufnr,
---     --   callback = function()
---     --     lsp_formatting(bufnr)
---     --   end,
---     -- })
---     -- end
---   end
---   -- cmd =   { "typescript-language-server", "--stdio", "--tsserver-path", os.getenv('HOME') .. '/.nvm/versions/node/v16.15.1/bin/tsserver' }
--- init_options = {
---   plugins = {
---     {
---       name = "typescript-styled-plugin",
---       location = os.getenv('HOME') .. '/.nvm/versions/node/v16.15.1/lib'
---     }
---   }
--- }
--- }
-
+lspconfig.graphql.setup { filetypes = { "graphql", "gql" } }
 
 vim.api.nvim_set_keymap('n', '<leader><space>', ':lua vim.lsp.buf.format()<CR>',
   { noremap = true, silent = false })
@@ -68,20 +40,6 @@ vim.api.nvim_set_keymap('n', '<leader>im', ":TypescriptAddMissingImports<CR>",
 
 -- Rust
 lspconfig.rust_analyzer.setup({ capabilities = capabilities })
-
--- eslint
--- lspconfig.eslint.setup{}
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#eslint
-
-lspconfig.graphql.setup { filetypes = { "graphql", "gql" } }
-
--- Lua
--- local sumneko_binary = vim.fn.exepath('lua-language-server')
--- local sumneko_root_path = vim.fn.fnamemodify(sumneko_binary, ':h:h:h')
-
--- local runtime_path = vim.split(package.path, ';')
--- table.insert(runtime_path, "lua/?.lua")
--- table.insert(runtime_path, "lua/?/init.lua")
 
 lspconfig.sumneko_lua.setup {
   -- cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},

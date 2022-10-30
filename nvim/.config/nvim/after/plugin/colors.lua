@@ -1,8 +1,8 @@
 function Color()
   vim.opt.background = "dark"
 
-  -- vim.cmd("colorscheme " .. "gruvbit")
-  vim.cmd("colorscheme " .. "elly")
+  vim.cmd("colorscheme " .. "gruvbit")
+  -- vim.cmd("colorscheme " .. "elly")
 
   local hl = function(thing, opts)
     vim.api.nvim_set_hl(0, thing, opts)
@@ -27,7 +27,7 @@ function Color()
   -- })
 
   hl("netrwDir", {
-    fg = "#e6cca3"
+    fg = "#b2c6d4"
   })
 
 end
