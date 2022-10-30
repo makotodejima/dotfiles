@@ -6,13 +6,16 @@ require("telescope").setup({
     mappings = {i = {["<C-q>"] = actions.send_selected_to_qflist}},
     layout_strategy = "vertical",
     layout_config = {vertical = {width = 0.9, height = 0.96, preview_height = 0.65}},
-    file_ignore_patterns = {"node_modules", "undodir"},
+    file_ignore_patterns = { "^.git/", "node_modules", "undodir"},
     vimgrep_arguments = {
       "rg", "--fixed-strings", "--color=never", "--no-heading", "--with-filename", "--line-number",
       "--column", "--smart-case"
     }
   },
   pickers = {
+    find_files = {
+      hidden = true
+    },
     buffers = {
       ignore_current_buffer = true,
       sort_mru = true,
