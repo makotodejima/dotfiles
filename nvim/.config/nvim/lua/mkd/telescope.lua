@@ -31,7 +31,7 @@ require("telescope").load_extension("git_worktree")
 require("telescope").load_extension("harpoon")
 
 vim.api.nvim_set_keymap('n', '<C-t>', ':Telescope <CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>co', [[<cmd>lua require'telescope.builtin'.find_files({cwd='~/.config',hidden=true,search_dirs={'nvim/init.vim','nvim/lua','nvim/plugin','nvim/spell','alacritty','karabiner'}})<CR>]], {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>co', [[<cmd>lua require'telescope.builtin'.find_files({cwd='~/.dotfiles',hidden=true})<CR>]], {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope find_files<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-b>', ':Telescope buffers<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>fg', ':Telescope live_grep<CR>', {noremap = true, silent = true})
