@@ -38,14 +38,8 @@ set updatetime=40
 set wildmenu
 set wildmode=list:longest,full
 
-" :augroup numbertoggle
-" :  autocmd!
-" :  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
-" :  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
-" :augroup END
-
 call plug#begin()
-
+  Plug 'nvim-tree/nvim-tree.lua'
   " color
   Plug 'ulwlu/elly.vim'
   Plug 'whatyouhide/vim-gotham'
@@ -141,19 +135,10 @@ call plug#end()
 
 let mapleader = " "
 
-" no idea - fix color in tmux
-" set t_Co=256
-
 " Use new regular expression engine
 set re=0
 
 lua require("mkd")
-
-" Neoformat
-" nnoremap <leader><space> :Neoformat<cr>
-" let g:neoformat_lua_luaFormat = {'exe': 'lua-format', 'args': ['--column-limit=100', '--indent-width=2'] }
-" let g:neoformat_enabled_lua = ['luaFormat']
-" let g:neoformat_basic_format_trim = 1
 
 " Search
 " nnoremap <C-p> :Files<CR>

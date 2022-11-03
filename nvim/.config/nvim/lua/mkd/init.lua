@@ -29,6 +29,47 @@ require("yanky").setup({
   },
 })
 
+require("nvim-tree").setup {
+  hijack_netrw = false,
+  sort_by = "name",
+  view = {
+    adaptive_size = false,
+    centralize_selection = false,
+    width = 50,
+    mappings = {
+      custom_only = false,
+      list = {
+        -- user mappings go here
+      },
+    },
+  },
+  renderer = {
+    highlight_git = false,
+    icons = {
+      webdev_colors = false,
+      git_placement = "before",
+      padding = " ",
+      symlink_arrow = " ➛ ",
+      show = {
+        file = false,
+        folder = false,
+        folder_arrow = false,
+        git = false,
+      },
+      glyphs = {
+        default = "",
+        symlink = "@",
+        bookmark = "B",
+      },
+    },
+    symlink_destination = true,
+  },
+  hijack_directories = {
+    enable = true,
+    auto_open = true,
+  },
+}
+
 vim.api.nvim_set_keymap("n", "<leader>rp", ":lua require('refactoring').debug.printf({below = false})<CR>",
   { noremap = true })
 vim.api.nvim_set_keymap("v", "<leader>rv", ":lua require('refactoring').debug.print_var({})<CR>", { noremap = true })
@@ -45,16 +86,16 @@ vim.keymap.set("x", "P", "<Plug>(YankyPutBefore)", {})
 vim.api.nvim_set_keymap("n", "<c-n>", "<Plug>(YankyCycleForward)", {})
 -- vim.api.nvim_set_keymap("n", "<c-p>", "<Plug>(YankyCycleBackward)", {})
 
-P = function(v)
-  print(vim.inspect(v))
-  return v
-end
+-- P = function(v)
+--   print(vim.inspect(v))
+--   return v
+-- end
 
-if pcall(require, 'plenary') then
-  RELOAD = require('plenary.reload').reload_module
+-- if pcall(require, 'plenary') then
+--   RELOAD = require('plenary.reload').reload_module
 
-  R = function(name)
-    RELOAD(name)
-    return require(name)
-  end
-end
+--   R = function(name)
+--     RELOAD(name)
+--     return require(name)
+--   end
+-- end

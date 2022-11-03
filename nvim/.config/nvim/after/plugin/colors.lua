@@ -1,8 +1,8 @@
 function Color()
   vim.opt.background = "dark"
 
-  -- vim.cmd("colorscheme " .. "gruvbit")
-  vim.cmd("colorscheme " .. "elly")
+  vim.cmd("colorscheme " .. "gruvbit")
+  -- vim.cmd("colorscheme " .. "elly")
   -- vim.cmd("colorscheme " .. "rose-pine")
 
   local hl = function(thing, opts)
@@ -18,9 +18,10 @@ function Color()
     bg = "#FFD5D1"
   })
 
-  -- hl("Normal", {
-  --   bg = "none"
-  -- })
+  hl("MatchParen", {
+    bold = true,
+    underline = true,
+  })
 
   hl("netrwDir", {
     fg = "#b2c6d4"
