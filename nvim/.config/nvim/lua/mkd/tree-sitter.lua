@@ -3,17 +3,17 @@ local tree_sitter_configs = require "nvim-treesitter.configs";
 tree_sitter_configs.setup {
   ensure_installed = {
     "bash", "c", "comment", "cpp", "css", "graphql", "hcl", "html", "javascript", "json", "lua",
-    "markdown", "python", "regex", "rust", "toml", "tsx", "typescript", "vim", "yaml", "query", "sql", "scss", "proto",
-    "todotxt", "help", "dockerfile", "gitignore", "dot", "http"
+    "markdown", "python", "regex", "rust", "toml", "tsx", "typescript", "vim", "yaml", "query",
+    "sql", "scss", "proto", "todotxt", "help", "dockerfile", "gitignore", "dot", "http"
   },
   -- indent = {enable = true},
-  highlight = { enable = true },
+  highlight = {enable = true},
   incremental_selection = {
     enable = true,
-    keymaps = { node_incremental = "ni", node_decremental = "nd" }
+    keymaps = {node_incremental = "ni", node_decremental = "nd"}
   },
-  context_commentstring = { enable = true },
-  autotag = { enable = true },
+  context_commentstring = {enable = true, enable_autocmd = false},
+  textsubjects = {enable = true, keymaps = {['.'] = 'textsubjects-smart'}},
   textobjects = {
     select = {
       enable = true,
@@ -37,6 +37,5 @@ tree_sitter_configs.setup {
         -- }
       }
     }
-  },
-  textsubjects = { enable = true, keymaps = { ['.'] = 'textsubjects-smart' } }
+  }
 }
