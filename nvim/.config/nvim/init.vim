@@ -39,36 +39,30 @@ set wildmenu
 set wildmode=list:longest,full
 
 call plug#begin()
-  Plug 'nvim-tree/nvim-tree.lua'
   " color
-  Plug 'ulwlu/elly.vim'
   Plug 'whatyouhide/vim-gotham'
   Plug 'rebelot/kanagawa.nvim'
   Plug 'habamax/vim-gruvbit'
   Plug 'fenetikm/falcon'
   Plug 'norcalli/nvim-colorizer.lua'
+  Plug 'kvrohit/rasmus.nvim'
 
   " statusline/winbar
   Plug 'hoob3rt/lualine.nvim'
-  Plug 'ray-x/lsp_signature.nvim'
 
   " treesitter
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'nvim-treesitter/playground'
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
   Plug 'RRethy/nvim-treesitter-textsubjects'
-  Plug 'SmiteshP/nvim-gps'
 
-  " tpope essentials
+  " tpope
   Plug 'tpope/vim-abolish'
-  Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
-
-  " linter
-  " Plug 'sbdchd/neoformat'
-  " Plug 'mfussenegger/nvim-lint'
+  Plug 'tpope/vim-vinegar'
+  Plug 'tpope/vim-unimpaired'
 
   " LSP
   Plug 'neovim/nvim-lsp'
@@ -108,6 +102,8 @@ call plug#begin()
   Plug 'chentoast/marks.nvim'
   Plug 'gbprod/yanky.nvim'
   Plug 'folke/todo-comments.nvim'
+  Plug 'numToStr/Comment.nvim'
+  Plug 'nvim-tree/nvim-tree.lua'
 
   " registers
   Plug 'AckslD/nvim-neoclip.lua'
@@ -119,8 +115,6 @@ call plug#begin()
 
   " navigation
   Plug 'justinmk/vim-sneak'
-  Plug 'tpope/vim-vinegar'
-  Plug 'tpope/vim-unimpaired'
   Plug 'aserowy/tmux.nvim'
 
   " harpoon man
@@ -128,7 +122,6 @@ call plug#begin()
   Plug 'ThePrimeagen/refactoring.nvim'
 
   " test
-  " Plug 'vim-test/vim-test'
   Plug 'David-Kunz/jester'
   Plug 'mfussenegger/nvim-dap'
 call plug#end()
@@ -141,8 +134,6 @@ set re=0
 lua require("mkd")
 
 " Search
-" nnoremap <C-p> :Files<CR>
-" nnoremap <C-b> :Buffers<CR>
 nnoremap <C-g> :Ag<CR>
 
 " fzf layout
