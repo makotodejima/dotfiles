@@ -10,7 +10,6 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # Postgres
 PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 
-alias killbuild='lsof -i :3000 | grep node | head -n 1 | awk "{print \$2}" | xargs kill -9'
 alias gs='git status'
 alias vim='nvim'
 alias n='node --version'
@@ -26,3 +25,6 @@ export PATH="/usr/local/opt/mongodb-community@4.2/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+bindkey '^f' forward-word
+bindkey '^b' backward-word
