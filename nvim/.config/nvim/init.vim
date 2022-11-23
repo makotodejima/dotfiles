@@ -46,6 +46,7 @@ call plug#begin()
   Plug 'fenetikm/falcon'
   Plug 'norcalli/nvim-colorizer.lua'
   Plug 'kvrohit/rasmus.nvim'
+  Plug 'rose-pine/neovim'
 
   " statusline/winbar
   Plug 'hoob3rt/lualine.nvim'
@@ -83,7 +84,7 @@ call plug#begin()
 
   " git
   Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-rhubarb'
+  Plug 'tpope/vim-rhubarb' 
   Plug 'junegunn/gv.vim'
   Plug 'lewis6991/gitsigns.nvim'
   Plug 'sindrets/diffview.nvim'
@@ -211,7 +212,7 @@ nnoremap <leader>cp :let @+ = expand("%")<cr>
 
 augroup highlight_yank
     autocmd!
-    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 30})
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 10})
 augroup END
 
 " disable syntax highlighting for large files

@@ -1,19 +1,46 @@
-local tree_sitter_configs = require "nvim-treesitter.configs";
+local tree_sitter_configs = require "nvim-treesitter.configs"
 
 tree_sitter_configs.setup {
   ensure_installed = {
-    "bash", "c", "comment", "cpp", "css", "graphql", "hcl", "html", "javascript", "json", "lua",
-    "markdown", "python", "regex", "rust", "toml", "tsx", "typescript", "vim", "yaml", "query",
-    "sql", "scss", "proto", "todotxt", "help", "dockerfile", "gitignore", "dot", "http"
+    "bash",
+    "c",
+    "comment",
+    "cpp",
+    "css",
+    "dockerfile",
+    "dot",
+    "gitignore",
+    "graphql",
+    "hcl",
+    "help",
+    "html",
+    "http",
+    "javascript",
+    "json",
+    "lua",
+    "markdown",
+    "proto",
+    "python",
+    "query",
+    "regex",
+    "rust",
+    "scss",
+    "sql",
+    "todotxt",
+    "toml",
+    "tsx",
+    "typescript",
+    "vim",
+    "yaml",
   },
   -- indent = {enable = true},
-  highlight = {enable = true},
+  highlight = { enable = true },
   incremental_selection = {
     enable = true,
-    keymaps = {node_incremental = "ni", node_decremental = "nd"}
+    keymaps = { node_incremental = "ni", node_decremental = "nd" },
   },
-  context_commentstring = {enable = true, enable_autocmd = false},
-  textsubjects = {enable = true, keymaps = {['.'] = 'textsubjects-smart'}},
+  context_commentstring = { enable = true, enable_autocmd = false },
+  textsubjects = { enable = true, keymaps = { ["."] = "textsubjects-smart" } },
   textobjects = {
     select = {
       enable = true,
@@ -26,7 +53,7 @@ tree_sitter_configs.setup {
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
         ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner"
+        ["ic"] = "@class.inner",
 
         -- Or you can define your own textobjects like this
         -- ["iF"] = {
@@ -35,7 +62,7 @@ tree_sitter_configs.setup {
         --   c = "(function_definition) @function",
         --   java = "(method_declaration) @function"
         -- }
-      }
-    }
-  }
+      },
+    },
+  },
 }
