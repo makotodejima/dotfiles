@@ -47,6 +47,10 @@ call plug#begin()
   Plug 'norcalli/nvim-colorizer.lua'
   Plug 'kvrohit/rasmus.nvim'
   Plug 'rose-pine/neovim'
+  Plug 'kdheepak/monochrome.nvim'
+  Plug 'Yazeed1s/oh-lucy.nvim'
+  Plug 'mhartington/oceanic-next'
+  Plug 'olivercederborg/poimandres.nvim'
 
   " statusline/winbar
   Plug 'hoob3rt/lualine.nvim'
@@ -71,6 +75,7 @@ call plug#begin()
   Plug 'onsails/lspkind-nvim'
   Plug 'j-hui/fidget.nvim'
   Plug 'jose-elias-alvarez/null-ls.nvim'
+  Plug 'simrat39/rust-tools.nvim'
 
   " cmp
   Plug 'hrsh7th/nvim-cmp'
@@ -97,22 +102,21 @@ call plug#begin()
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
   Plug 'nvim-telescope/telescope-dap.nvim'
 
-  "util
+  " utils
   Plug 'mbbill/undotree'
   Plug 'JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'chentoast/marks.nvim'
   Plug 'gbprod/yanky.nvim'
   Plug 'folke/todo-comments.nvim'
   Plug 'numToStr/Comment.nvim'
-  Plug 'nvim-tree/nvim-tree.lua'
 
   " registers
   Plug 'AckslD/nvim-neoclip.lua'
   Plug 'tami5/sqlite.lua'
 
   " fzf
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
+  " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  " Plug 'junegunn/fzf.vim'
 
   " navigation
   Plug 'justinmk/vim-sneak'
@@ -130,7 +134,7 @@ call plug#end()
 let mapleader = " "
 
 " Use new regular expression engine
-set re=0
+" set re=0
 
 lua require("mkd")
 
@@ -170,8 +174,6 @@ vnoremap >> >gv
 vnoremap << <gv
 
 nnoremap Y y$
-" nnoremap n nzzzv
-" nnoremap N Nzzzv
 
 inoremap , ,<C-g>u
 inoremap . .<C-g>u
@@ -196,11 +198,11 @@ nnoremap <leader>vs :vsplit<CR>
 
 " Quickfixlist
 function! ToggleQuickFix()
-    if empty(filter(getwininfo(), 'v:val.quickfix'))
-        copen
-    else
-        cclose
-    endif
+  if empty(filter(getwininfo(), 'v:val.quickfix'))
+    copen
+  else
+    cclose
+  endif
 endfunction
 nnoremap <silent> <C-q> :call ToggleQuickFix()<CR>
 
@@ -211,8 +213,8 @@ nnoremap <leader>b :ls<CR> :b # <CR>
 nnoremap <leader>cp :let @+ = expand("%")<cr>
 
 augroup highlight_yank
-    autocmd!
-    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 10})
+  autocmd!
+  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 10})
 augroup END
 
 " disable syntax highlighting for large files
@@ -223,7 +225,6 @@ nnoremap <leader>u :UndotreeToggle<CR>
 
 " markdown note
 let g:markdown_fenced_languages = ['html', 'python', 'javascript', 'bash=sh']
-nnoremap <leader>no :e ~/Library/Mobile\ Documents/27N4MQEA55~pro~writer/Documents/vim-note.md<CR>
 
 " Jest file pattern matching 'test.db'
 let g:test#javascript#jest#file_pattern = '\v(__tests__/.*|(spec|test|test.db))\.(js|jsx|ts|tsx)$'

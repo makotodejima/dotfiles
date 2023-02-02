@@ -43,10 +43,21 @@ vim.api.nvim_set_keymap("n", "<leader>oi", ":TypescriptOrganizeImports<CR>", { n
 vim.api.nvim_set_keymap("n", "<leader>im", ":TypescriptAddMissingImports<CR>", { noremap = true, silent = false })
 
 -- GraphQL
-lspconfig.graphql.setup { filetypes = { "graphql", "gql" }, on_attach = on_attach }
+lspconfig.graphql.setup {
+  filetypes = { "graphql", "gql" },
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
 
 -- Rust
-lspconfig.rust_analyzer.setup { capabilities = capabilities, on_attach = on_attach }
+local rt = require "rust-tools"
+rt.setup {
+  server = {
+    capabilities = capabilities,
+    on_attach = on_attach,
+  },
+}
+rt.inlay_hints.enable()
 
 -- Lua
 lspconfig.sumneko_lua.setup {
@@ -73,4 +84,4 @@ lspconfig.sumneko_lua.setup {
 }
 
 -- Python
-lspconfig.pyright.setup { capabilities = capabilities, on_attach }
+lspconfig.pyright.setup { capabilities = capabilities, on_attach = on_attach }
