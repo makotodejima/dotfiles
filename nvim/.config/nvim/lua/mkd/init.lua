@@ -21,35 +21,6 @@ require("Comment").setup {
 require("todo-comments").setup { signs = false, highlight = { keyword = "bg" } }
 require("yanky").setup { highlight = { on_put = true, on_yank = true, timer = 10 } }
 
-require("nvim-tree").setup {
-  hijack_netrw = false,
-  sort_by = "name",
-  view = {
-    adaptive_size = false,
-    centralize_selection = false,
-    width = 50,
-    mappings = {
-      custom_only = false,
-      list = {
-        -- user mappings go here
-      },
-    },
-  },
-  renderer = {
-    highlight_git = false,
-    icons = {
-      webdev_colors = false,
-      git_placement = "before",
-      padding = " ",
-      symlink_arrow = " ➛ ",
-      show = { file = false, folder = false, folder_arrow = false, git = false },
-      glyphs = { default = "", symlink = "@", bookmark = "B" },
-    },
-    symlink_destination = true,
-  },
-  hijack_directories = { enable = true, auto_open = true },
-}
-
 vim.api.nvim_set_keymap(
   "n",
   "<leader>rp",

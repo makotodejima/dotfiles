@@ -7,6 +7,7 @@ tree_sitter_configs.setup {
     "comment",
     "cpp",
     "css",
+    "diff",
     "dockerfile",
     "dot",
     "gitignore",
@@ -34,7 +35,10 @@ tree_sitter_configs.setup {
     "yaml",
   },
   -- indent = {enable = true},
-  highlight = { enable = true },
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
   incremental_selection = {
     enable = true,
     keymaps = { node_incremental = "ni", node_decremental = "nd" },
