@@ -114,10 +114,6 @@ call plug#begin()
   Plug 'AckslD/nvim-neoclip.lua'
   Plug 'tami5/sqlite.lua'
 
-  " fzf
-  " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  " Plug 'junegunn/fzf.vim'
-
   " navigation
   Plug 'justinmk/vim-sneak'
   Plug 'aserowy/tmux.nvim'
