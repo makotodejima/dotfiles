@@ -29,6 +29,7 @@ require("telescope").setup {
     },
     live_grep = {
       glob_pattern = "!*lock.json",
+      additional_args = { "--hidden" },
     },
   },
 }
@@ -49,6 +50,7 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap("n", "<C-p>", ":Telescope git_files<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-b>", ":Telescope buffers<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>fg", ":Telescope live_grep<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-g>", ":Telescope live_grep<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap(
   "n",
   "<leader>rr",
