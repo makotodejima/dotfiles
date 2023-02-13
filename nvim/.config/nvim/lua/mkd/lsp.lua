@@ -60,9 +60,7 @@ rt.setup {
 rt.inlay_hints.enable()
 
 -- Lua
-lspconfig.sumneko_lua.setup {
-  -- cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
-  on_attach = on_attach,
+lspconfig.lua_ls.setup {
   settings = {
     Lua = {
       runtime = {
@@ -78,7 +76,9 @@ lspconfig.sumneko_lua.setup {
         library = vim.api.nvim_get_runtime_file("", true),
       },
       -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = { enable = false },
+      telemetry = {
+        enable = false,
+      },
     },
   },
 }
