@@ -39,8 +39,7 @@ set wildmenu
 set wildmode=list:longest,full
 
 call plug#begin()
-  " color
-  Plug 'whatyouhide/vim-gotham'
+  " theme
   Plug 'rebelot/kanagawa.nvim'
   Plug 'habamax/vim-gruvbit'
   Plug 'fenetikm/falcon'
@@ -49,8 +48,8 @@ call plug#begin()
   Plug 'rose-pine/neovim'
   Plug 'kdheepak/monochrome.nvim'
   Plug 'Yazeed1s/oh-lucy.nvim'
-  Plug 'mhartington/oceanic-next'
   Plug 'olivercederborg/poimandres.nvim'
+  Plug 'goolord/alpha-nvim'
 
   " statusline/winbar
   Plug 'hoob3rt/lualine.nvim'
@@ -86,6 +85,7 @@ call plug#begin()
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/cmp-cmdline'
   Plug 'andersevenrud/cmp-tmux'
+  Plug 'github/copilot.vim'
 
   " git
   Plug 'tpope/vim-fugitive'
@@ -133,19 +133,6 @@ let mapleader = " "
 " set re=0
 
 lua require("mkd")
-
-" Search
-nnoremap <C-g> :Ag<CR>
-
-" fzf layout
-let g:fzf_layout = { 'down': '70%' }
-let g:fzf_preview_window = ['up:65%']
-
-" ag
-let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
-
-" ag ignore match in file name
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--hidden', {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 " Save and quit
 nnoremap <leader>w :up

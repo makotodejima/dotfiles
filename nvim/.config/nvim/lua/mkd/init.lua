@@ -21,6 +21,10 @@ require("Comment").setup {
 require("todo-comments").setup { signs = false, highlight = { keyword = "bg" } }
 require("yanky").setup { highlight = { on_put = true, on_yank = true, timer = 10 } }
 
+local startify = require "alpha.themes.startify"
+startify.nvim_web_devicons.enabled = false
+require("alpha").setup(startify.config)
+
 vim.api.nvim_set_keymap(
   "n",
   "<leader>rp",
