@@ -50,6 +50,8 @@ call plug#begin()
   Plug 'Yazeed1s/oh-lucy.nvim'
   Plug 'olivercederborg/poimandres.nvim'
   Plug 'goolord/alpha-nvim'
+  Plug 'kvrohit/substrata.nvim'
+  Plug 'arturgoms/moonbow.nvim'
 
   " statusline/winbar
   Plug 'hoob3rt/lualine.nvim'
@@ -197,7 +199,7 @@ nnoremap <leader>cp :let @+ = expand("%")<cr>
 
 augroup highlight_yank
   autocmd!
-  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 10})
+  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40})
 augroup END
 
 " disable syntax highlighting for large files

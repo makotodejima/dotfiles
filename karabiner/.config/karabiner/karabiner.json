@@ -146,11 +146,11 @@
             ]
           },
           {
-            "description": "Escape with left ctrl and backspace",
+            "description": "Escape with left ctrl and open bracket",
             "manipulators": [
               {
                 "from": {
-                  "key_code": "delete_or_backspace",
+                  "key_code": "open_bracket",
                   "modifiers": {
                     "mandatory": ["left_control"]
                   }
