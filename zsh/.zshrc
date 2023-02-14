@@ -16,7 +16,6 @@ alias n='node --version'
 
 eval "$(direnv hook zsh)"
 eval "$(jump shell zsh)"
-alias config='/usr/bin/git --git-dir=/Users/makotodejima/.cfg/ --work-tree=/Users/makotodejima'
 
 export PATH="/usr/local/opt/mongodb-community@4.2/bin:$PATH"
 
@@ -49,3 +48,5 @@ load-nvmrc() {
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
+
+source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
