@@ -3,16 +3,12 @@
 	wip = commit -m 'wip' --no-verify
 
 [core]
-	excludesfile = /Users/makotodejima/.gitignore_global
-	; pager = diff-so-fancy | less --tabs=4 -RFX
+	excludesfile = ~/.gitignore_global
 	editor = nvim
 
 [user]
 	name = Makoto Dejima
 	email = makotodejima@gmail.com
-
-[commit]
-	template = /Users/makotodejima/.stCommitMsg
 
 [init]
 	; templatedir = ~/.git_template
