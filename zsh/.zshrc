@@ -1,8 +1,8 @@
-export ZSH="/Users/makotodejima/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 # export TERM=xterm-256color
 ZSH_THEME="lambda"
 
-plugins=(zsh-autosuggestions kubectl kubectx)
+plugins=(kubectl kubectx)
 source $ZSH/oh-my-zsh.sh
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
