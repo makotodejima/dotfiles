@@ -32,7 +32,7 @@ set smartindent
 set softtabstop=2
 set termguicolors
 set timeoutlen=1000 ttimeoutlen=0
-set undodir=~/.config/nvim/undodir
+set undodir=~/.local/share/nvim/undodir
 set undofile
 set updatetime=40
 set wildmenu
