@@ -2,7 +2,7 @@ local lspconfig = require "lspconfig"
 local cmp_lsp = require "cmp_nvim_lsp"
 
 -- uncomment to see logs under .cache/
--- vim.lsp.set_log_level("debug")
+-- vim.lsp.set_log_level "debug"
 
 local opt = { noremap = true, silent = false }
 vim.keymap.set("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opt)
@@ -33,7 +33,7 @@ require("typescript").setup {
       plugins = {
         {
           name = "typescript-styled-plugin",
-          location = os.getenv "HOME" .. "/.nvm/versions/node/v16.15.1/lib",
+          location = os.getenv "HOME" .. "/.nvm/versions/node/v16.19.0/lib",
         },
       },
     },
@@ -74,6 +74,7 @@ lspconfig.lua_ls.setup {
       workspace = {
         -- Make the server aware of Neovim runtime files
         library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false,
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {
@@ -84,4 +85,31 @@ lspconfig.lua_ls.setup {
 }
 
 -- Python
-lspconfig.pyright.setup { capabilities = capabilities, on_attach = on_attach }
+local util = require "lspconfig/util"
+local path = util.path
+
+local function get_python_path(workspace)
+  -- Use activated virtualenv.
+  if vim.env.VIRTUAL_ENV then
+    return path.join(vim.env.VIRTUAL_ENV, "bin", "python")
+  end
+
+  -- Find and use virtualenv in workspace directory.
+  for _, pattern in ipairs { "*", ".*" } do
+    local match = vim.fn.glob(path.join(workspace, pattern, "pyvenv.cfg"))
+    if match ~= "" then
+      return path.join(path.dirname(match), "bin", "python")
+    end
+  end
+
+  -- Fallback to system Python.
+  return exepath "python3" or exepath "python" or "python"
+end
+
+lspconfig.pyright.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  on_init = function(client)
+    client.config.settings.python.pythonPath = get_python_path(client.config.root_dir)
+  end,
+}
