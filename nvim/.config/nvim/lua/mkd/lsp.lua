@@ -28,7 +28,11 @@ require("typescript").setup {
   server = {
     -- debug = true,
     capabilities = capabilities,
-    on_attach = on_attach,
+    on_attach = function(client)
+      client.server_capabilities.documentFormattingProvider = false
+      vim.keymap.set("n", "<leader>oi", ":TypescriptOrganizeImports<CR>", { noremap = true, silent = false })
+      vim.keymap.set("n", "<leader>im", ":TypescriptAddMissingImports<CR>", { noremap = true, silent = false })
+    end,
     init_options = {
       plugins = {
         {
@@ -39,8 +43,6 @@ require("typescript").setup {
     },
   },
 }
-vim.api.nvim_set_keymap("n", "<leader>oi", ":TypescriptOrganizeImports<CR>", { noremap = true, silent = false })
-vim.api.nvim_set_keymap("n", "<leader>im", ":TypescriptAddMissingImports<CR>", { noremap = true, silent = false })
 
 -- GraphQL
 lspconfig.graphql.setup {
@@ -108,8 +110,18 @@ end
 
 lspconfig.pyright.setup {
   capabilities = capabilities,
-  on_attach = on_attach,
+  on_attach = function(client)
+    client.server_capabilities.documentFormattingProvider = false
+    vim.keymap.set("n", "<leader>oi", ":PyrightOrganizeImports<CR>", { noremap = true, silent = false })
+    vim.keymap.set("n", "<leader>im", ":TypescriptAddMissingImports<CR>", { noremap = true, silent = false })
+  end,
   on_init = function(client)
     client.config.settings.python.pythonPath = get_python_path(client.config.root_dir)
   end,
 }
+
+-- lspconfig.ruff_lsp.setup {
+--   on_attach = function(client)
+--     client.server_capabilities.documentFormattingProvider = false
+--   end,
+-- }
