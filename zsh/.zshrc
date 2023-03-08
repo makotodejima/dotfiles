@@ -4,29 +4,19 @@ ZSH_THEME="lambda"
 
 plugins=(kubectl kubectx)
 source $ZSH/oh-my-zsh.sh
+source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-# Postgres
-PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
-
-alias gs='git status'
 alias vim='nvim'
 alias n='node --version'
 
-eval "$(direnv hook zsh)"
-eval "$(jump shell zsh)"
-
-export PATH="/usr/local/opt/mongodb-community@4.2/bin:$PATH"
+bindkey '^f' forward-word
+bindkey '^b' backward-word
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-bindkey '^f' forward-word
-bindkey '^b' backward-word
 
 # place this after nvm initialization!
 autoload -U add-zsh-hook
@@ -49,4 +39,11 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+eval "$(jump shell zsh)"
+eval "$(direnv hook zsh)"
+
