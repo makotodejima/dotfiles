@@ -1,10 +1,12 @@
 function Color()
   vim.opt.background = "dark"
 
-  vim.cmd("colorscheme " .. "gruvbit")
-  -- vim.cmd("colorscheme " .. "rose-pine")
+  -- vim.cmd("colorscheme " .. "gruvbit")
+  vim.cmd("colorscheme " .. "rose-pine")
+  -- vim.cmd("colorscheme " .. "mellow")
   -- vim.cmd("colorscheme " .. "monochrome")
   -- vim.cmd("colorscheme " .. "rasmus")
+  -- vim.cmd("colorscheme " .. "kanagawa")
 
   local hl = function(thing, opts)
     vim.api.nvim_set_hl(0, thing, opts)

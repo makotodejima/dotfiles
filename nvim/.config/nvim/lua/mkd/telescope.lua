@@ -3,7 +3,7 @@ local actions = require "telescope.actions"
 require("telescope").setup {
   defaults = {
     prompt_prefix = "  ",
-    mappings = { i = { ["<C-q>"] = actions.send_selected_to_qflist,["<C-a>"] = actions.send_to_qflist } },
+    mappings = { i = { ["<C-q>"] = actions.send_selected_to_qflist, ["<C-a>"] = actions.send_to_qflist } },
     layout_strategy = "vertical",
     layout_config = { vertical = { width = 0.9, height = 0.96, preview_height = 0.65 } },
     file_ignore_patterns = { "^.git/", "node_modules", "undodir" },
@@ -34,10 +34,10 @@ require("telescope").setup {
   },
   extensions = {
     fzf = {
-      fuzzy = true,                   -- false will only do exact matching
+      fuzzy = true, -- false will only do exact matching
       override_generic_sorter = true, -- override the generic sorter
-      override_file_sorter = true,    -- override the file sorter
-      case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+      override_file_sorter = true, -- override the file sorter
+      case_mode = "smart_case", -- or "ignore_case" or "respect_case"
       -- the default case_mode is "smart_case"
     },
   },
