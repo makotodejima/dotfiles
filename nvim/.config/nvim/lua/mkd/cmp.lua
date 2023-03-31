@@ -11,17 +11,10 @@ cmp.setup {
   },
   mapping = cmp.mapping.preset.insert { ["<CR>"] = cmp.mapping.confirm { select = true } },
   sources = cmp.config.sources {
-    { name = "nvim_lsp", priority = 50 },
+    { name = "nvim_lsp" },
     { name = "vsnip" },
     { name = "path" },
     { name = "nvim_lsp_signature_help" },
-    -- { name = 'tmux', keyword_length = 5,
-    --   entry_filter = function(entry, ctx)
-    --     -- print(entry.completion_item.word)
-    --     -- print(#entry.completion_item.word)
-    --     return #entry.completion_item.word > 8
-    --   end
-    -- },
     -- , {name = 'buffer', keyword_length = 4}
   },
   formatting = {
@@ -60,5 +53,15 @@ cmp.setup {
 
 cmp.setup.cmdline(":", {
   mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline", keyword_length = 2 } }),
+  sources = cmp.config.sources {
+    { name = "fuzzy_path" },
+    { name = "cmdline_history", max_item_count = 5 },
+    { name = "cmdline" },
+    -- {
+    --   name = "buffer",
+    --   option = {
+    --     keyword_length = 4,
+    --   },
+    -- },
+  },
 })
