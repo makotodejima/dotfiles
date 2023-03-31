@@ -63,6 +63,7 @@ rt.inlay_hints.enable()
 
 -- Lua
 lspconfig.lua_ls.setup {
+  capabilities = capabilities,
   settings = {
     Lua = {
       runtime = {
@@ -108,20 +109,34 @@ local function get_python_path(workspace)
   return exepath "python3" or exepath "python" or "python"
 end
 
+-- Find ruff config - TODO: figure out conditionally attach ruff
+--
+-- local ruff_config = vim.fn.glob(path.join(vim.fn.getcwd(), "ruff.toml"))
+
+lspconfig.ruff_lsp.setup {
+  capabilities = capabilities,
+  on_attach = function(client)
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.hover = false
+  end,
+}
+
 lspconfig.pyright.setup {
   capabilities = capabilities,
   on_attach = function(client)
     client.server_capabilities.documentFormattingProvider = false
     vim.keymap.set("n", "<leader>oi", ":PyrightOrganizeImports<CR>", { noremap = true, silent = false })
-    vim.keymap.set("n", "<leader>im", ":TypescriptAddMissingImports<CR>", { noremap = true, silent = false })
   end,
   on_init = function(client)
     client.config.settings.python.pythonPath = get_python_path(client.config.root_dir)
   end,
 }
 
--- lspconfig.ruff_lsp.setup {
---   on_attach = function(client)
---     client.server_capabilities.documentFormattingProvider = false
---   end,
+-- lspconfig.eslint.setup {
+-- on_attach = function(client, bufnr)
+--   vim.api.nvim_create_autocmd("BufWritePre", {
+--     buffer = bufnr,
+--     command = "EslintFixAll",
+--   })
+-- end,
 -- }
