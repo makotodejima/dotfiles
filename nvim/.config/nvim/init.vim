@@ -51,7 +51,8 @@ call plug#begin()
   Plug 'olivercederborg/poimandres.nvim'
   Plug 'goolord/alpha-nvim'
   Plug 'kvrohit/substrata.nvim'
-  Plug 'arturgoms/moonbow.nvim'
+  Plug 'savq/melange-nvim'
+  Plug 'kvrohit/mellow.nvim'
 
   " statusline/winbar
   Plug 'hoob3rt/lualine.nvim'
@@ -87,7 +88,10 @@ call plug#begin()
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/cmp-cmdline'
   Plug 'andersevenrud/cmp-tmux'
-  Plug 'github/copilot.vim'
+  Plug 'tzachar/cmp-fuzzy-path'
+  Plug 'tzachar/fuzzy.nvim'
+  Plug 'dmitmel/cmp-cmdline-history'
+  " Plug 'github/copilot.vim'
 
   " git
   Plug 'tpope/vim-fugitive'
@@ -245,3 +249,16 @@ if executable("rg")
   set grepprg=rg\ --smart-case\ --vimgrep
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
+
+" When using `dd` in the quickfix list, remove the item from the quickfix list.
+function! RemoveQFItem()
+  let curqfidx = line('.') - 1
+  let qfall = getqflist()
+  call remove(qfall, curqfidx)
+  call setqflist(qfall, 'r')
+  execute curqfidx + 1 . "cfirst"
+  :copen
+endfunction
+:command! RemoveQFItem :call RemoveQFItem()
+" Use map <buffer> to only map dd in the quickfix window. Requires +localmap
+autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
