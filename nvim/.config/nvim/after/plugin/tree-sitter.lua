@@ -15,7 +15,6 @@ tree_sitter_configs.setup {
     "gitignore",
     "graphql",
     "hcl",
-    "help",
     "html",
     "http",
     "javascript",

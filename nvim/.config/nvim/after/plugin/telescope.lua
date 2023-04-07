@@ -1,9 +1,10 @@
 local actions = require "telescope.actions"
+local fb_actions = require "telescope._extensions.file_browser.actions"
 
 require("telescope").setup {
   defaults = {
     prompt_prefix = "  ",
-    mappings = { i = { ["<C-q>"] = actions.send_selected_to_qflist, ["<C-a>"] = actions.send_to_qflist } },
+    mappings = { i = { ["<C-q>"] = actions.send_selected_to_qflist,["<C-a>"] = actions.send_to_qflist } },
     layout_strategy = "vertical",
     layout_config = { vertical = { width = 0.9, height = 0.96, preview_height = 0.65 } },
     file_ignore_patterns = { "^.git/", "node_modules", "undodir" },
@@ -34,11 +35,30 @@ require("telescope").setup {
   },
   extensions = {
     fzf = {
-      fuzzy = true, -- false will only do exact matching
+      fuzzy = true,                   -- false will only do exact matching
       override_generic_sorter = true, -- override the generic sorter
-      override_file_sorter = true, -- override the file sorter
-      case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+      override_file_sorter = true,    -- override the file sorter
+      case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
       -- the default case_mode is "smart_case"
+    },
+    media_files = {
+      -- filetypes whitelist
+      -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+      filetypes = { "png", "webp", "jpg", "jpeg", "svg" },
+      -- find command (defaults to `fd`)
+      find_cmd = "rg",
+    },
+    file_browser = {
+      hidden = true,
+      dir_icon = "📁",
+      mappings = {
+        ["i"] = {
+          ["µ"] = fb_actions.move,
+          ["ç"] = fb_actions.copy,
+          ["∂"] = fb_actions.remove,
+          ["-"] = fb_actions.goto_parent_dir,
+        },
+      },
     },
   },
 }
@@ -48,6 +68,8 @@ require("telescope").load_extension "neoclip"
 require("telescope").load_extension "dap"
 require("telescope").load_extension "git_worktree"
 require("telescope").load_extension "harpoon"
+require("telescope").load_extension "media_files"
+require("telescope").load_extension "file_browser"
 
 vim.keymap.set("n", "<C-t>", ":Telescope <CR>", { noremap = true, silent = true })
 vim.keymap.set(
