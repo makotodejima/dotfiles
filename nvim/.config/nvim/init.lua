@@ -26,10 +26,8 @@ vim.cmd [[
 
 -- Use ripgrep for :grep
 vim.cmd [[
-  if executable("rg")
-    set grepprg=rg\ --smart-case\ --vimgrep
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
-  endif
+  set grepprg=rg\ --smart-case\ --vimgrep
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
 ]]
 
 -- When using `dd` in the quickfix list, remove the item from the quickfix list.
