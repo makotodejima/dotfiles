@@ -140,3 +140,18 @@ lspconfig.pyright.setup {
 --   })
 -- end,
 -- }
+
+
+-- css
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
+lspconfig.cssls.setup {
+  capabilities = capabilities,
+}
+
+lspconfig.tailwindcss.setup {
+  capabilities = capabilities,
+}
+
+lspconfig.html.setup {
+  capabilities = capabilities,
+}
