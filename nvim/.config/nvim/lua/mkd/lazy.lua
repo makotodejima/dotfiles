@@ -50,6 +50,7 @@ require("lazy").setup({
     },
   },
 
+  -- tpopes
   "tpope/vim-abolish",
   "tpope/vim-dispatch",
   "tpope/vim-surround",
@@ -57,12 +58,12 @@ require("lazy").setup({
   "tpope/vim-vinegar",
   "tpope/vim-unimpaired",
 
+  -- lsp
   {
     "neovim/nvim-lsp",
     dependencies = {
       "jose-elias-alvarez/typescript.nvim",
       "onsails/lspkind-nvim",
-
       "simrat39/rust-tools.nvim",
     },
   },
@@ -76,6 +77,7 @@ require("lazy").setup({
   "jose-elias-alvarez/null-ls.nvim",
   "tzachar/fuzzy.nvim",
 
+  -- cmp
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
@@ -91,6 +93,7 @@ require("lazy").setup({
     },
   },
 
+  -- git
   "tpope/vim-fugitive",
   "tpope/vim-rhubarb",
   "junegunn/gv.vim",
@@ -110,6 +113,12 @@ require("lazy").setup({
       "nvim-telescope/telescope-media-files.nvim",
     },
   },
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+  },
+
+  -- util
   "mbbill/undotree",
   "chentoast/marks.nvim",
   {
@@ -145,17 +154,15 @@ require("lazy").setup({
   "justinmk/vim-sneak",
   "aserowy/tmux.nvim",
 
+  -- prime
   "ThePrimeagen/harpoon",
   "ThePrimeagen/refactoring.nvim",
 
+  -- test
   "David-Kunz/jester",
   "mfussenegger/nvim-dap",
 
   "edluffy/hologram.nvim",
-  {
-    "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-  },
 }, {
   ui = {
     icons = {
