@@ -81,7 +81,7 @@ vim.api.nvim_set_keymap(
   ":lua require('refactoring').debug.printf({below = false})<CR>",
   { noremap = true }
 )
-vim.keymap.set("v", "<leader>rv", ":lua require('refactoring').debug.print_var({})<CR>", { noremap = true })
+vim.keymap.set("v", "<leader>rp", ":lua require('refactoring').debug.print_var({})<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>rc", ":lua require('refactoring').debug.cleanup({})<CR>", { noremap = true })
 
 -- yanky
@@ -94,4 +94,7 @@ vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleForward)", {})
 vim.keymap.set("n", "<leader><space>", ":lua vim.lsp.buf.format()<CR>")
 vim.keymap.set("v", "<leader>ss", ":lua require 'mkd.null-ls.cspell_util'.add_selection()<CR>")
 
+-- can do copy/move files
 vim.keymap.set("n", "<leader>ff", ":Telescope file_browser<CR>")
+
+-- consider rempap for :Gclog :%Gclog
