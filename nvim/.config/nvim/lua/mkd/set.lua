@@ -22,3 +22,7 @@ vim.opt.undodir = os.getenv "HOME" .. "/.local/share/nvim/undodir"
 vim.opt.undofile = true
 vim.opt.updatetime = 40
 vim.opt.wrap = false
+
+-- ripgrep for :grep
+vim.opt.grepprg = "rg --smart-case --vimgrep"
+vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
