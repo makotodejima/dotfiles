@@ -60,16 +60,30 @@ require("telescope").setup {
         },
       },
     },
+    advanced_git_search = {
+      -- fugitive or diffview
+      diff_plugin = "fugitive",
+      -- customize git in previewer
+      -- e.g. flags such as { "--no-pager" }, or { "-c", "delta.side-by-side=false" }
+      git_flags = {},
+      -- customize git diff in previewer
+      -- e.g. flags such as { "--raw" }
+      git_diff_flags = {},
+      -- Show builtin git pickers when executing "show_custom_functions" or :AdvancedGitSearch
+      show_builtin_git_pickers = false,
+    }
   },
 }
 
 require("telescope").load_extension "fzf"
-require("telescope").load_extension "neoclip"
+-- require("telescope").load_extension "neoclip"
 require("telescope").load_extension "dap"
 require("telescope").load_extension "git_worktree"
 require("telescope").load_extension "harpoon"
 require("telescope").load_extension "media_files"
 require("telescope").load_extension "file_browser"
+require("telescope").load_extension "advanced_git_search"
+-- require('telescope').load_extension('macros')
 
 vim.keymap.set("n", "<C-t>", ":Telescope <CR>", { noremap = true, silent = true })
 vim.keymap.set(
@@ -88,6 +102,12 @@ vim.keymap.set(
   "<leader>rr",
   [[<cmd>lua require('telescope').extensions.neoclip.default()<CR>]],
   { noremap = true, silent = true }
+)
+vim.keymap.set(
+  "v",
+  "<leader>rr",
+  "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
+  { noremap = true }
 )
 
 -- worktree
