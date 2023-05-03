@@ -64,6 +64,7 @@ rt.inlay_hints.enable()
 -- Lua
 lspconfig.lua_ls.setup {
   capabilities = capabilities,
+  on_attach = on_attach,
   settings = {
     Lua = {
       runtime = {
@@ -132,26 +133,30 @@ lspconfig.pyright.setup {
   end,
 }
 
--- lspconfig.eslint.setup {
--- on_attach = function(client, bufnr)
---   vim.api.nvim_create_autocmd("BufWritePre", {
---     buffer = bufnr,
---     command = "EslintFixAll",
---   })
--- end,
--- }
+lspconfig.eslint.setup {
+  on_attach = function(client, bufnr)
+    client.server_capabilities.documentFormattingProvider = false
+    -- vim.api.nvim_create_autocmd("BufWritePre", {
+    --   buffer = bufnr,
+    --   command = "EslintFixAll",
+    -- })
+  end,
+}
 
 
 -- css
 -- capabilities.textDocument.completion.completionItem.snippetSupport = true
 lspconfig.cssls.setup {
+  on_attach = on_attach,
   capabilities = capabilities,
 }
 
 lspconfig.tailwindcss.setup {
+  on_attach = on_attach,
   capabilities = capabilities,
 }
 
 lspconfig.html.setup {
+  on_attach = on_attach,
   capabilities = capabilities,
 }
