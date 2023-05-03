@@ -1,15 +1,14 @@
 local null_ls = require "null-ls"
 
 null_ls.setup {
-  -- debug = true,
+  debug = true,
   sources = {
     -- diagnostics
     null_ls.builtins.diagnostics.eslint_d,
-    -- null_ls.builtins.diagnostics.ruff,
     null_ls.builtins.diagnostics.cspell.with {
       method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
       disabled_filetypes = { "vim", "lua", "netrw" },
-      extra_args = { "--config", vim.fn.expand "~/.config/nvim/after/plugin/null-ls/cspell.json" },
+      extra_args = { "--config", vim.fn.expand "~/.config/nvim/lua/mkd/null-ls/cspell.json" },
       diagnostics_postprocess = function(diagnostic)
         diagnostic.severity = vim.diagnostic.severity.INFO
       end,
@@ -23,7 +22,6 @@ null_ls.setup {
     null_ls.builtins.formatting.rustfmt,
     null_ls.builtins.formatting.pg_format,
     null_ls.builtins.formatting.black,
-    -- null_ls.builtins.formatting.ruff,
     null_ls.builtins.formatting.stylua.with {
       extra_args = { "--config-path", vim.fn.expand "~/.config/nvim/lua/mkd/null-ls/stylua.toml" },
     },
