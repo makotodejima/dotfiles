@@ -47,6 +47,7 @@ require("lazy").setup({
       "nvim-treesitter/nvim-treesitter-textobjects",
       "RRethy/nvim-treesitter-textsubjects",
       "nvim-treesitter/playground",
+      'nvim-treesitter/nvim-treesitter-context',
     },
   },
 
@@ -117,6 +118,19 @@ require("lazy").setup({
     "nvim-telescope/telescope-file-browser.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
   },
+  {
+    "aaronhallaert/advanced-git-search.nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      -- to show diff splits and open commits in browser
+      "tpope/vim-fugitive",
+      -- to open commits in browser with fugitive
+      "tpope/vim-rhubarb",
+      -- OPTIONAL: to replace the diff from fugitive with diffview.nvim
+      -- (fugitive is still needed to open in browser)
+      -- "sindrets/diffview.nvim",
+    },
+  },
 
   -- util
   "mbbill/undotree",
@@ -146,9 +160,27 @@ require("lazy").setup({
     end,
   },
 
+
   -- registers
-  "AckslD/nvim-neoclip.lua",
-  "tami5/sqlite.lua",
+  {
+    "AckslD/nvim-neoclip.lua",
+    config = function()
+      require("neoclip").setup {
+        enable_persistent_history = true,
+        keys = {
+          telescope = {
+            i = {
+              select = '<cr>',
+              paste = '<c-a>',
+            },
+          },
+        },
+      }
+    end,
+    dependencies = {
+      "tami5/sqlite.lua",
+    },
+  },
 
   -- navigation
   "justinmk/vim-sneak",
