@@ -97,4 +97,7 @@ vim.keymap.set("v", "<leader>ss", ":lua require 'mkd.null-ls.cspell_util'.add_se
 -- can do copy/move files
 vim.keymap.set("n", "<leader>ff", ":Telescope file_browser<CR>")
 
+-- git advanced search
+vim.keymap.set("n", "<leader>ga", ":AdvancedGitSearch<CR>")
+
 -- consider rempap for :Gclog :%Gclog
