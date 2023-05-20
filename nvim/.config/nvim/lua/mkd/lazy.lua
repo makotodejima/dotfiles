@@ -47,7 +47,7 @@ require("lazy").setup({
       "nvim-treesitter/nvim-treesitter-textobjects",
       "RRethy/nvim-treesitter-textsubjects",
       "nvim-treesitter/playground",
-      'nvim-treesitter/nvim-treesitter-context',
+      "nvim-treesitter/nvim-treesitter-context",
     },
   },
 
@@ -160,7 +160,6 @@ require("lazy").setup({
     end,
   },
 
-
   -- registers
   {
     "AckslD/nvim-neoclip.lua",
@@ -170,8 +169,8 @@ require("lazy").setup({
         keys = {
           telescope = {
             i = {
-              select = '<cr>',
-              paste = '<c-a>',
+              select = "<cr>",
+              paste = "p",
             },
           },
         },
@@ -194,7 +193,11 @@ require("lazy").setup({
   "David-Kunz/jester",
   "mfussenegger/nvim-dap",
 
+  -- img
   "edluffy/hologram.nvim",
+
+  -- misc
+  "rktjmp/lush.nvim",
 }, {
   ui = {
     icons = {

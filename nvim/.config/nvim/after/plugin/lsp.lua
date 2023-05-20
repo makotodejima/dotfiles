@@ -143,7 +143,6 @@ lspconfig.eslint.setup {
   end,
 }
 
-
 -- css
 -- capabilities.textDocument.completion.completionItem.snippetSupport = true
 lspconfig.cssls.setup {
