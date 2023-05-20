@@ -7,7 +7,8 @@ function Color()
 
   hl("Sneak", { fg = "#002335", bg = "#FFD5D1" })
   hl("MatchParen", { bold = true, underline = true })
-  hl("TreesitterContext", { fg = "#ffffff", bg = "#292c36" })
+  hl("TreesitterContext", { fg = "#ffffff", bg = "#2a2f37" })
+  hl("NormalFloat", { bg = "#2a2f37" })
 end
 
 Color()

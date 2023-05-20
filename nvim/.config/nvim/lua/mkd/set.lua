@@ -26,3 +26,11 @@ vim.opt.wrap = false
 -- ripgrep for :grep
 vim.opt.grepprg = "rg --smart-case --vimgrep"
 vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
+
+-- netrw
+vim.g.netrw_liststyle = 1
+vim.g.netrw_browse_split = 2
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 40
+vim.g.netrw_maxfilenamelen = 65
+vim.g.netrw_localrmdir = "rm -r"

@@ -28,6 +28,7 @@ vim.keymap.set("i", ",", ",<C-g>u")
 vim.keymap.set("i", ".", ".<C-g>u")
 
 vim.keymap.set("n", "<leader>yy", [["+yy]])
+vim.keymap.set("n", "<leader>Y", [["+y$]])
 vim.keymap.set("v", "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>p", [["+p]])
 vim.keymap.set("v", "<leader>p", [["+p]])
@@ -35,13 +36,6 @@ vim.keymap.set("v", "<leader>jp", [["_dP]])
 
 vim.keymap.set("v", "<leader>s", ":sort<CR>")
 
--- netrw
-vim.g.netrw_liststyle = 1
-vim.g.netrw_browse_split = 2
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 40
-vim.g.netrw_maxfilenamelen = 65
-vim.g.netrw_localrmdir = "rm -r"
 vim.keymap.set("n", "<leader>vs", ":vsplit<CR>")
 
 vim.keymap.set("n", "<leader>b", ":ls<CR> :b # <CR>")
