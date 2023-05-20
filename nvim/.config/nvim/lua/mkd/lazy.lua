@@ -12,6 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+  -- color
   {
     "rose-pine/neovim",
     lazy = false,
@@ -40,6 +41,7 @@ require("lazy").setup({
     "hoob3rt/lualine.nvim",
   },
 
+  -- treesitter
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
@@ -74,7 +76,6 @@ require("lazy").setup({
       require("fidget").setup {}
     end,
   },
-
   "jose-elias-alvarez/null-ls.nvim",
   "tzachar/fuzzy.nvim",
 
@@ -100,7 +101,11 @@ require("lazy").setup({
   "junegunn/gv.vim",
   "lewis6991/gitsigns.nvim",
   "ThePrimeagen/git-worktree.nvim",
+  {
+    "aaronhallaert/advanced-git-search.nvim",
+  },
 
+  -- telescope
   "nvim-lua/popup.nvim",
   "nvim-lua/plenary.nvim",
   {
@@ -122,18 +127,24 @@ require("lazy").setup({
     "aaronhallaert/advanced-git-search.nvim",
     dependencies = {
       "nvim-telescope/telescope.nvim",
-      -- to show diff splits and open commits in browser
       "tpope/vim-fugitive",
-      -- to open commits in browser with fugitive
       "tpope/vim-rhubarb",
-      -- OPTIONAL: to replace the diff from fugitive with diffview.nvim
-      -- (fugitive is still needed to open in browser)
-      -- "sindrets/diffview.nvim",
     },
   },
 
-  -- util
+  -- files
   "mbbill/undotree",
+  "edluffy/hologram.nvim",
+  {
+    "stevearc/oil.nvim",
+    config = function()
+      require("oil").setup {
+        default_file_explorer = false,
+      }
+    end,
+  },
+
+  -- util
   "chentoast/marks.nvim",
   {
     "gbprod/yanky.nvim",
@@ -192,12 +203,6 @@ require("lazy").setup({
   -- test
   "David-Kunz/jester",
   "mfussenegger/nvim-dap",
-
-  -- img
-  "edluffy/hologram.nvim",
-
-  -- misc
-  "rktjmp/lush.nvim",
 }, {
   ui = {
     icons = {
