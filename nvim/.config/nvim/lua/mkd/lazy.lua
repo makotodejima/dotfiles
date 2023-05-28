@@ -115,7 +115,6 @@ require("lazy").setup({
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
       },
-      "nvim-telescope/telescope-dap.nvim",
       "nvim-telescope/telescope-media-files.nvim",
     },
   },
@@ -170,6 +169,7 @@ require("lazy").setup({
       }
     end,
   },
+  "itchyny/calendar.vim",
 
   -- registers
   {
@@ -202,7 +202,6 @@ require("lazy").setup({
 
   -- test
   "David-Kunz/jester",
-  "mfussenegger/nvim-dap",
 }, {
   ui = {
     icons = {
