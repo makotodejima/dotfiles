@@ -9,6 +9,8 @@ function Color()
   hl("MatchParen", { bold = true, underline = true })
   hl("TreesitterContext", { fg = "#ffffff", bg = "#2a2f37" })
   hl("NormalFloat", { bg = "#2a2f37" })
+  hl("diffAdded", { fg = "#32A0B4", bg = "#28383c" })
+  hl("diffRemoved", { fg = "#B40000", bg = "#28383c" })
 end
 
 Color()
