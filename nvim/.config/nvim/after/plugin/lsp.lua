@@ -133,7 +133,7 @@ lspconfig.pyright.setup {
   end,
 }
 
-lspconfig.eslint.setup {
+--[[ lspconfig.eslint.setup {
   on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
     -- vim.api.nvim_create_autocmd("BufWritePre", {
@@ -141,7 +141,7 @@ lspconfig.eslint.setup {
     --   command = "EslintFixAll",
     -- })
   end,
-}
+} ]]
 
 -- css
 -- capabilities.textDocument.completion.completionItem.snippetSupport = true
