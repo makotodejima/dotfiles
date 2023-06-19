@@ -19,7 +19,15 @@ cmp.setup {
   },
   formatting = {
     format = lspkind.cmp_format {
-      menu = { buffer = "buf", nvim_lsp = "lsp", path = "path", luasnip = "snip", tmux = "tmux" },
+      menu = {
+        buffer = "buf",
+        nvim_lsp = "lsp",
+        path = "path",
+        luasnip = "snip",
+        tmux = "tmux",
+        cmdline = "cmdline",
+        cmdline_history = "history",
+      },
       symbol_map = {
         Text = "",
         Method = "",
@@ -53,15 +61,8 @@ cmp.setup {
 
 cmp.setup.cmdline(":", {
   mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources {
-    { name = "fuzzy_path" },
-    { name = "cmdline_history", max_item_count = 5 },
-    { name = "cmdline" },
-    -- {
-    --   name = "buffer",
-    --   option = {
-    --     keyword_length = 4,
-    --   },
-    -- },
-  },
+  sources = cmp.config.sources(
+    { { name = "path" } },
+    { { name = "cmdline_history", max_item_count = 5 }, { name = "cmdline" } }
+  ),
 })
