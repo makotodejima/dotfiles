@@ -152,13 +152,6 @@ require("lazy").setup({
       highlight = { on_put = true, on_yank = true, timer = 50 },
     },
   },
-  -- {
-  --   "folke/todo-comments.nvim",
-  --   opts = {
-  --     signs = false,
-  --     highlight = { keyword = "fg" },
-  --   },
-  -- },
   {
     "numToStr/Comment.nvim",
     dependencies = {
