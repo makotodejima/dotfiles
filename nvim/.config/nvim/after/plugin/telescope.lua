@@ -1,5 +1,4 @@
 local actions = require "telescope.actions"
-local fb_actions = require "telescope._extensions.file_browser.actions"
 
 require("telescope").setup {
   defaults = {
@@ -48,18 +47,6 @@ require("telescope").setup {
       -- find command (defaults to `fd`)
       find_cmd = "rg",
     },
-    file_browser = {
-      hidden = true,
-      dir_icon = "📁",
-      mappings = {
-        ["i"] = {
-          ["µ"] = fb_actions.move,
-          ["ç"] = fb_actions.copy,
-          ["∂"] = fb_actions.remove,
-          ["-"] = fb_actions.goto_parent_dir,
-        },
-      },
-    },
     advanced_git_search = {
       -- fugitive or diffview
       diff_plugin = "fugitive",
@@ -80,7 +67,6 @@ require("telescope").load_extension "neoclip"
 require("telescope").load_extension "git_worktree"
 require("telescope").load_extension "harpoon"
 require("telescope").load_extension "media_files"
-require("telescope").load_extension "file_browser"
 require("telescope").load_extension "advanced_git_search"
 
 vim.keymap.set("n", "<C-t>", ":Telescope <CR>", { noremap = true, silent = true })

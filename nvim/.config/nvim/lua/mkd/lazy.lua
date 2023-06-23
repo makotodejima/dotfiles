@@ -120,10 +120,6 @@ require("lazy").setup({
     },
   },
   {
-    "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-  },
-  {
     "aaronhallaert/advanced-git-search.nvim",
     dependencies = {
       "nvim-telescope/telescope.nvim",
@@ -163,7 +159,12 @@ require("lazy").setup({
       }
     end,
   },
-  "itchyny/calendar.vim",
+  {
+    "petertriho/nvim-scrollbar",
+    config = function()
+      require("scrollbar").setup {}
+    end,
+  },
 
   -- registers
   {
