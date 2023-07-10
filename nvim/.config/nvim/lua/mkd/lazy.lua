@@ -63,13 +63,14 @@ require("lazy").setup({
 
   -- lsp
   {
-    "neovim/nvim-lsp",
+    "neovim/nvim-lspconfig",
     dependencies = {
       "jose-elias-alvarez/typescript.nvim",
       "onsails/lspkind-nvim",
       "simrat39/rust-tools.nvim",
     },
   },
+  { "pmizio/typescript-tools.nvim" },
   {
     "j-hui/fidget.nvim",
     config = function()
@@ -102,9 +103,6 @@ require("lazy").setup({
   "junegunn/gv.vim",
   "lewis6991/gitsigns.nvim",
   "ThePrimeagen/git-worktree.nvim",
-  {
-    "aaronhallaert/advanced-git-search.nvim",
-  },
 
   -- telescope
   "nvim-lua/popup.nvim",
@@ -117,14 +115,6 @@ require("lazy").setup({
         build = "make",
       },
       "nvim-telescope/telescope-media-files.nvim",
-    },
-  },
-  {
-    "aaronhallaert/advanced-git-search.nvim",
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
-      "tpope/vim-fugitive",
-      "tpope/vim-rhubarb",
     },
   },
 
@@ -157,12 +147,6 @@ require("lazy").setup({
       require("Comment").setup {
         pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
       }
-    end,
-  },
-  {
-    "petertriho/nvim-scrollbar",
-    config = function()
-      require("scrollbar").setup {}
     end,
   },
 
