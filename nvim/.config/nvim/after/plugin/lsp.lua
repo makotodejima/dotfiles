@@ -46,19 +46,7 @@ require("typescript").setup {
 
 -- require("typescript-tools").setup {
 --   capabilities = capabilities,
---   on_attach = function(client)
---     client.server_capabilities.documentFormattingProvider = false
---     vim.keymap.set("n", "<leader>oi", ":TypescriptOrganizeImports<CR>", { noremap = true, silent = false })
---     vim.keymap.set("n", "<leader>im", ":TypescriptAddMissingImports<CR>", { noremap = true, silent = false })
---   end,
---   init_options = {
---     plugins = {
---       {
---         name = "typescript-styled-plugin",
---         location = os.getenv "HOME" .. "/.nvm/versions/node/v16.19.0/lib",
---       },
---     },
---   },
+--   on_attach = on_attach,
 -- }
 
 -- GraphQL

@@ -40,7 +40,7 @@ local diagnostics = {
   symbols = { error = "E", warn = "W", info = "I", hint = "H" },
   colored = true,
   update_in_insert = false,
-  always_visible = false,
+  always_visible = true,
 }
 
 local function diff_source()

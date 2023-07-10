@@ -1,4 +1,5 @@
 local null_ls = require "null-ls"
+local ts_code_actions = require "typescript.extensions.null-ls.code-actions"
 
 null_ls.setup {
   debug = true,
@@ -26,5 +27,6 @@ null_ls.setup {
       extra_args = { "--config-path", vim.fn.expand "~/.config/nvim/lua/mkd/null-ls/stylua.toml" },
     },
     null_ls.builtins.formatting.prettier.with { prefer_local = "node_modules/.bin", timeout = 30000 },
+    ts_code_actions,
   },
 }
