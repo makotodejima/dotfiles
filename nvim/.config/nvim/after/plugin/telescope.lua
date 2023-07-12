@@ -43,7 +43,7 @@ require("telescope").setup {
     media_files = {
       -- filetypes whitelist
       -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-      filetypes = { "png", "webp", "jpg", "jpeg", "svg", "pdf", "mp4", "webm" },
+      filetypes = { "png", "webp", "jpg", "jpeg", "svg", "pdf", "mp4", "webm", "ico" },
       -- find command (defaults to `fd`)
       find_cmd = "rg",
     },

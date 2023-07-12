@@ -5,7 +5,7 @@ null_ls.setup {
   debug = true,
   sources = {
     -- diagnostics
-    null_ls.builtins.diagnostics.eslint_d,
+    -- null_ls.builtins.diagnostics.eslint_d,
     null_ls.builtins.diagnostics.cspell.with {
       method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
       disabled_filetypes = { "vim", "lua", "netrw" },
@@ -17,9 +17,9 @@ null_ls.setup {
     -- formatting
     null_ls.builtins.formatting.jq,
     null_ls.builtins.formatting.terraform_fmt,
-    null_ls.builtins.formatting.eslint_d.with {
-      timeout = 30000,
-    },
+    -- null_ls.builtins.formatting.eslint_d.with {
+    --   timeout = 30000,
+    -- },
     null_ls.builtins.formatting.rustfmt,
     null_ls.builtins.formatting.pg_format,
     null_ls.builtins.formatting.black,
