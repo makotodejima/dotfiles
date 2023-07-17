@@ -141,6 +141,7 @@ lspconfig.pyright.setup {
 lspconfig.eslint.setup {
   -- on_attach = function(client, bufnr)
   -- end,
+  capabilities = capabilities,
 }
 
 -- css
