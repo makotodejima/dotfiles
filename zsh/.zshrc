@@ -8,6 +8,7 @@ source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 alias vim='nvim'
 alias n='node --version'
 alias tmux='env TERM=screen-256color tmux'
+alias gs='git status'
 
 bindkey '^f' forward-word
 bindkey '^b' backward-word
