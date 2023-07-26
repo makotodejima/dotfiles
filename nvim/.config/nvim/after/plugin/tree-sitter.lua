@@ -41,6 +41,10 @@ tree_sitter_configs.setup {
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
+    disable = function(lang, buf)
+      local count = vim.api.nvim_buf_line_count(buf)
+      return count > 50000
+    end,
   },
   incremental_selection = {
     enable = true,
