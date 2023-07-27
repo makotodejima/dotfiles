@@ -86,6 +86,7 @@ vim.keymap.set("x", "P", "<Plug>(YankyPutBefore)", {})
 vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleForward)", {})
 
 vim.keymap.set("n", "<leader><space>", ":lua vim.lsp.buf.format()<CR>")
+vim.keymap.set("n", "<leader>f", ":Format<CR>")
 vim.keymap.set("v", "<leader>ss", ":lua require 'mkd.null-ls.cspell_util'.add_selection()<CR>")
 
 -- can do copy/move files
