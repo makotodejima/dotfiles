@@ -1,5 +1,5 @@
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system {
     "git",
     "clone",
@@ -66,11 +66,11 @@ require("lazy").setup({
     "neovim/nvim-lspconfig",
     dependencies = {
       "jose-elias-alvarez/typescript.nvim",
+      "pmizio/typescript-tools.nvim",
       "onsails/lspkind-nvim",
       "simrat39/rust-tools.nvim",
     },
   },
-  { "pmizio/typescript-tools.nvim" },
   {
     "j-hui/fidget.nvim",
     config = function()
@@ -91,11 +91,12 @@ require("lazy").setup({
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
-      "andersevenrud/cmp-tmux",
-      "tzachar/cmp-fuzzy-path",
       "dmitmel/cmp-cmdline-history",
     },
   },
+
+  -- formatter
+  "mhartington/formatter.nvim",
 
   -- git
   "tpope/vim-fugitive",
@@ -131,7 +132,12 @@ require("lazy").setup({
   },
 
   -- util
-  "chentoast/marks.nvim",
+  {
+    "chentoast/marks.nvim",
+    config = function()
+      require('marks').setup()
+    end,
+  },
   {
     "gbprod/yanky.nvim",
     opts = {
@@ -148,27 +154,6 @@ require("lazy").setup({
         pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
       }
     end,
-  },
-
-  -- registers
-  {
-    "AckslD/nvim-neoclip.lua",
-    config = function()
-      require("neoclip").setup {
-        enable_persistent_history = true,
-        keys = {
-          telescope = {
-            i = {
-              select = "<cr>",
-              paste = "p",
-            },
-          },
-        },
-      }
-    end,
-    dependencies = {
-      "tami5/sqlite.lua",
-    },
   },
 
   -- navigation
