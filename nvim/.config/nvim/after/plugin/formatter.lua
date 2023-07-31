@@ -13,6 +13,11 @@ require("formatter").setup {
     --   require("formatter.filetypes.lua").stylua,
     -- },
     --
+
+    sh = {
+      require("formatter.filetypes.sh").shfmt,
+    },
+
     typescript = {
       require("formatter.filetypes.typescript").eslint_d,
       require("formatter.filetypes.typescript").prettier,
@@ -23,6 +28,18 @@ require("formatter").setup {
       require("formatter.filetypes.typescriptreact").prettier,
     },
 
+    rust = {
+      require("formatter.filetypes.rust").rustfmt,
+    },
+
+    terraform = {
+      require("formatter.filetypes.terraform").terraformfmt,
+    },
+
+    yaml = {
+      require("formatter.filetypes.yaml").prettier,
+    },
+
     graphql = {
       require("formatter.filetypes.graphql").prettier,
     },
@@ -31,6 +48,18 @@ require("formatter").setup {
       require("formatter.filetypes.json").prettier,
     },
 
+    html = {
+      require("formatter.filetypes.html").prettier,
+    },
+
+    css = {
+      require("formatter.filetypes.css").eslint_d,
+      require("formatter.filetypes.css").prettier,
+    },
+
+    markdown = {
+      require("formatter.filetypes.markdown").prettier,
+    },
     -- Use the special "*" filetype for defining formatter configurations on
     -- any filetype
     -- ["*"] = {
