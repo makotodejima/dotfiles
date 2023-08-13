@@ -51,8 +51,6 @@ require("telescope").setup {
 }
 
 require("telescope").load_extension "fzf"
-require("telescope").load_extension "neoclip"
-require("telescope").load_extension "git_worktree"
 require("telescope").load_extension "harpoon"
 require("telescope").load_extension "media_files"
 
@@ -65,28 +63,13 @@ vim.keymap.set(
 )
 vim.keymap.set("n", "<C-p>", ":Telescope find_files<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-b>", ":Telescope buffers<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-c>", ":Telescope commands<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-g>", ":Telescope live_grep<CR>", { noremap = true, silent = true })
-vim.keymap.set(
-  "n",
-  "<leader>rr",
-  [[<cmd>lua require('telescope').extensions.neoclip.default()<CR>]],
-  { noremap = true, silent = true }
-)
 vim.keymap.set(
   "v",
   "<leader>rr",
   "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
   { noremap = true }
-)
-
--- worktree
-vim.keymap.set(
-  "n",
-  "<leader>gwt",
-  [[<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>]],
-  { noremap = true, silent = true }
 )
 
 -- note

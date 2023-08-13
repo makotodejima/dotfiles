@@ -61,6 +61,11 @@ require("lazy").setup({
   "tpope/vim-vinegar",
   "tpope/vim-unimpaired",
 
+  -- navigation
+  "justinmk/vim-sneak",
+  "aserowy/tmux.nvim",
+  "ThePrimeagen/harpoon",
+
   -- lsp
   {
     "neovim/nvim-lspconfig",
@@ -101,9 +106,7 @@ require("lazy").setup({
   -- git
   "tpope/vim-fugitive",
   "tpope/vim-rhubarb",
-  "junegunn/gv.vim",
   "lewis6991/gitsigns.nvim",
-  "ThePrimeagen/git-worktree.nvim",
 
   -- telescope
   "nvim-lua/popup.nvim",
@@ -132,17 +135,30 @@ require("lazy").setup({
   },
 
   -- util
+  "ThePrimeagen/refactoring.nvim",
   {
     "chentoast/marks.nvim",
     config = function()
-      require('marks').setup()
+      require("marks").setup()
     end,
   },
+  -- {
+  --   "gbprod/yanky.nvim",
+  --   opts = {
+  --     highlight = { on_put = true, on_yank = true, timer = 50 },
+  --   },
+  -- },
   {
-    "gbprod/yanky.nvim",
-    opts = {
-      highlight = { on_put = true, on_yank = true, timer = 50 },
-    },
+    "hrsh7th/nvim-pasta",
+    config = function()
+      require("pasta").setup {
+        fix_indent = false,
+      }
+      vim.keymap.set({ "n", "x" }, "p", require("pasta.mappings").p)
+      vim.keymap.set({ "n", "x" }, "P", require("pasta.mappings").P)
+      vim.keymap.set({ "n" }, "<C-p>", require("pasta.mappings").toggle_pin)
+      vim.keymap.set({ "n" }, "<C-p>", require("pasta.mappings").toggle_pin)
+    end,
   },
   {
     "numToStr/Comment.nvim",
@@ -155,14 +171,6 @@ require("lazy").setup({
       }
     end,
   },
-
-  -- navigation
-  "justinmk/vim-sneak",
-  "aserowy/tmux.nvim",
-
-  -- prime
-  "ThePrimeagen/harpoon",
-  "ThePrimeagen/refactoring.nvim",
 
   -- test
   "David-Kunz/jester",

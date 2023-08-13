@@ -24,8 +24,10 @@ local function path()
     local parent = str
     if i == 1 then
       str = string.sub(level, 0, 2)
-    elseif i < #subs - 1 then
+    elseif i < #subs - 3 then
       str = parent .. sep .. string.sub(level, 0, 2)
+    elseif i < #subs - 1 then
+      str = parent .. sep .. string.sub(level, 0, 3)
     else
       str = parent .. sep .. level
     end
