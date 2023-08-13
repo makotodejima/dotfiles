@@ -1,9 +1,11 @@
-local util = require "formatter.util"
+local lua_config = require("formatter.filetypes.lua").stylua()
+lua_config.args =
+  vim.list_extend({ "--config-path", vim.fn.expand "~/.config/nvim/lua/mkd/stylua.toml" }, lua_config.args)
 
 -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
 require("formatter").setup {
   -- logging = true,
-  log_level = vim.log.levels.WARN,
+  -- log_level = vim.log.levels.WARN,
   filetype = {
     -- Formatter configurations for filetype "lua" go here
     -- and will be executed in order
@@ -32,8 +34,16 @@ require("formatter").setup {
       require("formatter.filetypes.rust").rustfmt,
     },
 
+    python = {
+      require("formatter.filetypes.python").black,
+    },
+
     terraform = {
       require("formatter.filetypes.terraform").terraformfmt,
+    },
+
+    lua = {
+      lua_config,
     },
 
     yaml = {
@@ -45,6 +55,7 @@ require("formatter").setup {
     },
 
     json = {
+      -- require("formatter.filetypes.json").jq,
       require("formatter.filetypes.json").prettier,
     },
 
