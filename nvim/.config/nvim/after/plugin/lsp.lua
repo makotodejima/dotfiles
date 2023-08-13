@@ -23,31 +23,15 @@ local function on_attach(client)
   client.server_capabilities.documentFormattingProvider = false
 end
 
--- Typescript
-require("typescript").setup {
-  server = {
-    -- debug = true,
-    capabilities = capabilities,
-    on_attach = function(client)
-      client.server_capabilities.documentFormattingProvider = false
-      vim.keymap.set("n", "<leader>oi", ":TypescriptOrganizeImports<CR>", { noremap = true, silent = false })
-      vim.keymap.set("n", "<leader>im", ":TypescriptAddMissingImports<CR>", { noremap = true, silent = false })
-    end,
-    init_options = {
-      plugins = {
-        {
-          name = "typescript-styled-plugin",
-          location = os.getenv "HOME" .. "/.nvm/versions/node/v16.19.0/lib",
-        },
-      },
-    },
-  },
+require("typescript-tools").setup {
+  capabilities = capabilities,
+  on_attach = function(client)
+    on_attach(client)
+    vim.keymap.set("n", "<leader>oi", ":TSToolsOrganizeImports<CR>", { noremap = true, silent = false })
+    vim.keymap.set("n", "<leader>ru", ":TSToolsRemoveUnusedImports<CR>", { noremap = true, silent = false })
+    vim.keymap.set("n", "<leader>im", ":TSToolsAddMissingImports<CR>", { noremap = true, silent = false })
+  end,
 }
-
--- require("typescript-tools").setup {
---   capabilities = capabilities,
---   on_attach = on_attach,
--- }
 
 -- GraphQL
 lspconfig.graphql.setup {
@@ -56,7 +40,6 @@ lspconfig.graphql.setup {
   capabilities = capabilities,
 }
 
--- Rust
 local rt = require "rust-tools"
 rt.setup {
   server = {
@@ -66,7 +49,6 @@ rt.setup {
 }
 rt.inlay_hints.enable()
 
--- Lua
 lspconfig.lua_ls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
@@ -139,13 +121,10 @@ lspconfig.pyright.setup {
 }
 
 lspconfig.eslint.setup {
-  -- on_attach = function(client, bufnr)
-  -- end,
+  on_attach = on_attach,
   capabilities = capabilities,
 }
 
--- css
--- capabilities.textDocument.completion.completionItem.snippetSupport = true
 lspconfig.cssls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
