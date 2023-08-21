@@ -11,11 +11,12 @@ cmp.setup {
   },
   mapping = cmp.mapping.preset.insert { ["<CR>"] = cmp.mapping.confirm { select = true } },
   sources = cmp.config.sources {
-    { name = "nvim_lsp" },
-    { name = "vsnip" },
-    { name = "path" },
+    { name = "nvim_lsp", max_item_count = 30 },
+    { name = "vsnip", max_item_count = 20 },
+    { name = "path", max_item_count = 20 },
     { name = "nvim_lsp_signature_help" },
-    -- , {name = 'buffer', keyword_length = 4}
+    { name = "tmux", keyword_length = 2, max_item_count = 4 },
+    { name = "buffer", keyword_length = 2, max_item_count = 4 },
   },
   formatting = {
     format = lspkind.cmp_format {
