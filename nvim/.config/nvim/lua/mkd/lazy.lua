@@ -11,7 +11,7 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
+require("lazy").setup {
   -- color
   {
     "rose-pine/neovim",
@@ -27,14 +27,6 @@ require("lazy").setup({
       require("colorizer").setup({
         "*",
       }, { RRGGBBAA = true, css = true })
-    end,
-  },
-  {
-    "goolord/alpha-nvim",
-    config = function()
-      local startify = require "alpha.themes.startify"
-      startify.nvim_web_devicons.enabled = false
-      require("alpha").setup(startify.config)
     end,
   },
   {
@@ -83,8 +75,6 @@ require("lazy").setup({
     end,
     tag = "legacy",
   },
-  "jose-elias-alvarez/null-ls.nvim",
-  "tzachar/fuzzy.nvim",
 
   -- cmp
   {
@@ -97,6 +87,7 @@ require("lazy").setup({
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
       "dmitmel/cmp-cmdline-history",
+      "andersevenrud/cmp-tmux",
     },
   },
 
@@ -130,6 +121,9 @@ require("lazy").setup({
     config = function()
       require("oil").setup {
         default_file_explorer = false,
+        view_options = {
+          show_hidden = true,
+        },
       }
     end,
   },
@@ -142,12 +136,6 @@ require("lazy").setup({
       require("marks").setup()
     end,
   },
-  -- {
-  --   "gbprod/yanky.nvim",
-  --   opts = {
-  --     highlight = { on_put = true, on_yank = true, timer = 50 },
-  --   },
-  -- },
   {
     "hrsh7th/nvim-pasta",
     config = function()
@@ -156,7 +144,6 @@ require("lazy").setup({
       }
       vim.keymap.set({ "n", "x" }, "p", require("pasta.mappings").p)
       vim.keymap.set({ "n", "x" }, "P", require("pasta.mappings").P)
-      vim.keymap.set({ "n" }, "<C-p>", require("pasta.mappings").toggle_pin)
       vim.keymap.set({ "n" }, "<C-p>", require("pasta.mappings").toggle_pin)
     end,
   },
@@ -174,21 +161,4 @@ require("lazy").setup({
 
   -- test
   "David-Kunz/jester",
-}, {
-  ui = {
-    icons = {
-      cmd = "⌘",
-      config = "🛠",
-      event = "📅",
-      ft = "📂",
-      init = "⚙",
-      keys = "🗝",
-      plugin = "🔌",
-      runtime = "💻",
-      source = "📄",
-      start = "🚀",
-      task = "📌",
-      lazy = "💤",
-    },
-  },
-})
+}
