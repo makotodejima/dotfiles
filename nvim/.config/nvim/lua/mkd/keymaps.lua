@@ -6,7 +6,7 @@ vim.keymap.set("n", "<leader>q", ":q")
 vim.keymap.set("n", "<leader>wq", ":wq")
 
 -- Remove last highlight
-vim.keymap.set("n", "<leader>l", ":noh<cr>")
+vim.keymap.set("n", "<leader>l", "<cmd>noh<cr>")
 
 -- Quickfixlist
 vim.keymap.set("n", "]q", ":cnext<CR>zz")
