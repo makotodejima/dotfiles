@@ -6,6 +6,7 @@ vim.opt.expandtab = true
 vim.opt.guicursor = ""
 vim.opt.ignorecase = true
 vim.opt.incsearch = true
+vim.opt.jumpoptions = "view"
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 4
