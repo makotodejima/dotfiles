@@ -23,6 +23,7 @@ local function on_attach(client)
   client.server_capabilities.documentFormattingProvider = false
 end
 
+-- Typescript
 require("typescript-tools").setup {
   capabilities = capabilities,
   on_attach = function(client)
@@ -40,6 +41,7 @@ lspconfig.graphql.setup {
   capabilities = capabilities,
 }
 
+-- Rust
 local rt = require "rust-tools"
 rt.setup {
   server = {
@@ -49,6 +51,7 @@ rt.setup {
 }
 rt.inlay_hints.enable()
 
+-- lua
 lspconfig.lua_ls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
@@ -106,7 +109,11 @@ lspconfig.ruff_lsp.setup {
   on_attach = function(client)
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.hover = false
+    -- client.server_capabilities = false
   end,
+  handlers = {
+    ["textDocument/publishDiagnostics"] = function() end,
+  },
 }
 
 lspconfig.pyright.setup {
@@ -120,6 +127,7 @@ lspconfig.pyright.setup {
   end,
 }
 
+-- Other
 lspconfig.eslint.setup {
   on_attach = on_attach,
   capabilities = capabilities,
