@@ -11,7 +11,7 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup {
+require("lazy").setup({
   -- color
   {
     "rose-pine/neovim",
@@ -62,7 +62,6 @@ require("lazy").setup {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      "jose-elias-alvarez/typescript.nvim",
       "pmizio/typescript-tools.nvim",
       "onsails/lspkind-nvim",
       "simrat39/rust-tools.nvim",
@@ -131,12 +130,6 @@ require("lazy").setup {
   -- util
   "ThePrimeagen/refactoring.nvim",
   {
-    "chentoast/marks.nvim",
-    config = function()
-      require("marks").setup()
-    end,
-  },
-  {
     "hrsh7th/nvim-pasta",
     config = function()
       require("pasta").setup {
@@ -161,4 +154,21 @@ require("lazy").setup {
 
   -- test
   "David-Kunz/jester",
-}
+}, {
+  ui = {
+    icons = {
+      cmd = "",
+      config = "",
+      event = "",
+      ft = "",
+      init = "",
+      keys = "",
+      plugin = "",
+      runtime = "",
+      source = "",
+      start = "",
+      task = "",
+      lazy = "",
+    },
+  },
+})
