@@ -1,14 +1,15 @@
 *~
 .DS_Store
 
-.vscode
+#.vscode
 *.tags
 tags
 tags.lock
 tags.temp
 
-globalConfig.json
-
+.env
 .envrc
+.envrc-test
+.envrc-dev
 
 .exrc
