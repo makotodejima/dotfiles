@@ -1,5 +1,5 @@
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
-if not vim.uv.fs_stat(lazypath) then
+if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
     "git",
     "clone",
@@ -129,6 +129,7 @@ require("lazy").setup({
 
   -- util
   "ThePrimeagen/refactoring.nvim",
+  "lukas-reineke/indent-blankline.nvim",
   {
     "hrsh7th/nvim-pasta",
     config = function()
@@ -150,6 +151,12 @@ require("lazy").setup({
         pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
       }
     end,
+  },
+  {
+    "kristijanhusak/vim-dadbod-ui",
+    dependencies = {
+      { "tpope/vim-dadbod", lazy = true },
+    },
   },
 
   -- test

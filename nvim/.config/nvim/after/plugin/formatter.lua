@@ -5,7 +5,7 @@ lua_config.args =
 -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
 require("formatter").setup {
   -- logging = true,
-  -- log_level = vim.log.levels.WARN,
+  -- log_level = vim.log.levels.DEBUG,
   filetype = {
     -- Formatter configurations for filetype "lua" go here
     -- and will be executed in order
@@ -20,8 +20,12 @@ require("formatter").setup {
       require("formatter.filetypes.sh").shfmt,
     },
 
+    javascript = {
+      require("formatter.filetypes.javascript").prettier,
+    },
+
     typescript = {
-      require("formatter.filetypes.typescript").eslint_d,
+      -- require("formatter.filetypes.typescript").eslint_d,
       require("formatter.filetypes.typescript").prettier,
     },
 
