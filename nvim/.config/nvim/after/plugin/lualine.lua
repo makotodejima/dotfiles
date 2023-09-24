@@ -97,7 +97,7 @@ lualine.setup {
     lualine_y = {},
     lualine_z = {},
   },
-  winbar = { lualine_a = { { harpoon_marks, color = { fg = "white", bg = "#292c36" } } } },
+  -- winbar = { lualine_a = { { harpoon_marks, color = { fg = "white", bg = "#292c36" } } } },
   inactive_winbar = {
     lualine_a = { { "filename", "filetype", "filesize", color = { fg = "grey", bg = "none" } } },
   },

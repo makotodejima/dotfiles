@@ -29,9 +29,7 @@ require("lazy").setup({
       }, { RRGGBBAA = true, css = true })
     end,
   },
-  {
-    "hoob3rt/lualine.nvim",
-  },
+  "hoob3rt/lualine.nvim",
 
   -- treesitter
   {
@@ -129,7 +127,14 @@ require("lazy").setup({
 
   -- util
   "ThePrimeagen/refactoring.nvim",
-  "lukas-reineke/indent-blankline.nvim",
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("indent_blankline").setup {
+        filetype = { "python" },
+      }
+    end,
+  },
   {
     "hrsh7th/nvim-pasta",
     config = function()
