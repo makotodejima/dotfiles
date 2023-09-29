@@ -129,6 +129,7 @@ require("lazy").setup({
   "ThePrimeagen/refactoring.nvim",
   {
     "lukas-reineke/indent-blankline.nvim",
+    version = "2.20.8",
     config = function()
       require("indent_blankline").setup {
         filetype = { "python", "yaml", "toml" },
