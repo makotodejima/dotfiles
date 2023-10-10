@@ -54,3 +54,5 @@ eval "$(direnv hook zsh)"
 # gcloud
 source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
 source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
