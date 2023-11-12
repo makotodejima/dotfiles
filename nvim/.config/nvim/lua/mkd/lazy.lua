@@ -137,14 +137,14 @@ require("lazy").setup({
     end,
   },
   {
+    "johmsalas/text-case.nvim",
+    opts = {},
+  },
+  {
     "hrsh7th/nvim-pasta",
     config = function()
-      require("pasta").setup {
-        fix_indent = false,
-      }
-      vim.keymap.set({ "n", "x" }, "p", require("pasta.mappings").p)
-      vim.keymap.set({ "n", "x" }, "P", require("pasta.mappings").P)
-      vim.keymap.set({ "n" }, "<C-p>", require("pasta.mappings").toggle_pin)
+      vim.keymap.set({ "n", "x" }, "p", require("pasta.mapping").p)
+      vim.keymap.set({ "n", "x" }, "P", require("pasta.mapping").P)
     end,
   },
   {
@@ -164,6 +164,12 @@ require("lazy").setup({
       { "tpope/vim-dadbod", lazy = true },
     },
   },
+  {
+    "chentoast/marks.nvim",
+    opts = {},
+  },
+  { dir = "~/dev/qfliste" },
+  { "ten3roberts/qf.nvim", opts = {} },
 
   -- test
   "David-Kunz/jester",
