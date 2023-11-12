@@ -25,7 +25,7 @@ require("formatter").setup {
     },
 
     typescript = {
-      -- require("formatter.filetypes.typescript").eslint_d,
+      require("formatter.filetypes.typescript").eslint_d,
       require("formatter.filetypes.typescript").prettier,
     },
 
