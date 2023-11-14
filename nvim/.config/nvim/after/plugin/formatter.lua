@@ -4,8 +4,8 @@ lua_config.args =
 
 -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
 require("formatter").setup {
-  -- logging = true,
-  -- log_level = vim.log.levels.DEBUG,
+  logging = true,
+  log_level = vim.log.levels.INFO,
   filetype = {
     -- Formatter configurations for filetype "lua" go here
     -- and will be executed in order
