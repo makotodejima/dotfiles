@@ -26,8 +26,9 @@ vim.cmd [[
   autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
 ]]
 
+vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
-  group = yank_group,
+  group = "YankHighlight",
   pattern = "*",
   callback = function()
     vim.highlight.on_yank {
@@ -36,3 +37,18 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     }
   end,
 })
+
+local function open_with_preview()
+  -- Check if the current buffer is netrw
+  if vim.bo.filetype == "netrw" then
+    local line = vim.fn.getline "."
+    local filename = line:match "^[^%s]+"
+    local file_under_cursor = vim.fn.expand "%:p" .. filename
+    os.execute('open -a Preview "' .. file_under_cursor .. '"')
+  else
+    local file_under_cursor = vim.fn.expand "<cfile>"
+    os.execute('open -a Preview "' .. file_under_cursor .. '"')
+  end
+end
+
+vim.api.nvim_create_user_command("OpenPreview", open_with_preview, {})
