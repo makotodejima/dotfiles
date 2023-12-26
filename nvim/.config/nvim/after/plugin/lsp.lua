@@ -23,6 +23,19 @@ local function on_attach(client)
   client.server_capabilities.documentFormattingProvider = false
 end
 
+-- bash
+lspconfig.bashls.setup {
+  capabilities = capabilities,
+}
+
+-- typo
+lspconfig.typos_lsp.setup {
+  capabilities = capabilities,
+  init_options = {
+    diagnosticSeverity = "Hint",
+  },
+}
+
 -- Typescript
 require("typescript-tools").setup {
   capabilities = capabilities,
@@ -79,31 +92,6 @@ lspconfig.lua_ls.setup {
 }
 
 -- Python
-local util = require "lspconfig/util"
-local path = util.path
-
-local function get_python_path(workspace)
-  -- Use activated virtualenv.
-  if vim.env.VIRTUAL_ENV then
-    return path.join(vim.env.VIRTUAL_ENV, "bin", "python")
-  end
-
-  -- Find and use virtualenv in workspace directory.
-  for _, pattern in ipairs { "*", ".*" } do
-    local match = vim.fn.glob(path.join(workspace, pattern, "pyvenv.cfg"))
-    if match ~= "" then
-      return path.join(path.dirname(match), "bin", "python")
-    end
-  end
-
-  -- Fallback to system Python.
-  return exepath "python3" or exepath "python" or "python"
-end
-
--- Find ruff config - TODO: figure out conditionally attach ruff
---
--- local ruff_config = vim.fn.glob(path.join(vim.fn.getcwd(), "ruff.toml"))
-
 lspconfig.ruff_lsp.setup {
   capabilities = capabilities,
   on_attach = function(client)
@@ -122,16 +110,27 @@ lspconfig.pyright.setup {
     client.server_capabilities.documentFormattingProvider = false
     vim.keymap.set("n", "<leader>oi", ":PyrightOrganizeImports<CR>", { noremap = true, silent = false })
   end,
-  on_init = function(client)
-    client.config.settings.python.pythonPath = get_python_path(client.config.root_dir)
+  on_new_config = function(new_config, root_dir)
+    local pipfile_exists = require("lspconfig").util.search_ancestors(root_dir, function(path)
+      local pipfile = require("lspconfig").util.path.join(path, "Pipfile")
+      if require("lspconfig").util.path.is_file(pipfile) then
+        return true
+      else
+        return false
+      end
+    end)
+
+    if pipfile_exists then
+      new_config.cmd = { "pipenv", "run", "pyright-langserver", "--stdio" }
+    end
   end,
 }
 
 -- Other
-lspconfig.eslint.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
+-- lspconfig.eslint.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+-- }
 
 lspconfig.cssls.setup {
   on_attach = on_attach,
@@ -144,6 +143,11 @@ lspconfig.tailwindcss.setup {
 }
 
 lspconfig.html.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+lspconfig.terraformls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
