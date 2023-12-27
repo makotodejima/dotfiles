@@ -33,3 +33,6 @@ key_bindings:
 
 env:
   TERM: xterm-256color
+
+import:
+  - ~/.config/alacritty/themes/themes/blood_moon.yaml
