@@ -58,15 +58,13 @@ vim.keymap.set(
   "<leader>tf",
   [[:lua require"jester".run_file({path_to_jest='./node_modules/jest/bin/jest.js'})<CR>]]
 )
+vim.keymap.set(
+  "n",
+  "<leader>tl",
+  [[:lua require"jester".run_last({path_to_jest='./node_modules/jest/bin/jest.js'})<CR>]]
+)
 
 vim.keymap.set("t", "<C-o>", [[<C-\><C-n>]])
-
--- harpoon man
-vim.keymap.set("n", "<leader>hh", [[:lua require("harpoon.mark").add_file()<CR>]])
-vim.keymap.set("n", "<leader>a", [[:lua require("harpoon.ui").nav_file(1)<CR>]])
-vim.keymap.set("n", "<leader>s", [[:lua require("harpoon.ui").nav_file(2)<CR>]])
-vim.keymap.set("n", "<leader>d", [[:lua require("harpoon.ui").nav_file(3)<CR>]])
-vim.keymap.set("n", "<leader>hl", [[:lua require("harpoon.ui").toggle_quick_menu()<CR>]])
 
 -- refactoring.nvim
 vim.api.nvim_set_keymap(
@@ -86,13 +84,12 @@ vim.keymap.set("x", "P", "<Plug>(YankyPutBefore)", {})
 vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleForward)", {})
 
 -- vim.keymap.set("n", "<leader><space>", ":lua vim.lsp.buf.format()<CR>")
-vim.keymap.set("n", "<leader><space>", ":Format<CR>")
+vim.keymap.set("n", "<leader><space>", ":lua require('conform').format()<CR>")
 vim.keymap.set("v", "<leader>ss", ":lua require 'mkd.null-ls.cspell_util'.add_selection()<CR>")
-
--- can do copy/move files
-vim.keymap.set("n", "<leader>ff", ":Telescope file_browser<CR>")
 
 -- git advanced search
 vim.keymap.set("n", "<leader>ga", ":AdvancedGitSearch<CR>")
+
+vim.keymap.set("n", "<leader>o", ":OpenPreview<CR>")
 
 -- consider rempap for :Gclog :%Gclog
