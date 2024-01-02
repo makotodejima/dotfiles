@@ -61,7 +61,6 @@ tree_sitter_configs.setup {
     enable = true,
     keymaps = { node_incremental = "ni", node_decremental = "nd" },
   },
-  context_commentstring = { enable = true, enable_autocmd = false },
   textsubjects = { enable = true, keymaps = { ["."] = "textsubjects-smart" } },
   textobjects = {
     select = {
