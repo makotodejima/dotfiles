@@ -17,8 +17,16 @@ require("lazy").setup({
     "rose-pine/neovim",
     lazy = false,
     priority = 1000,
+    -- config = function()
+    --   vim.cmd [[colorscheme rose-pine]]
+    -- end,
+  },
+  {
+    dir = "~/dev/bob",
+    lazy = false,
+    priority = 1000,
     config = function()
-      vim.cmd [[colorscheme rose-pine]]
+      vim.cmd [[colorscheme bob]]
     end,
   },
   {
@@ -26,10 +34,11 @@ require("lazy").setup({
     config = function()
       require("colorizer").setup({
         "*",
-      }, { RRGGBBAA = true, css = true })
+      }, { RRGGBBAA = true, names = false })
     end,
   },
   "hoob3rt/lualine.nvim",
+  "rktjmp/lush.nvim",
 
   -- treesitter
   {
@@ -50,11 +59,15 @@ require("lazy").setup({
   "tpope/vim-repeat",
   "tpope/vim-vinegar",
   "tpope/vim-unimpaired",
+  "tpope/vim-sleuth",
 
   -- navigation
   "justinmk/vim-sneak",
   "aserowy/tmux.nvim",
-  "ThePrimeagen/harpoon",
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+  },
 
   -- lsp
   {
@@ -67,10 +80,9 @@ require("lazy").setup({
   },
   {
     "j-hui/fidget.nvim",
-    config = function()
-      require("fidget").setup {}
-    end,
-    tag = "legacy",
+    opts = {
+      progress = { ignore_empty_message = false },
+    },
   },
 
   -- cmp
@@ -87,9 +99,17 @@ require("lazy").setup({
       "andersevenrud/cmp-tmux",
     },
   },
+  {
+    "hrsh7th/nvim-pasta",
+    config = function()
+      vim.keymap.set({ "n", "x" }, "p", require("pasta.mapping").p)
+      vim.keymap.set({ "n", "x" }, "P", require("pasta.mapping").P)
+      -- require("pasta").config.indent_fix = false
+    end,
+  },
 
   -- formatter
-  "mhartington/formatter.nvim",
+  "stevearc/conform.nvim",
 
   -- git
   "tpope/vim-fugitive",
@@ -125,6 +145,18 @@ require("lazy").setup({
     end,
   },
 
+  -- DB
+  {
+    "kristijanhusak/vim-dadbod-ui",
+    dependencies = {
+      { "tpope/vim-dadbod", lazy = true },
+    },
+
+    config = function()
+      vim.cmd [[  let g:db_ui_auto_execute_table_helpers = 1]]
+    end,
+  },
+
   -- util
   "ThePrimeagen/refactoring.nvim",
   {
@@ -141,13 +173,6 @@ require("lazy").setup({
     opts = {},
   },
   {
-    "hrsh7th/nvim-pasta",
-    config = function()
-      vim.keymap.set({ "n", "x" }, "p", require("pasta.mapping").p)
-      vim.keymap.set({ "n", "x" }, "P", require("pasta.mapping").P)
-    end,
-  },
-  {
     "numToStr/Comment.nvim",
     dependencies = {
       "JoosepAlviste/nvim-ts-context-commentstring",
@@ -156,20 +181,14 @@ require("lazy").setup({
       require("Comment").setup {
         pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
       }
+      vim.g.skip_ts_context_commentstring_module = true
     end,
-  },
-  {
-    "kristijanhusak/vim-dadbod-ui",
-    dependencies = {
-      { "tpope/vim-dadbod", lazy = true },
-    },
   },
   {
     "chentoast/marks.nvim",
     opts = {},
   },
   { dir = "~/dev/qfliste" },
-  { "ten3roberts/qf.nvim", opts = {} },
 
   -- test
   "David-Kunz/jester",
