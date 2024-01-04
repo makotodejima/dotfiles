@@ -11,6 +11,8 @@ function Color()
   hl("NormalFloat", { bg = "#2a2f37" })
   hl("diffAdded", { fg = "#32A0B4", bg = "#28383c" })
   hl("diffRemoved", { fg = "#B40000", bg = "#28383c" })
+  hl("diffLine", { fg = "#a2926c" })
+  hl("diffNoEOL", { fg = "#a2926c" })
 end
 
 Color()
