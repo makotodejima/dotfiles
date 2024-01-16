@@ -13,10 +13,10 @@ blinking = "Always"
 TERM = "xterm-256color"
 
 [font]
-size = 15.0
+size = 18.0
 
 [font.normal]
-style = "Regular"
+family = "Berkeley Mono"
 
 [[keyboard.bindings]]
 chars = "\u0011"
@@ -28,6 +28,26 @@ chars = "\u001F"
 key = "Slash"
 mods = "Control"
 
+[[keyboard.bindings]]
+chars = '\x1b[1;6A'
+key = "A"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+chars = '\x1b[1;6S'
+key = "S"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+chars = '\x1b[1;6D'
+key = "D"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+chars = '\x1b[1;6F'
+key = "F"
+mods = "Control|Shift"
+
 [scrolling]
 history = 40000
 
@@ -36,5 +56,5 @@ columns = 140
 lines = 100
 
 [window.padding]
-x = 2
+x = 0
 y = 0
