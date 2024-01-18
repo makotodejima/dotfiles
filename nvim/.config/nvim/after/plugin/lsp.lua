@@ -7,7 +7,7 @@ local cmp_lsp = require "cmp_nvim_lsp"
 local opt = { noremap = true, silent = false }
 vim.keymap.set("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opt)
 vim.keymap.set("n", "gi", ":lua vim.lsp.buf.implementation()<CR>", opt)
-vim.keymap.set("n", "<leader>k", ":lua vim.lsp.buf.signature_help()<CR>", opt)
+vim.keymap.set("n", "K", ":lua vim.lsp.buf.signature_help()<CR>", opt)
 vim.keymap.set("n", "gr", ":lua vim.lsp.buf.references()<CR>", opt)
 vim.keymap.set("n", "gt", ":lua vim.lsp.buf.type_definition()<CR>", opt)
 vim.keymap.set("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", opt)
@@ -127,10 +127,9 @@ lspconfig.pyright.setup {
 }
 
 -- Other
--- lspconfig.eslint.setup {
---   on_attach = on_attach,
---   capabilities = capabilities,
--- }
+lspconfig.eslint.setup {
+  capabilities = capabilities,
+}
 
 lspconfig.cssls.setup {
   on_attach = on_attach,

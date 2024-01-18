@@ -9,7 +9,7 @@ white = "0xFFFAFA"
 yellow = "0xFDFF00"
 
 [colors.normal]
-black = "0x10100E"
+black = "0x020202"
 blue = "0x0087BD"
 cyan = "0x20B2AA"
 green = "0x009F6B"

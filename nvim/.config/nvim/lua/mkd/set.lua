@@ -21,7 +21,6 @@ vim.opt.tabstop = 4
 vim.opt.termguicolors = true
 vim.opt.undodir = os.getenv "HOME" .. "/.local/share/nvim/undodir"
 vim.opt.undofile = true
-vim.opt.updatetime = 40
 vim.opt.wrap = false
 
 -- ripgrep for :grep

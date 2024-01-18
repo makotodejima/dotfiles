@@ -76,14 +76,7 @@ vim.api.nvim_set_keymap(
 vim.keymap.set("v", "<leader>rp", ":lua require('refactoring').debug.print_var({})<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>rc", ":lua require('refactoring').debug.cleanup({})<CR>", { noremap = true })
 
--- yanky
-vim.keymap.set("n", "p", "<Plug>(YankyPutAfter)", {})
-vim.keymap.set("n", "P", "<Plug>(YankyPutBefore)", {})
-vim.keymap.set("x", "p", "<Plug>(YankyPutAfter)", {})
-vim.keymap.set("x", "P", "<Plug>(YankyPutBefore)", {})
-vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleForward)", {})
-
--- vim.keymap.set("n", "<leader><space>", ":lua vim.lsp.buf.format()<CR>")
+vim.keymap.set("n", "<leader>f", ":lua vim.lsp.buf.format()<CR>")
 vim.keymap.set("n", "<leader><space>", ":lua require('conform').format()<CR>")
 vim.keymap.set("v", "<leader>ss", ":lua require 'mkd.null-ls.cspell_util'.add_selection()<CR>")
 
