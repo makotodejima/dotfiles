@@ -8,13 +8,20 @@ return {
       vim.cmd [[colorscheme bob]]
     end,
   },
+  {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup({
+        "*",
+      }, { RRGGBBAA = true, names = false })
+    end,
+  },
   { "rose-pine/neovim", name = "rose-pine" },
   "hoob3rt/lualine.nvim",
   "rktjmp/lush.nvim",
 
   -- tpopes
   "tpope/vim-abolish",
-  "tpope/vim-dispatch",
   "tpope/vim-surround",
   "tpope/vim-repeat",
   "tpope/vim-vinegar",
