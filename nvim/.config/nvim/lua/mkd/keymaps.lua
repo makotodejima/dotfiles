@@ -66,22 +66,8 @@ vim.keymap.set(
 
 vim.keymap.set("t", "<C-o>", [[<C-\><C-n>]])
 
--- refactoring.nvim
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>rp",
-  ":lua require('refactoring').debug.printf({below = false})<CR>",
-  { noremap = true }
-)
-vim.keymap.set("v", "<leader>rp", ":lua require('refactoring').debug.print_var({})<CR>", { noremap = true })
-vim.keymap.set("n", "<leader>rc", ":lua require('refactoring').debug.cleanup({})<CR>", { noremap = true })
-
 vim.keymap.set("n", "<leader>f", ":lua vim.lsp.buf.format()<CR>")
 vim.keymap.set("n", "<leader><space>", ":lua require('conform').format()<CR>")
-vim.keymap.set("v", "<leader>ss", ":lua require 'mkd.null-ls.cspell_util'.add_selection()<CR>")
-
--- git advanced search
-vim.keymap.set("n", "<leader>ga", ":AdvancedGitSearch<CR>")
 
 vim.keymap.set("n", "<leader>o", ":OpenPreview<CR>")
 
