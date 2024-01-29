@@ -2,8 +2,6 @@ return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   dependencies = {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    "RRethy/nvim-treesitter-textsubjects",
     "nvim-treesitter/playground",
     "nvim-treesitter/nvim-treesitter-context",
   },
@@ -69,31 +67,6 @@ return {
       incremental_selection = {
         enable = true,
         keymaps = { node_incremental = "ni", node_decremental = "nd" },
-      },
-      textsubjects = { enable = true, keymaps = { ["."] = "textsubjects-smart" } },
-      textobjects = {
-        select = {
-          enable = true,
-
-          -- Automatically jump forward to textobj, similar to targets.vim
-          lookahead = true,
-
-          keymaps = {
-            -- You can use the capture groups defined in textobjects.scm
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-            ["ac"] = "@class.outer",
-            ["ic"] = "@class.inner",
-
-            -- Or you can define your own textobjects like this
-            -- ["iF"] = {
-            --   python = "(function_definition) @function",
-            --   cpp = "(function_definition) @function",
-            --   c = "(function_definition) @function",
-            --   java = "(method_declaration) @function"
-            -- }
-          },
-        },
       },
     }
   end,
