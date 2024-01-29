@@ -11,7 +11,7 @@ alias n='node --version'
 alias tmux='env TERM=screen-256color tmux'
 alias gs='git status'
 gc() {
-  git checkout "$(git branch --sort=-committerdate | fzf | tr -d '[:space:]')"
+  git branch --sort=-committerdate | fzf | sed 's/^[*+ ]*//' | xargs -r git checkout
 }
 
 bindkey '^f' forward-word
