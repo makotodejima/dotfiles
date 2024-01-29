@@ -65,20 +65,6 @@ return {
   "tpope/vim-rhubarb",
   "lewis6991/gitsigns.nvim",
 
-  -- telescope
-  {
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-      "nvim-lua/popup.nvim",
-      "nvim-lua/plenary.nvim",
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-      },
-      "nvim-telescope/telescope-media-files.nvim",
-    },
-  },
-
   -- files
   "mbbill/undotree",
   {
