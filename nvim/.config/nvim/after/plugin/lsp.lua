@@ -128,6 +128,7 @@ lspconfig.pyright.setup {
 
 -- Other
 lspconfig.eslint.setup {
+  on_attach = on_attach,
   capabilities = capabilities,
 }
 

@@ -1,8 +1,9 @@
 return {
   "stevearc/conform.nvim",
   config = function()
+    local util = require "conform.util"
     require("conform").setup {
-      log_level = vim.log.levels.DEBUG,
+      log_level = vim.log.levels.TRACE,
       formatters_by_ft = {
         sh = { "shfmt" },
         lua = { "stylua" },
@@ -22,6 +23,16 @@ return {
       formatters = {
         stylua = {
           prepend_args = { "--config-path", vim.fn.expand "~/.config/nvim/lua/mkd/stylua.toml" },
+        },
+        eslint_d = {
+          cmd = function()
+            local _cmd = util.from_node_modules "eslint_d"
+            return "ESLINT_USE_FLAT_CONFIG=true " .. _cmd
+          end,
+          cwd = util.root_file {
+            "package.json",
+            "eslint.config.js",
+          },
         },
       },
     }
