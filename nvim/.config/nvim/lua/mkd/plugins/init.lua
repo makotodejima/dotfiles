@@ -31,10 +31,6 @@ return {
   -- navigation
   "justinmk/vim-sneak",
   "aserowy/tmux.nvim",
-  {
-    "ThePrimeagen/harpoon",
-    branch = "harpoon2",
-  },
 
   -- lsp
   {
