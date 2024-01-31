@@ -48,6 +48,31 @@ chars = '\x1b[1;6F'
 key = "F"
 mods = "Control|Shift"
 
+[[keyboard.bindings]]
+chars = '\x1b[1;6H'
+key = "H"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+chars = '\x1b[1;6J'
+key = "J"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+chars = '\x1b[1;6K'
+key = "K"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+chars = '\x1b[1;6L'
+key = "L"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+chars = '\x1b[1;6:'
+key = ":"
+mods = "Control|Shift"
+
 [scrolling]
 history = 40000
 
