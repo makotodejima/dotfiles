@@ -99,10 +99,6 @@ return {
     end,
   },
   {
-    "johmsalas/text-case.nvim",
-    opts = {},
-  },
-  {
     "numToStr/Comment.nvim",
     dependencies = {
       "JoosepAlviste/nvim-ts-context-commentstring",
