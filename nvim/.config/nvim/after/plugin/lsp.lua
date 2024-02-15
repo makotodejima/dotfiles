@@ -55,14 +55,20 @@ lspconfig.graphql.setup {
 }
 
 -- Rust
-local rt = require "rust-tools"
-rt.setup {
-  server = {
-    capabilities = capabilities,
-    on_attach = on_attach,
+lspconfig.rust_analyzer.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    ["rust-analyzer"] = {
+      -- check = {
+      --   command = "clippy",
+      -- },
+      diagnostics = {
+        enable = false,
+      },
+    },
   },
 }
-rt.inlay_hints.enable()
 
 -- lua
 lspconfig.lua_ls.setup {
