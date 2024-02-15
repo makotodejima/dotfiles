@@ -7,7 +7,6 @@ return {
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "make",
     },
-    "nvim-telescope/telescope-media-files.nvim",
   },
   config = function()
     local actions = require "telescope.actions"
