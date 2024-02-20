@@ -132,6 +132,12 @@ lspconfig.pyright.setup {
   end,
 }
 
+-- java
+lspconfig.jdtls.setup {
+  -- on_attach = on_attach,
+  capabilities = capabilities,
+}
+
 -- Other
 lspconfig.eslint.setup {
   on_attach = on_attach,
