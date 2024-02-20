@@ -41,8 +41,19 @@ load-nvmrc() {
     nvm use default
   fi
 }
+
+set_eslint_flat_config() {
+  if [[ -f "$PWD/eslint.config.js" ]]; then
+    export ESLINT_USE_FLAT_CONFIG=true
+  else
+    unset ESLINT_USE_FLAT_CONFIG
+  fi
+}
+
 add-zsh-hook chpwd load-nvmrc
+add-zsh-hook chpwd set_eslint_flat_config
 load-nvmrc
+set_eslint_flat_config
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
