@@ -16,8 +16,7 @@ return {
       }, { RRGGBBAA = true, names = false })
     end,
   },
-  { "rose-pine/neovim", name = "rose-pine" },
-  "hoob3rt/lualine.nvim",
+  { "rose-pine/neovim", name = "rose-pine", lazy = true },
   "rktjmp/lush.nvim",
 
   -- tpopes
@@ -78,17 +77,30 @@ return {
   -- DB
   {
     "kristijanhusak/vim-dadbod-ui",
-    dependencies = {
-      { "tpope/vim-dadbod", lazy = true },
-    },
-
+    dependencies = { "tpope/vim-dadbod" },
     config = function()
       vim.cmd [[  let g:db_ui_auto_execute_table_helpers = 1 ]]
     end,
   },
 
   -- util
-  "github/copilot.vim",
+  {
+    "github/copilot.vim",
+    config = function()
+      local patterns = { "mkd-lang", "kata-machine" }
+      vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+        callback = function()
+          local filepath = vim.fn.expand "%:p"
+          for _, path in ipairs(patterns) do
+            if string.find(filepath, path:gsub("%-", "%%-")) then
+              vim.b.copilot_enabled = false
+              return
+            end
+          end
+        end,
+      })
+    end,
+  },
   {
     "lukas-reineke/indent-blankline.nvim",
     version = "2.20.8",

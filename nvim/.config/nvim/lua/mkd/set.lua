@@ -35,6 +35,4 @@ vim.g.netrw_winsize = 40
 vim.g.netrw_maxfilenamelen = 65
 vim.g.netrw_localrmdir = "rm -r"
 
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = false

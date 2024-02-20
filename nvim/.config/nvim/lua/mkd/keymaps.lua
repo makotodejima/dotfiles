@@ -38,8 +38,6 @@ vim.keymap.set("v", "<leader>s", ":sort<CR>")
 
 vim.keymap.set("n", "<leader>vs", ":vsplit<CR>")
 
-vim.keymap.set("n", "<leader>b", ":ls<CR> :b # <CR>")
-
 vim.keymap.set("n", "<leader>cp", ":let @+ = expand('%')<CR>")
 
 -- undotree

@@ -30,7 +30,7 @@ return {
       },
       sources = cmp.config.sources {
         { name = "nvim_lsp", priority = 1000, max_item_count = 30 },
-        { name = "luasnip", max_item_count = 20 },
+        { name = "luasnip", max_item_count = 10 },
         { name = "path", max_item_count = 20 },
         { name = "nvim_lsp_signature_help" },
         { name = "tmux", keyword_length = 2, max_item_count = 4 },
@@ -88,7 +88,7 @@ return {
     cmp.setup.cmdline(":", {
       mapping = cmp.mapping.preset.cmdline(),
       sources = cmp.config.sources({ { name = "path" } }, {
-        { name = "cmdline_history", keyword_length = 2, max_item_count = 5 },
+        { name = "cmdline_history", keyword_length = 2, max_item_count = 12 },
         { name = "cmdline", max_item_count = 10 },
       }),
     })

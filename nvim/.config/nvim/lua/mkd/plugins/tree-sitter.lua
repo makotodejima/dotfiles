@@ -4,6 +4,11 @@ return {
   dependencies = {
     "nvim-treesitter/playground",
     "nvim-treesitter/nvim-treesitter-context",
+    {
+      "https://github.com/apple/pkl-neovim",
+      lazy = true,
+      event = "BufReadPre *.pkl",
+    },
   },
   config = function()
     local tree_sitter_configs = require "nvim-treesitter.configs"
@@ -28,6 +33,7 @@ return {
         "hlsl",
         "html",
         "http",
+        "java",
         "javascript",
         "jq",
         "jsdoc",
@@ -36,6 +42,7 @@ return {
         "make",
         "markdown",
         "markdown_inline",
+        "pkl",
         "python",
         "regex",
         "requirements",
