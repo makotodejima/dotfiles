@@ -3,9 +3,10 @@ return {
   config = function()
     local util = require "conform.util"
     require("conform").setup {
-      -- log_level = vim.log.levels.DEBUG,
+      log_level = vim.log.levels.DEBUG,
       formatters_by_ft = {
         sh = { "shfmt" },
+        zsh = { "shfmt" },
         lua = { "stylua" },
         javascript = { "eslint_d", "prettier" },
         typescript = { "eslint_d", "prettier" },
@@ -21,14 +22,14 @@ return {
         markdown = { "prettier" },
       },
       formatters = {
+        shfmt = {
+          prepend_args = { "--indent", 2 },
+        },
+        rustfmt = {
+          prepend_args = { "--config", "tab_spaces=2" },
+        },
         stylua = {
           prepend_args = { "--config-path", vim.fn.expand "~/.config/nvim/lua/mkd/stylua.toml" },
-        },
-        eslint_d = {
-          cwd = util.root_file {
-            "package.json",
-            "eslint.config.js",
-          },
         },
       },
     }
