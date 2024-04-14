@@ -13,6 +13,12 @@ alias gs='git status'
 gc() {
   git branch --sort=-committerdate | fzf | sed 's/^[*+ ]*//' | xargs -r git checkout
 }
+gw() {
+  local dir=$(git worktree list | fzf | awk '{print $1}')
+  if [[ -n $dir ]]; then
+    cd "$dir" || return
+  fi
+}
 
 bindkey '^f' forward-word
 bindkey '^b' backward-word
@@ -20,8 +26,8 @@ bindkey '^b' backward-word
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # place this after nvm initialization!
 autoload -U add-zsh-hook
@@ -50,10 +56,22 @@ set_eslint_flat_config() {
   fi
 }
 
+set_worktree_name() {
+  local git_root=$(git rev-parse --show-toplevel 2>/dev/null)
+  local worktree_name=$(git worktree list 2>/dev/null | grep -i "$git_root" | awk -F'/' '{print $NF}' | awk '{print $1}')
+  if [ -z "$worktree_name" ]; then
+    unset GIT_WORKTREE
+    return
+  fi
+  export GIT_WORKTREE="$worktree_name"
+}
+
 add-zsh-hook chpwd load-nvmrc
 add-zsh-hook chpwd set_eslint_flat_config
+add-zsh-hook chpwd set_worktree_name
 load-nvmrc
 set_eslint_flat_config
+set_worktree_name
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
