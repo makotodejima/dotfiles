@@ -19,5 +19,5 @@ white = "0xC6C6C4"
 yellow = "0xFFD700"
 
 [colors.primary]
-background = "0x10100E"
-foreground = "0xC6C6C4"
+background = "0x0C0C0C"
+foreground = "0xBEBEBE"
