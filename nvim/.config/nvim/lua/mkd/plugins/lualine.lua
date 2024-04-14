@@ -33,6 +33,14 @@ local function path()
   return str
 end
 
+local function worktree()
+  local wt = os.getenv "GIT_WORKTREE"
+  if wt == nil or wt == "" then
+    return ""
+  end
+  return ("[" .. wt .. "]")
+end
+
 return {
   "hoob3rt/lualine.nvim",
   config = function()
@@ -73,7 +81,7 @@ return {
       },
       sections = {
         lualine_a = { "mode" },
-        lualine_b = { "branch", path },
+        lualine_b = { worktree, "branch", path },
         lualine_c = { diff, diagnostics },
         lualine_x = { "encoding", "fileformat", "filetype", "filesize" },
         lualine_y = { "progress" },
