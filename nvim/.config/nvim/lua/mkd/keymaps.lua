@@ -65,7 +65,7 @@ vim.keymap.set(
 vim.keymap.set("t", "<C-o>", [[<C-\><C-n>]])
 
 vim.keymap.set("n", "<leader>f", ":lua vim.lsp.buf.format()<CR>")
-vim.keymap.set("n", "<leader><space>", ":lua require('conform').format()<CR>")
+vim.keymap.set("n", "<leader><space>", ":lua require('conform').format({ async = true, lsp_fallback = false })<CR>")
 
 vim.keymap.set("n", "<leader>o", ":OpenPreview<CR>")
 
