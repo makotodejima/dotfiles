@@ -37,7 +37,11 @@ lspconfig.typos_lsp.setup {
 }
 
 -- Typescript
-require("typescript-tools").setup {
+lspconfig.tsserver.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+--[[ require("typescript-tools").setup {
   capabilities = capabilities,
   on_attach = function(client)
     on_attach(client)
@@ -45,7 +49,7 @@ require("typescript-tools").setup {
     vim.keymap.set("n", "<leader>ru", ":TSToolsRemoveUnusedImports<CR>", { noremap = true, silent = false })
     vim.keymap.set("n", "<leader>im", ":TSToolsAddMissingImports<CR>", { noremap = true, silent = false })
   end,
-}
+} ]]
 
 -- GraphQL
 lspconfig.graphql.setup {
@@ -60,11 +64,11 @@ lspconfig.rust_analyzer.setup {
   on_attach = on_attach,
   settings = {
     ["rust-analyzer"] = {
-      -- check = {
-      --   command = "clippy",
-      -- },
+      check = {
+        command = "clippy",
+      },
       diagnostics = {
-        enable = false,
+        enable = true,
       },
     },
   },
