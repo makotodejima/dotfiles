@@ -5,8 +5,8 @@ plugins=(kubectl kubectx)
 source $ZSH/oh-my-zsh.sh
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# alias vim='nvim'
-alias vim="$HOME/nvim-nightly/nvim-macos/bin/nvim"
+alias vim='nvim'
+# alias vim="$HOME/nvim-nightly/nvim-macos/bin/nvim"
 alias n='node --version'
 alias tmux='env TERM=screen-256color tmux'
 alias gs='git status'
