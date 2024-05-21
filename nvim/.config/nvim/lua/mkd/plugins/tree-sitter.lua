@@ -73,5 +73,12 @@ return {
         keymaps = { node_incremental = "ni", node_decremental = "nd" },
       },
     }
+    require("treesitter-context").setup {
+      enable = true,
+      max_lines = 12,
+    }
+    vim.keymap.set("n", "[s", function()
+      require("treesitter-context").go_to_context(vim.v.count1)
+    end)
   end,
 }
