@@ -56,7 +56,7 @@ local function open_with_preview()
 
   local line = vim.fn.getline "."
   local filename = slice_string_at_whitespace(line:match "^%s*(.-)%s*$")
-  local file_under_cursor = vim.fn.expand "%:p:h" .. "/" .. filename
+  local file_under_cursor = vim.b.netrw_curdir .. "/" .. filename
   local extension = file_under_cursor:match "^.+(%..+)$"
   if
     extension == ".png"
@@ -89,3 +89,32 @@ local function tsNodeOnBuffer()
 end
 
 vim.api.nvim_create_user_command("TSNode", tsNodeOnBuffer, {})
+
+vim.keymap.set("n", "<leader><space>", function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local clients = vim.lsp.get_clients { bufnr = bufnr }
+
+  local function run_conform()
+    require("conform").format { bufnr = bufnr, async = true, lsp_fallback = false }
+  end
+
+  for _, client in ipairs(clients) do
+    if client.name == "eslint" then
+      vim.cmd "EslintFixAll"
+      print "done :EslintFixAll"
+      run_conform()
+      return
+    elseif client.server_capabilities.documentFormattingProvider then
+      vim.lsp.buf.format {
+        async = true,
+        bufnr = bufnr,
+        callback = function()
+          run_conform()
+        end,
+      }
+      return
+    end
+  end
+
+  run_conform()
+end, { noremap = true, silent = true })
