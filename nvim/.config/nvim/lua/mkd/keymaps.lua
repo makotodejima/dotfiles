@@ -65,7 +65,13 @@ vim.keymap.set(
 vim.keymap.set("t", "<C-o>", [[<C-\><C-n>]])
 
 vim.keymap.set("n", "<leader>f", ":lua vim.lsp.buf.format()<CR>")
-vim.keymap.set("n", "<leader><space>", ":lua require('conform').format({ async = true, lsp_fallback = false })<CR>")
+-- vim.keymap.set("n", "<leader><space>", function()
+--   local filetype = vim.bo.filetype
+--   if filetype == "typescript" or filetype == "typescriptreact" or filetype == "javascript" then
+--     vim.cmd ":EslintFixAll"
+--   end
+--   require("conform").format { async = true, lsp_fallback = false }
+-- end, { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>o", ":OpenPreview<CR>")
 

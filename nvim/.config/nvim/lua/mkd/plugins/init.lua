@@ -12,9 +12,25 @@ return {
     "norcalli/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup({
-        "*",
-      }, { RRGGBBAA = true, names = false })
+        "css",
+        "javascript",
+        "typescript",
+        "typescriptreact",
+        "html",
+      }, { RRGGBBAA = true, names = false, css_fn = true, mode = "foreground" })
     end,
+  },
+  {
+    "luckasRanarison/tailwind-tools.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    opts = {
+      document_color = {
+        enabled = true, -- can be toggled by commands
+        kind = "inline", -- "inline" | "foreground" | "background"
+        inline_symbol = "■", -- only used in inline mode
+        debounce = 200, -- in milliseconds, only applied in insert mode
+      },
+    }, -- your configuration
   },
   { "rose-pine/neovim", name = "rose-pine", lazy = true },
   "rktjmp/lush.nvim",
@@ -83,23 +99,6 @@ return {
   },
 
   -- util
-  {
-    "github/copilot.vim",
-    config = function()
-      local patterns = { "mkd-lang", "kata-machine" }
-      vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-        callback = function()
-          local filepath = vim.fn.expand "%:p"
-          for _, path in ipairs(patterns) do
-            if string.find(filepath, path:gsub("%-", "%%-")) then
-              vim.b.copilot_enabled = false
-              return
-            end
-          end
-        end,
-      })
-    end,
-  },
   {
     "lukas-reineke/indent-blankline.nvim",
     version = "2.20.8",

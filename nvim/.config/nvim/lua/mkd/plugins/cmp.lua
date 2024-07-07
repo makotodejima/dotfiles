@@ -12,6 +12,7 @@ return {
     "andersevenrud/cmp-tmux",
     "L3MON4D3/LuaSnip",
     "saadparwaiz1/cmp_luasnip",
+    "luckasRanarison/tailwind-tools.nvim",
   },
 
   config = function()
@@ -38,6 +39,7 @@ return {
       },
       formatting = {
         format = lspkind.cmp_format {
+          before = require("tailwind-tools.cmp").lspkind_format,
           menu = {
             buffer = "buf",
             nvim_lsp = "lsp",

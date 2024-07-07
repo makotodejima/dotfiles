@@ -25,11 +25,13 @@ end
 
 -- bash
 lspconfig.bashls.setup {
+  on_attach = on_attach,
   capabilities = capabilities,
 }
 
 -- typo
 lspconfig.typos_lsp.setup {
+  on_attach = on_attach,
   capabilities = capabilities,
   init_options = {
     diagnosticSeverity = "Hint",
@@ -138,7 +140,7 @@ lspconfig.pyright.setup {
 
 -- java
 lspconfig.jdtls.setup {
-  -- on_attach = on_attach,
+  on_attach = on_attach,
   capabilities = capabilities,
 }
 
