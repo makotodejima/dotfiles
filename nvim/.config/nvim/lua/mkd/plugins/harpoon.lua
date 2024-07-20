@@ -9,7 +9,7 @@ return {
     -- REQUIRED
 
     vim.keymap.set("n", "<leader>hh", function()
-      harpoon:list():append()
+      harpoon:list():add()
     end)
     vim.keymap.set("n", "<leader>hl", function()
       harpoon.ui:toggle_quick_menu(harpoon:list())

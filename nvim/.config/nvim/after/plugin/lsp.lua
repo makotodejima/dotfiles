@@ -43,15 +43,6 @@ lspconfig.tsserver.setup {
   capabilities = capabilities,
   on_attach = on_attach,
 }
---[[ require("typescript-tools").setup {
-  capabilities = capabilities,
-  on_attach = function(client)
-    on_attach(client)
-    vim.keymap.set("n", "<leader>oi", ":TSToolsOrganizeImports<CR>", { noremap = true, silent = false })
-    vim.keymap.set("n", "<leader>ru", ":TSToolsRemoveUnusedImports<CR>", { noremap = true, silent = false })
-    vim.keymap.set("n", "<leader>im", ":TSToolsAddMissingImports<CR>", { noremap = true, silent = false })
-  end,
-} ]]
 
 -- GraphQL
 lspconfig.graphql.setup {

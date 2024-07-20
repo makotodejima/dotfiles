@@ -8,18 +8,12 @@ return {
       vim.cmd [[colorscheme bob]]
     end,
   },
-  {
-    "norcalli/nvim-colorizer.lua",
-    config = function()
-      require("colorizer").setup({
-        "css",
-        "javascript",
-        "typescript",
-        "typescriptreact",
-        "html",
-      }, { RRGGBBAA = true, names = false, css_fn = true, mode = "foreground" })
-    end,
-  },
+  -- {
+  --   "brenoprata10/nvim-highlight-colors",
+  --   opts = {
+  --     enable_tailwind = false,
+  --   },
+  -- },
   {
     "luckasRanarison/tailwind-tools.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
@@ -50,10 +44,7 @@ return {
   -- lsp
   {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      "pmizio/typescript-tools.nvim",
-      "onsails/lspkind-nvim",
-    },
+    dependencies = { "onsails/lspkind-nvim" },
   },
   {
     "j-hui/fidget.nvim",

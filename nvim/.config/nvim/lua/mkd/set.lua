@@ -32,7 +32,7 @@ vim.g.netrw_liststyle = 1
 vim.g.netrw_browse_split = 2
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 40
-vim.g.netrw_maxfilenamelen = 65
+vim.g.netrw_maxfilenamelen = 70
 vim.g.netrw_localrmdir = "rm -r"
 
 vim.opt.foldenable = false
