@@ -8,13 +8,19 @@ return {
       vim.cmd [[colorscheme bob]]
     end,
   },
-  -- {
-  --   "brenoprata10/nvim-highlight-colors",
-  --   opts = {
-  --     enable_tailwind = false,
-  --   },
-  -- },
+  { "rose-pine/neovim", name = "rose-pine", lazy = true },
   {
+    "brenoprata10/nvim-highlight-colors",
+    opts = {
+      enable_tailwind = false,
+    },
+  },
+  {
+    "slugbyte/lackluster.nvim",
+    lazy = true,
+  },
+  {
+
     "luckasRanarison/tailwind-tools.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {
@@ -26,7 +32,7 @@ return {
       },
     }, -- your configuration
   },
-  { "rose-pine/neovim", name = "rose-pine", lazy = true },
+
   "rktjmp/lush.nvim",
 
   -- tpopes
@@ -124,4 +130,15 @@ return {
   },
   -- test
   "David-Kunz/jester",
+  {
+    "declancm/cinnamon.nvim",
+    version = "*",
+    opts = {
+      -- disabled = true,
+      -- keymaps = {
+      --   basic = true,
+      --   extra = true,
+      -- },
+    },
+  },
 }

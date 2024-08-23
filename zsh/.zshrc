@@ -85,4 +85,18 @@ eval "$(direnv hook zsh)"
 source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
 source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
 
+# pnpm
+export PNPM_HOME="/Users/makotodejima/Library/pnpm"
+case ":$PATH:" in
+*":$PNPM_HOME:"*) ;;
+*) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# Go
+export GOPATH="$HOME/go"
+export PATH=$PATH:$GOPATH/bin
+
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+
+export TZ_LIST="America/Los_Angeles;Europe/Berlin;Asia/Tokyo"
