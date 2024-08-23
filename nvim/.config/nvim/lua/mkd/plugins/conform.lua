@@ -3,23 +3,27 @@ return {
   config = function()
     local util = require "conform.util"
     require("conform").setup {
-      log_level = vim.log.levels.DEBUG,
+      -- log_level = vim.log.levels.DEBUG,
       formatters_by_ft = {
-        sh = { "shfmt" },
-        zsh = { "shfmt" },
-        lua = { "stylua" },
+        css = { "prettier" },
+        go = { "gofmt" },
+        graphql = { "prettier" },
+        html = {
+          "prettier",
+          -- "djlint"
+        },
         javascript = { "prettier" },
+        json = { "prettier" },
+        lua = { "stylua" },
+        markdown = { "prettier" },
+        python = { "black" },
+        rust = { "rustfmt" },
+        sh = { "shfmt" },
+        terraform = { "terraform_fmt" },
         typescript = { "prettier" },
         typescriptreact = { "prettier" },
-        rust = { "rustfmt" },
-        python = { "black" },
-        terraform = { "terraform_fmt" },
-        html = { "prettier" },
         yaml = { "prettier" },
-        graphql = { "prettier" },
-        json = { "prettier" },
-        css = { "prettier" },
-        markdown = { "prettier" },
+        zsh = { "shfmt" },
       },
       formatters = {
         shfmt = {

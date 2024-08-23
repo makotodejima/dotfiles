@@ -1,7 +1,7 @@
 return {
   "github/copilot.vim",
   config = function()
-    local patterns = { "mkd-lang", "kata-machine" }
+    local patterns = { "mkd-lang", "kata-machine", "personal" }
     vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
       callback = function()
         local filepath = vim.fn.expand "%:p"

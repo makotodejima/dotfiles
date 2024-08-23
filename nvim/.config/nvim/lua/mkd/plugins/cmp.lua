@@ -10,8 +10,13 @@ return {
     "hrsh7th/cmp-cmdline",
     "dmitmel/cmp-cmdline-history",
     "andersevenrud/cmp-tmux",
-    "L3MON4D3/LuaSnip",
-    "saadparwaiz1/cmp_luasnip",
+    {
+      "L3MON4D3/LuaSnip",
+      dependencies = { "saadparwaiz1/cmp_luasnip" },
+      config = function()
+        require("luasnip.loaders.from_lua").load { paths = { vim.fn.expand "~/.config/nvim/lua/mkd/snippets" } }
+      end,
+    },
     "luckasRanarison/tailwind-tools.nvim",
   },
 

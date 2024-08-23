@@ -42,6 +42,13 @@ lspconfig.typos_lsp.setup {
 lspconfig.tsserver.setup {
   capabilities = capabilities,
   on_attach = on_attach,
+  init_options = {
+    preferences = {
+      -- other preferences...
+      importModuleSpecifierPreference = "relative",
+      importModuleSpecifierEnding = "minimal",
+    },
+  },
 }
 
 -- GraphQL
@@ -49,6 +56,12 @@ lspconfig.graphql.setup {
   filetypes = { "graphql", "gql" },
   on_attach = on_attach,
   capabilities = capabilities,
+}
+
+-- golang
+lspconfig.gopls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
 }
 
 -- Rust
