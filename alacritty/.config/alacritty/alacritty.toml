@@ -1,7 +1,15 @@
 import = ["/Users/makotodejima/.config/alacritty/themes/themes/blood_moon.toml"]
 
+[colors.primary]
+background = "0x0C0C0C"
+foreground = "0xb3b3b3"
+
 [colors.normal]
-green = "#ADF0CD"
+green = "0x459683"
+yellow = "0xd6b147"
+red = "0x9f342d"
+blue = "0x4a7fe8"
+white = "0xc4c4c4"
 
 [cursor]
 blink_timeout = 0

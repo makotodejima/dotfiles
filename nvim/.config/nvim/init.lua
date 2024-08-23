@@ -117,4 +117,5 @@ vim.keymap.set("n", "<leader><space>", function()
   end
 
   run_conform()
+  print "done conform"
 end, { noremap = true, silent = true })
