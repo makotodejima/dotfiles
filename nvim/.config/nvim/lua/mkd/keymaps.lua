@@ -76,3 +76,7 @@ vim.keymap.set("n", "<leader>f", ":lua vim.lsp.buf.format()<CR>")
 vim.keymap.set("n", "<leader>o", ":OpenPreview<CR>")
 
 -- consider rempap for :Gclog :%Gclog
+
+vim.keymap.set("n", "[t", function()
+  require("treesitter-context").go_to_context(vim.v.count1)
+end, { silent = false })
