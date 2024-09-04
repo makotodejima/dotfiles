@@ -99,4 +99,8 @@ export PATH=$PATH:$GOPATH/bin
 
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 
+# tz
 export TZ_LIST="America/Los_Angeles;Europe/Berlin;Asia/Tokyo"
+
+# wifi-password
+alias wifi-password='~/wifi-password.sh'
