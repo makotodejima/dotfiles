@@ -1,17 +1,14 @@
 return {
   "stevearc/conform.nvim",
+  event = "VeryLazy",
   config = function()
-    local util = require "conform.util"
     require("conform").setup {
       -- log_level = vim.log.levels.DEBUG,
       formatters_by_ft = {
         css = { "prettier" },
         go = { "gofmt" },
         graphql = { "prettier" },
-        html = {
-          "prettier",
-          -- "djlint"
-        },
+        html = { "prettier" },
         javascript = { "prettier" },
         json = { "prettier" },
         lua = { "stylua" },

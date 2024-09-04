@@ -72,6 +72,7 @@ local function open_with_preview()
 end
 
 vim.api.nvim_create_user_command("OpenPreview", open_with_preview, {})
+vim.keymap.set("n", "<leader>o", ":OpenPreview<CR>")
 
 local function tsNodeOnBuffer()
   local current_file_path = vim.api.nvim_buf_get_name(0)

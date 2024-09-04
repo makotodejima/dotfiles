@@ -2,6 +2,7 @@ vim.o.completeopt = "menu,menuone,noselect"
 
 return {
   "hrsh7th/nvim-cmp",
+  event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-nvim-lsp-signature-help",
@@ -17,9 +18,14 @@ return {
         require("luasnip.loaders.from_lua").load { paths = { vim.fn.expand "~/.config/nvim/lua/mkd/snippets" } }
       end,
     },
-    "luckasRanarison/tailwind-tools.nvim",
+    {
+      "hrsh7th/nvim-pasta",
+      config = function()
+        vim.keymap.set({ "n", "x" }, "p", require("pasta.mapping").p)
+        vim.keymap.set({ "n", "x" }, "P", require("pasta.mapping").P)
+      end,
+    },
   },
-
   config = function()
     local lspkind = require "lspkind"
     local cmp = require "cmp"

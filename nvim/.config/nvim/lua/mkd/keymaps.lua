@@ -40,40 +40,9 @@ vim.keymap.set("n", "<leader>vs", ":vsplit<CR>")
 
 vim.keymap.set("n", "<leader>cp", ":let @+ = expand('%')<CR>")
 
--- undotree
-vim.keymap.set("n", "<leader>u", ":UndotreeToggle<CR>")
-
-vim.g.markdown_fenced_languages = { "html", "python", "javascript", "bash=sh" }
-
--- How do i do this?
--- " Jest file pattern matching 'test.db'
--- let g:test#javascript#jest#file_pattern = '\v(__tests__/.*|(spec|test|test.db))\.(js|jsx|ts|tsx)$'
--- let test#neovim#term_position = "vert"
-
-vim.keymap.set("n", "<leader>tn", [[:lua require"jester".run({path_to_jest='./node_modules/jest/bin/jest.js'})<CR>]])
-vim.keymap.set(
-  "n",
-  "<leader>tf",
-  [[:lua require"jester".run_file({path_to_jest='./node_modules/jest/bin/jest.js'})<CR>]]
-)
-vim.keymap.set(
-  "n",
-  "<leader>tl",
-  [[:lua require"jester".run_last({path_to_jest='./node_modules/jest/bin/jest.js'})<CR>]]
-)
-
 vim.keymap.set("t", "<C-o>", [[<C-\><C-n>]])
 
 vim.keymap.set("n", "<leader>f", ":lua vim.lsp.buf.format()<CR>")
--- vim.keymap.set("n", "<leader><space>", function()
---   local filetype = vim.bo.filetype
---   if filetype == "typescript" or filetype == "typescriptreact" or filetype == "javascript" then
---     vim.cmd ":EslintFixAll"
---   end
---   require("conform").format { async = true, lsp_fallback = false }
--- end, { noremap = true, silent = true })
-
-vim.keymap.set("n", "<leader>o", ":OpenPreview<CR>")
 
 -- consider rempap for :Gclog :%Gclog
 

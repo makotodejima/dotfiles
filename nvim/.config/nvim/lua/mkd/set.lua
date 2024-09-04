@@ -1,3 +1,4 @@
+vim.opt.background = "dark"
 vim.opt.backup = false
 vim.opt.cmdheight = 1
 vim.opt.colorcolumn = "80"
@@ -24,15 +25,16 @@ vim.opt.undofile = true
 vim.opt.wrap = false
 
 -- ripgrep for :grep
-vim.opt.grepprg = "rg --smart-case --vimgrep"
 vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
+vim.opt.grepprg = "rg --smart-case --vimgrep"
 
 -- netrw
-vim.g.netrw_liststyle = 1
-vim.g.netrw_browse_split = 2
 vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 40
-vim.g.netrw_maxfilenamelen = 70
+vim.g.netrw_browse_split = 2
+vim.g.netrw_bufsettings = "noma nomod nu rnu nobl nowrap ro"
+vim.g.netrw_liststyle = 1
 vim.g.netrw_localrmdir = "rm -r"
+vim.g.netrw_maxfilenamelen = 70
+vim.g.netrw_winsize = 40
 
-vim.opt.foldenable = false
+vim.g.markdown_fenced_languages = { "html", "python", "javascript", "bash=sh" }

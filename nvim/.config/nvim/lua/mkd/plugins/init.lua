@@ -1,5 +1,4 @@
 return {
-  -- color
   {
     dir = "~/dev/bob",
     lazy = false,
@@ -7,75 +6,57 @@ return {
     config = function()
       vim.cmd [[colorscheme bob]]
     end,
+    dependencies = {
+      "rktjmp/lush.nvim",
+    },
   },
-  { "rose-pine/neovim", name = "rose-pine", lazy = true },
   {
     "brenoprata10/nvim-highlight-colors",
+    event = "VeryLazy",
     opts = {
       enable_tailwind = false,
     },
   },
-  {
-    "slugbyte/lackluster.nvim",
-    lazy = true,
-  },
-  {
-
-    "luckasRanarison/tailwind-tools.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    opts = {
-      document_color = {
-        enabled = true, -- can be toggled by commands
-        kind = "inline", -- "inline" | "foreground" | "background"
-        inline_symbol = "■", -- only used in inline mode
-        debounce = 200, -- in milliseconds, only applied in insert mode
-      },
-    }, -- your configuration
-  },
-
-  "rktjmp/lush.nvim",
 
   -- tpopes
-  "tpope/vim-abolish",
+  {
+    "tpope/vim-abolish",
+    event = "CmdlineEnter",
+  },
   "tpope/vim-surround",
-  "tpope/vim-repeat",
+  -- "tpope/vim-repeat",
   "tpope/vim-vinegar",
   "tpope/vim-unimpaired",
   "tpope/vim-sleuth",
 
   -- navigation
   "justinmk/vim-sneak",
-  "aserowy/tmux.nvim",
-
-  -- lsp
   {
-    "neovim/nvim-lspconfig",
-    dependencies = { "onsails/lspkind-nvim" },
-  },
-  {
-    "j-hui/fidget.nvim",
-    opts = {
-      progress = { ignore_empty_message = false },
-    },
-  },
-
-  {
-    "hrsh7th/nvim-pasta",
+    "aserowy/tmux.nvim",
     config = function()
-      vim.keymap.set({ "n", "x" }, "p", require("pasta.mapping").p)
-      vim.keymap.set({ "n", "x" }, "P", require("pasta.mapping").P)
+      require("tmux").setup {
+        copy_sync = {
+          -- enables copy sync and overwrites all register actions to
+          -- sync registers *, +, unnamed, and 0 till 9 from tmux in advance
+          enable = false,
+        },
+        navigation = { enable_default_keybindings = true },
+        resize = { enable_default_keybindings = true, resize_step_x = 8, resize_step_y = 8 },
+      }
     end,
   },
 
-  -- git
-  "tpope/vim-fugitive",
-  "tpope/vim-rhubarb",
-  "lewis6991/gitsigns.nvim",
-
   -- files
-  "mbbill/undotree",
+  {
+    "mbbill/undotree",
+    event = "VeryLazy",
+    keys = {
+      { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Undotree" },
+    },
+  },
   {
     "stevearc/oil.nvim",
+    cmd = { "Oil" },
     config = function()
       require("oil").setup {
         default_file_explorer = false,
@@ -86,19 +67,11 @@ return {
     end,
   },
 
-  -- DB
-  {
-    "kristijanhusak/vim-dadbod-ui",
-    dependencies = { "tpope/vim-dadbod" },
-    config = function()
-      vim.cmd [[  let g:db_ui_auto_execute_table_helpers = 1 ]]
-    end,
-  },
-
   -- util
   {
     "lukas-reineke/indent-blankline.nvim",
     version = "2.20.8",
+    ft = { "python", "yaml", "toml" },
     config = function()
       require("indent_blankline").setup {
         filetype = { "python", "yaml", "toml" },
@@ -107,6 +80,7 @@ return {
   },
   {
     "numToStr/Comment.nvim",
+    event = "VeryLazy",
     dependencies = {
       "JoosepAlviste/nvim-ts-context-commentstring",
     },
@@ -119,7 +93,7 @@ return {
   },
   {
     "toppair/peek.nvim",
-    event = { "VeryLazy" },
+    cmd = { "PeekOpen" },
     build = "deno task --quiet build:fast",
     config = function()
       require("peek").setup()
@@ -127,18 +101,5 @@ return {
       vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
       vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
     end,
-  },
-  -- test
-  "David-Kunz/jester",
-  {
-    "declancm/cinnamon.nvim",
-    version = "*",
-    opts = {
-      -- disabled = true,
-      -- keymaps = {
-      --   basic = true,
-      --   extra = true,
-      -- },
-    },
   },
 }

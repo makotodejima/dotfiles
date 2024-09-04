@@ -1,10 +1,14 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  event = "VeryLazy",
   build = ":TSUpdate",
   dependencies = {
-    "nvim-treesitter/playground",
     "nvim-treesitter/nvim-treesitter-context",
-    "nvim-treesitter/nvim-treesitter-textobjects",
+    {
+      "nvim-treesitter/playground",
+      lazy = true,
+    },
+    { "nvim-treesitter/nvim-treesitter-textobjects", lazy = true },
     {
       "https://github.com/apple/pkl-neovim",
       lazy = true,

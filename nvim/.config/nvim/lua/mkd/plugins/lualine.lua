@@ -1,7 +1,13 @@
 local function path()
   local sep = "/"
+  local cwd = vim.fn.getcwd() -- Get the current working directory (project root)
+  local full_path = vim.fn.expand "%:p" -- Get the full path of the current file
+
+  -- Get the path relative to the project root
+  local relative_path = vim.fn.fnamemodify(full_path, ":." .. cwd)
+
   local subs = {}
-  for str in string.gmatch(vim.fn.expand "%", "([^" .. sep .. "]+)") do
+  for str in string.gmatch(relative_path, "([^" .. sep .. "]+)") do
     table.insert(subs, str)
   end
 
@@ -43,6 +49,7 @@ end
 
 return {
   "hoob3rt/lualine.nvim",
+  event = "VeryLazy",
   config = function()
     local lualine = require "lualine"
 
@@ -77,11 +84,10 @@ return {
         theme = "auto",
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
-        disabled_filetypes = { winbar = { "qf", "netrw", "fugitive" } },
       },
       sections = {
         lualine_a = { "mode" },
-        lualine_b = { worktree, "branch", path },
+        lualine_b = { worktree, "branch", { "filename", path = 4 } },
         lualine_c = { diff, diagnostics },
         lualine_x = { "encoding", "fileformat", "filetype", "filesize" },
         lualine_y = { "progress" },
