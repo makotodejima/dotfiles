@@ -26,6 +26,14 @@ vim.cmd [[
   autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
 ]]
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "qf",
+  callback = function()
+    vim.cmd "packadd cfilter"
+  end,
+  once = true,
+})
+
 vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = "YankHighlight",
