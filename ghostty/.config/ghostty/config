@@ -1,0 +1,33 @@
+title = " "
+macos-titlebar-proxy-icon = hidden
+font-family = Berkeley Mono
+shell-integration-features = no-cursor
+cursor-style = block
+cursor-invert-fg-bg = true
+macos-window-shadow = false
+macos-option-as-alt = true
+font-size = 16
+font-thicken = true
+mouse-hide-while-typing = true
+
+palette = 0=#26233a
+palette = 1=#9f342d
+palette = 2=#459683
+palette = 3=#d6b147
+palette = 4=#31748f
+palette = 5=#c4a7e7
+palette = 6=#4a7fe8
+palette = 7=#c4c4c4
+palette = 8=#6e6a86
+palette = 9=#9f342d
+palette = 10=#459683
+palette = 11=#d6b147
+palette = 12=#31748f
+palette = 13=#c4a7e7
+palette = 14=#f18e95
+palette = 15=#c4c4c4
+background = 0c0c0c
+foreground = b3b3b3
+cursor-color = e0def4
+selection-background = 191724
+selection-foreground = e0def4

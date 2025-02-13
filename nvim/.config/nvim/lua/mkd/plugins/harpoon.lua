@@ -5,9 +5,7 @@ return {
   config = function()
     local harpoon = require "harpoon"
 
-    -- REQUIRED
     harpoon:setup()
-    -- REQUIRED
 
     vim.keymap.set("n", "<leader>hh", function()
       harpoon:list():add()
@@ -20,16 +18,23 @@ return {
       harpoon:list():select(1)
     end)
 
-    vim.keymap.set("n", "∆", function()
-      harpoon:list():select(2)
-    end)
+    -- vim.keymap.set("n", "∆", function()
+    --   harpoon:list():select(2)
+    -- end)
+    --
+    -- vim.keymap.set("n", "˚", function()
+    --   harpoon:list():select(3)
+    -- end)
 
-    vim.keymap.set("n", "˚", function()
-      harpoon:list():select(3)
-    end)
+    -- vim.keymap.set("n", "¬", function()
+    --   harpoon:list():select(4)
+    -- end)
 
-    vim.keymap.set("n", "¬", function()
-      harpoon:list():select(4)
+    vim.keymap.set("n", "<A-n>", function()
+      harpoon:list():next()
+    end)
+    vim.keymap.set("n", "<A-p>", function()
+      harpoon:list():prev()
     end)
   end,
 }

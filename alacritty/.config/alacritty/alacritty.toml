@@ -90,5 +90,8 @@ lines = 100
 x = 0
 y = 0
 
+[window]
+option_as_alt = "Both"
+
 [general]
 import = ["/Users/makotodejima/.config/alacritty/themes/themes/blood_moon.toml"]

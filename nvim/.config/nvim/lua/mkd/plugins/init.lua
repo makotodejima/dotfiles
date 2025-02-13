@@ -30,7 +30,6 @@ return {
   "tpope/vim-sleuth",
 
   -- navigation
-  "justinmk/vim-sneak",
   {
     "aserowy/tmux.nvim",
     config = function()
@@ -41,7 +40,7 @@ return {
           enable = false,
         },
         navigation = { enable_default_keybindings = true },
-        resize = { enable_default_keybindings = true, resize_step_x = 8, resize_step_y = 8 },
+        resize = { enable_default_keybindings = true, resize_step_x = 4, resize_step_y = 4 },
       }
     end,
   },
@@ -49,7 +48,7 @@ return {
   -- files
   {
     "mbbill/undotree",
-    event = "VeryLazy",
+    cmd = { "UndotreeToggle" },
     keys = {
       { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Undotree" },
     },
@@ -68,6 +67,7 @@ return {
   },
 
   -- util
+  -- { "LunarVim/bigfile.nvim" },
   {
     "lukas-reineke/indent-blankline.nvim",
     version = "2.20.8",
@@ -101,5 +101,10 @@ return {
       vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
       vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
     end,
+  },
+  {
+    "3rd/image.nvim",
+    event = "VeryLazy",
+    opts = {},
   },
 }

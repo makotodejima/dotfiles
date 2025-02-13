@@ -35,6 +35,7 @@ return {
       vim.keymap.set("n", "gt", ":lua vim.lsp.buf.type_definition()<CR>", opt)
       vim.keymap.set("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", opt)
       vim.keymap.set("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>", opt)
+      vim.keymap.set("n", "<leader>cs", ":lua vim.lsp.buf.code_action({ context = { only = {'source'} } })<CR>", opt)
       vim.keymap.set("n", "gh", ":lua vim.lsp.buf.hover()<CR>", opt)
       vim.keymap.set("n", "<leader>e", ":lua vim.diagnostic.open_float()<CR>", opt)
       vim.keymap.set("n", "[d", ":lua vim.diagnostic.goto_prev()<CR>", opt)
@@ -62,7 +63,8 @@ return {
       }
 
       -- Typescript
-      lspconfig.tsserver.setup {
+      -- NOTE: ts_ls repeatedly restarts the server when `tsconfig.json` has uncommitted changes
+      lspconfig.ts_ls.setup {
         capabilities = capabilities,
         on_attach = on_attach,
         init_options = {
@@ -131,7 +133,7 @@ return {
       }
 
       -- Python
-      lspconfig.ruff_lsp.setup {
+      lspconfig.ruff.setup {
         capabilities = capabilities,
         on_attach = function(client)
           client.server_capabilities.documentFormattingProvider = false

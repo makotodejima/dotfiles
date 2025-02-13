@@ -1,23 +1,22 @@
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches
 	wip = commit -m 'wip' --no-verify
-
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = nvim
-
 [user]
 	name = Makoto Dejima
-	email = makotodejima@gmail.com
-
-[init]
-	; templatedir = ~/.git_template
-
+	email = makoto@legalos.io
+	signingkey = /Users/makotodejima/.ssh/id_ed25519.pub
 [delta]
         line-numbers = true
-
 [pull]
 	rebase = false
-
 [push]
 	autoSetupRemote = true
+[commit]
+	gpgsign = true
+[rebase]
+	updateRefs = false
+[gpg]
+	format = ssh

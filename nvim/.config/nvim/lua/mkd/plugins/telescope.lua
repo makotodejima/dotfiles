@@ -66,13 +66,14 @@ return {
     vim.keymap.set("n", "<C-p>", ":Telescope find_files<CR>", { noremap = true, silent = true })
     vim.keymap.set("n", "<C-b>", ":Telescope buffers<CR>", { noremap = true, silent = true })
     vim.keymap.set("n", "<C-c>", ":Telescope commands<CR>", { noremap = true, silent = true })
-    vim.keymap.set("n", "<C-g>", ":Telescope live_grep<CR>", { noremap = true, silent = true })
+    -- vim.keymap.set("n", "<C-g>", ":Telescope live_grep<CR>", { noremap = true, silent = true })
+    vim.keymap.set("n", "<C-g>", require("mkd.telescope.multigrep").run, { noremap = true, silent = true })
 
     -- note
     vim.keymap.set(
       "n",
       "<leader>no",
-      [[<cmd>lua require'telescope.builtin'.find_files({cwd='~/Library/Mobile Documents/27N4MQEA55~pro~writer/Documents/temp'})<CR>]],
+      [[<cmd>lua require'telescope.builtin'.find_files({cwd=os.getenv("IA_TEMP_PATH")})<CR>]],
       { noremap = true, silent = true }
     )
   end,
