@@ -30,19 +30,22 @@ local multigrep = function(opts)
         return nil
       end
 
-      local prompt_split = vim.split(prompt, "  ")
+      local prompt_split = vim.split(prompt, "  ", { limit = 2 })
 
       local args = { "rg" }
       if prompt_split[1] then
-        table.insert(args, "-e")
-        table.insert(args, prompt_split[1])
+        if prompt_split[1] == "F" then
+          table.insert(args, "-F")
+        else
+          table.insert(args, "-e")
+          table.insert(args, prompt_split[1])
+        end
       end
 
       if prompt_split[2] then
-        table.insert(args, "-g")
-
         local pattern
         if opts.shortcuts[prompt_split[2]] then
+          table.insert(args, "-g")
           pattern = opts.shortcuts[prompt_split[2]]
         else
           pattern = prompt_split[2]
@@ -55,6 +58,8 @@ local multigrep = function(opts)
       table.insert(args, "!*lock.json")
       table.insert(args, "--glob")
       table.insert(args, "!*.lock")
+      table.insert(args, "--glob")
+      table.insert(args, "!*lock.yaml")
 
       return flatten {
         args,
@@ -76,7 +81,7 @@ local multigrep = function(opts)
   pickers
     .new(opts, {
       debounce = 100,
-      prompt_title = "Live Grep (with shortcuts)",
+      prompt_title = "F for literal. Shortcuts: <double-space> <t,j,p,c,r,g,v,l,n>",
       finder = custom_grep,
       previewer = conf.grep_previewer(opts),
       sorter = require("telescope.sorters").empty(),
@@ -85,9 +90,7 @@ local multigrep = function(opts)
 end
 
 M.run = function()
-  multigrep {
-    glob_pattern = { "!*lock.json", "!*.lock" },
-  }
+  multigrep {}
 end
 
 return M
