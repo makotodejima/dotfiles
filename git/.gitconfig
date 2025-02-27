@@ -20,3 +20,5 @@
 	updateRefs = false
 [gpg]
 	format = ssh
+[init]
+	defaultBranch = main
