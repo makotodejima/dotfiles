@@ -13,3 +13,4 @@ tags.temp
 .envrc-dev
 
 .exrc
+.direnv

@@ -105,7 +105,7 @@ return {
       },
       sections = {
         lualine_a = { "mode" },
-        lualine_b = { worktree, "branch", path },
+        lualine_b = { worktree, { "branch", fmt = trunc(120, 18, 60) }, path },
         lualine_c = { diff, diagnostics },
         lualine_x = {
           { "encoding", fmt = trunc(100, 50, 120) },

@@ -108,3 +108,5 @@ alias wifi-password='~/wifi-password.sh'
 
 export IA_TEMP_PATH="$HOME/Library/Mobile Documents/27N4MQEA55~pro~writer/Documents/temp"
 export IA_LLM_PATH="$HOME/Library/Mobile Documents/27N4MQEA55~pro~writer/Documents/llm"
+
+. "$HOME/.local/bin/env"
