@@ -38,3 +38,10 @@ vim.g.netrw_maxfilenamelen = 70
 vim.g.netrw_winsize = 40
 
 vim.g.markdown_fenced_languages = { "html", "python", "javascript", "bash=sh" }
+
+-- Use an expression-based fold, driven by Tree-sitter
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- Start with all folds open
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true -- ensure folding is on

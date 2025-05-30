@@ -17,10 +17,11 @@ local multigrep = function(opts)
       ["n"] = "*.{vim,lua}",
       ["c"] = "*.c",
       ["r"] = "*.rs",
-      ["g"] = "*.go",
+      ["g"] = "*.{go,graphql}",
       ["t"] = "*.{ts,tsx}",
       ["j"] = "*.{js,jsx}",
       ["p"] = "*.py",
+      ["-t"] = "!**/*test*",
     }
   opts.pattern = opts.pattern or "%s"
 
@@ -81,7 +82,7 @@ local multigrep = function(opts)
   pickers
     .new(opts, {
       debounce = 100,
-      prompt_title = "F for literal. Shortcuts: <double-space> <t,j,p,c,r,g,v,l,n>",
+      prompt_title = "F for literal. Shortcuts: <double-space> <t,j,p,c,r,g,v,l,n,-t(-test)>",
       finder = custom_grep,
       previewer = conf.grep_previewer(opts),
       sorter = require("telescope.sorters").empty(),

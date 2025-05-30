@@ -66,7 +66,7 @@ return {
     vim.keymap.set("n", "<C-p>", ":Telescope find_files<CR>", { noremap = true, silent = true })
     vim.keymap.set("n", "<C-b>", ":Telescope buffers<CR>", { noremap = true, silent = true })
     vim.keymap.set("n", "<C-c>", ":Telescope commands<CR>", { noremap = true, silent = true })
-    -- vim.keymap.set("n", "<C-g>", ":Telescope live_grep<CR>", { noremap = true, silent = true })
+    vim.keymap.set("n", "<C-_>", ":Telescope current_buffer_fuzzy_find<CR>", { noremap = true, silent = true })
     vim.keymap.set("n", "<C-g>", require("mkd.telescope.multigrep").run, { noremap = true, silent = true })
 
     -- note
