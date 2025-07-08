@@ -21,3 +21,17 @@
 	format = ssh
 [init]
 	defaultBranch = main
+[alias]
+    dif = "!f() { \
+      if [ $# -eq 0 ]; then \
+        set -- HEAD; \
+      fi; \
+      git diff \"$@\" -- . \
+	':(exclude)**/environment-values.yaml' \
+	':(exclude)**/dev-settings.json' \
+        ':(exclude)*.test.*' \
+        ':(exclude)*.snap*' \
+        ':(exclude)**/tests/**' \
+        ':(exclude)**/package-lock.json' \
+        ':(exclude)**/Pipfile.lock'; \
+    }; f"
