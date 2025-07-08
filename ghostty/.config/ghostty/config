@@ -7,7 +7,7 @@ cursor-invert-fg-bg = true
 macos-window-shadow = false
 macos-option-as-alt = true
 font-size = 16
-font-thicken = true
+font-thicken = false
 mouse-hide-while-typing = true
 
 palette = 0=#26233a
@@ -31,3 +31,4 @@ foreground = b3b3b3
 cursor-color = e0def4
 selection-background = 191724
 selection-foreground = e0def4
+keybind = shift+enter=text:\n

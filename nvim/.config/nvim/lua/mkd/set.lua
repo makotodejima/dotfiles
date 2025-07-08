@@ -20,7 +20,7 @@ vim.opt.softtabstop = 4
 vim.opt.swapfile = false
 vim.opt.tabstop = 4
 vim.opt.termguicolors = true
-vim.opt.undodir = os.getenv "HOME" .. "/.local/share/nvim/undodir"
+vim.opt.undodir = os.getenv("HOME") .. "/.local/share/nvim/undodir"
 vim.opt.undofile = true
 vim.opt.wrap = false
 
@@ -37,7 +37,7 @@ vim.g.netrw_localrmdir = "rm -r"
 vim.g.netrw_maxfilenamelen = 70
 vim.g.netrw_winsize = 40
 
-vim.g.markdown_fenced_languages = { "html", "python", "javascript", "bash=sh" }
+vim.g.markdown_fenced_languages = { "html", "python", "javascript", "typescript", "bash=sh" }
 
 -- Use an expression-based fold, driven by Tree-sitter
 vim.opt.foldmethod = "expr"

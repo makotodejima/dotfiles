@@ -16,8 +16,8 @@ return {
     },
   },
   config = function()
-    local tree_sitter_configs = require "nvim-treesitter.configs"
-    tree_sitter_configs.setup {
+    local tree_sitter_configs = require("nvim-treesitter.configs")
+    tree_sitter_configs.setup({
       ensure_installed = {
         "bash",
         "c",
@@ -115,11 +115,11 @@ return {
           include_surrounding_whitespace = true,
         },
       },
-    }
-    require("treesitter-context").setup {
+    })
+    require("treesitter-context").setup({
       enable = true,
       max_lines = 12,
-    }
+    })
     vim.keymap.set("n", "[s", function()
       require("treesitter-context").go_to_context(vim.v.count1)
     end)
