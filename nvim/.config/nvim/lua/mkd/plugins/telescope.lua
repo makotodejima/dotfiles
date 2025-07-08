@@ -6,12 +6,12 @@ return {
     "nvim-lua/plenary.nvim",
     {
       "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
+      build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
     },
   },
   config = function()
-    local actions = require "telescope.actions"
-    require("telescope").setup {
+    local actions = require("telescope.actions")
+    require("telescope").setup({
       defaults = {
         prompt_prefix = "  ",
         mappings = { i = { ["<C-q>"] = actions.send_selected_to_qflist, ["<C-a>"] = actions.send_to_qflist } },
@@ -51,10 +51,9 @@ return {
           case_mode = "smart_case", -- or "ignore_case" or "respect_case"
         },
       },
-    }
+    })
 
-    require("telescope").load_extension "fzf"
-    require("telescope").load_extension "harpoon"
+    require("telescope").load_extension("fzf")
 
     vim.keymap.set("n", "<C-t>", ":Telescope <CR>", { noremap = true, silent = true })
     vim.keymap.set(
@@ -65,9 +64,9 @@ return {
     )
     vim.keymap.set("n", "<C-p>", ":Telescope find_files<CR>", { noremap = true, silent = true })
     vim.keymap.set("n", "<C-b>", ":Telescope buffers<CR>", { noremap = true, silent = true })
-    vim.keymap.set("n", "<C-c>", ":Telescope commands<CR>", { noremap = true, silent = true })
-    vim.keymap.set("n", "<C-_>", ":Telescope current_buffer_fuzzy_find<CR>", { noremap = true, silent = true })
+    -- vim.keymap.set("n", "<C-c>", ":Telescope commands<CR>", { noremap = true, silent = true })
     vim.keymap.set("n", "<C-g>", require("mkd.telescope.multigrep").run, { noremap = true, silent = true })
+    vim.keymap.set("n", "<C-_>", require("mkd.telescope.multigrep").run, { noremap = true, silent = true })
 
     -- note
     vim.keymap.set(

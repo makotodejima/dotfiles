@@ -2,7 +2,7 @@ return {
   "stevearc/conform.nvim",
   event = "VeryLazy",
   config = function()
-    require("conform").setup {
+    require("conform").setup({
       -- log_level = vim.log.levels.DEBUG,
       formatters_by_ft = {
         css = { "prettier" },
@@ -30,9 +30,9 @@ return {
           prepend_args = { "--config", "tab_spaces=2" },
         },
         stylua = {
-          prepend_args = { "--config-path", vim.fn.expand "~/.config/nvim/lua/mkd/stylua.toml" },
+          prepend_args = { "--config-path", vim.fn.expand("~/.config/nvim/lua/mkd/stylua.toml") },
         },
       },
-    }
+    })
   end,
 }

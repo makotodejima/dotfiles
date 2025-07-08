@@ -1,11 +1,10 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    event = { "BufRead", "BufNewFile", "InsertEnter" },
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "hrsh7th/nvim-cmp",
       "onsails/lspkind-nvim",
-      { "j-hui/fidget.nvim", opts = {} },
       {
         "luckasRanarison/tailwind-tools.nvim",
         name = "tailwind-tools",
@@ -21,8 +20,11 @@ return {
       },
     },
     config = function()
-      local lspconfig = require "lspconfig"
-      local cmp_lsp = require "cmp_nvim_lsp"
+      local lspconfig = require("lspconfig")
+
+      -- local cmp_lsp = require "cmp_nvim_lsp"
+      --
+      -- local capabilities = cmp_lsp.default_capabilities()
 
       -- uncomment to see logs under .cache/
       -- vim.lsp.set_log_level "debug"
@@ -35,36 +37,34 @@ return {
       vim.keymap.set("n", "gt", ":lua vim.lsp.buf.type_definition()<CR>", opt)
       vim.keymap.set("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", opt)
       vim.keymap.set("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>", opt)
-      vim.keymap.set("n", "<leader>cs", ":lua vim.lsp.buf.code_action({ context = { only = {'source'} } })<CR>", opt)
+      vim.keymap.set("n", "<leader>cf", ":lua vim.lsp.buf.code_action({ context = { only = {'source'} } })<CR>", opt)
       vim.keymap.set("n", "gh", ":lua vim.lsp.buf.hover()<CR>", opt)
       vim.keymap.set("n", "<leader>e", ":lua vim.diagnostic.open_float()<CR>", opt)
       vim.keymap.set("n", "[d", ":lua vim.diagnostic.goto_prev()<CR>", opt)
       vim.keymap.set("n", "]d", ":lua vim.diagnostic.goto_next()<CR>", opt)
-
-      local capabilities = cmp_lsp.default_capabilities()
 
       local function on_attach(client)
         client.server_capabilities.documentFormattingProvider = false
       end
 
       -- bash
-      lspconfig.bashls.setup {
+      lspconfig.bashls.setup({
         on_attach = on_attach,
         capabilities = capabilities,
-      }
+      })
 
       -- typo
-      lspconfig.typos_lsp.setup {
+      lspconfig.typos_lsp.setup({
         on_attach = on_attach,
         capabilities = capabilities,
         init_options = {
           diagnosticSeverity = "Hint",
         },
-      }
+      })
 
       -- Typescript
       -- NOTE: ts_ls repeatedly restarts the server when `tsconfig.json` has uncommitted changes
-      lspconfig.ts_ls.setup {
+      lspconfig.ts_ls.setup({
         capabilities = capabilities,
         on_attach = on_attach,
         init_options = {
@@ -74,23 +74,23 @@ return {
             importModuleSpecifierEnding = "minimal",
           },
         },
-      }
+      })
 
       -- GraphQL
-      lspconfig.graphql.setup {
+      lspconfig.graphql.setup({
         filetypes = { "graphql", "gql" },
         on_attach = on_attach,
         capabilities = capabilities,
-      }
+      })
 
       -- golang
-      lspconfig.gopls.setup {
+      lspconfig.gopls.setup({
         capabilities = capabilities,
         on_attach = on_attach,
-      }
+      })
 
       -- Rust
-      lspconfig.rust_analyzer.setup {
+      lspconfig.rust_analyzer.setup({
         capabilities = capabilities,
         on_attach = on_attach,
         settings = {
@@ -103,10 +103,10 @@ return {
             },
           },
         },
-      }
+      })
 
       -- lua
-      lspconfig.lua_ls.setup {
+      lspconfig.lua_ls.setup({
         capabilities = capabilities,
         on_attach = on_attach,
         settings = {
@@ -130,10 +130,10 @@ return {
             },
           },
         },
-      }
+      })
 
       -- Python
-      lspconfig.ruff.setup {
+      lspconfig.ruff.setup({
         capabilities = capabilities,
         on_attach = function(client)
           client.server_capabilities.documentFormattingProvider = false
@@ -143,9 +143,9 @@ return {
         handlers = {
           ["textDocument/publishDiagnostics"] = function() end,
         },
-      }
+      })
 
-      lspconfig.pyright.setup {
+      lspconfig.pyright.setup({
         capabilities = capabilities,
         on_attach = function(client)
           client.server_capabilities.documentFormattingProvider = false
@@ -165,39 +165,39 @@ return {
             new_config.cmd = { "pipenv", "run", "pyright-langserver", "--stdio" }
           end
         end,
-      }
+      })
 
       -- java
-      lspconfig.jdtls.setup {
+      lspconfig.jdtls.setup({
         on_attach = on_attach,
         capabilities = capabilities,
-      }
+      })
 
       -- Other
-      lspconfig.eslint.setup {
+      lspconfig.eslint.setup({
         on_attach = on_attach,
         capabilities = capabilities,
-      }
+      })
 
-      lspconfig.cssls.setup {
+      lspconfig.cssls.setup({
         on_attach = on_attach,
         capabilities = capabilities,
-      }
+      })
 
-      lspconfig.tailwindcss.setup {
+      lspconfig.tailwindcss.setup({
         on_attach = on_attach,
         capabilities = capabilities,
-      }
+      })
 
-      lspconfig.html.setup {
+      lspconfig.html.setup({
         on_attach = on_attach,
         capabilities = capabilities,
-      }
+      })
 
-      lspconfig.terraformls.setup {
+      lspconfig.terraformls.setup({
         on_attach = on_attach,
         capabilities = capabilities,
-      }
+      })
     end,
   },
 }
