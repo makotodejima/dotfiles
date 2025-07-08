@@ -1,10 +1,20 @@
+-- `:G difftool <commit>..HEAD` diff in quickfix list
+-- `:Gvdiffsplit main:%` compares the current file with the main branch
+-- `:GcLog %` commits touching the current file
+--
+-- `:Gitsigns change_base origin/main all`
+-- `:Gitsigns setqflist all` or `:G difftool origin/main`
+
 return {
   "tpope/vim-fugitive",
-  "tpope/vim-rhubarb",
+  {
+    "tpope/vim-rhubarb",
+    cmd = { "GBrowse" },
+  },
   {
     "lewis6991/gitsigns.nvim",
     config = function()
-      require("gitsigns").setup {
+      require("gitsigns").setup({
         signs = {
           add = { text = "+" },
           change = { text = "~" },
@@ -51,16 +61,16 @@ return {
           map("n", "<leader>hR", gs.reset_buffer)
           map("n", "<leader>hp", gs.preview_hunk)
           map("n", "<leader>hb", function()
-            gs.blame_line { full = true }
+            gs.blame_line({ full = true })
           end)
           map("n", "<leader>tb", gs.toggle_current_line_blame)
           map("n", "<leader>hd", gs.diffthis)
           map("n", "<leader>hD", function()
-            gs.diffthis "~"
+            gs.diffthis("~")
           end)
           map("n", "<leader>td", gs.toggle_deleted)
         end,
-      }
+      })
 
       vim.keymap.set("n", "<leader>gs", ":G<CR>", { noremap = true, silent = false })
       vim.keymap.set("n", "<leader>gh", ":diffget //2", { noremap = true, silent = false })
