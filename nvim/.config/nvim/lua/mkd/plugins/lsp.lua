@@ -31,11 +31,11 @@ return {
 
       local opt = { noremap = true, silent = false }
       vim.keymap.set("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opt)
-      vim.keymap.set("n", "gi", ":lua vim.lsp.buf.implementation()<CR>", opt)
+      -- vim.keymap.set("n", "gi", ":lua vim.lsp.buf.implementation()<CR>", opt)
       vim.keymap.set("n", "K", ":lua vim.lsp.buf.signature_help()<CR>", opt)
-      vim.keymap.set("n", "gr", ":lua vim.lsp.buf.references()<CR>", opt)
-      vim.keymap.set("n", "gt", ":lua vim.lsp.buf.type_definition()<CR>", opt)
-      vim.keymap.set("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", opt)
+      -- vim.keymap.set("n", "gr", ":lua vim.lsp.buf.references()<CR>", opt)
+      -- vim.keymap.set("n", "gt", ":lua vim.lsp.buf.type_definition()<CR>", opt)
+      -- vim.keymap.set("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", opt)
       vim.keymap.set("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>", opt)
       vim.keymap.set("n", "<leader>cf", ":lua vim.lsp.buf.code_action({ context = { only = {'source'} } })<CR>", opt)
       vim.keymap.set("n", "gh", ":lua vim.lsp.buf.hover()<CR>", opt)
