@@ -5,20 +5,22 @@
 	editor = nvim
 [user]
 	name = Makoto Dejima
-	email = makoto@legalos.io
-	signingkey = /Users/makotodejima/.ssh/id_ed25519.pub
+	email = makoto@flank.ai
+	signingkey = /Users/makotodejima/.ssh/id_ed25519
 [delta]
-        line-numbers = true
+    line-numbers = true
 [pull]
 	rebase = false
 [push]
 	autoSetupRemote = true
 [commit]
 	gpgsign = true
-[rebase]
-	updateRefs = false
 [gpg]
 	format = ssh
+[gpg "ssh"]
+    allowedSignersFile = ~/.ssh/allowed_signers
+[rebase]
+	updateRefs = false
 [init]
 	defaultBranch = main
 [alias]
