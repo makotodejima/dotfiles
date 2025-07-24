@@ -1,3 +1,4 @@
+export HOMEBREW_PREFIX="$(brew --prefix)"
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR=nvim
 
