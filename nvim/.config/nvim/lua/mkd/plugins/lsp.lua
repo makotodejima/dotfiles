@@ -36,8 +36,8 @@ return {
       -- vim.keymap.set("n", "gr", ":lua vim.lsp.buf.references()<CR>", opt)
       -- vim.keymap.set("n", "gt", ":lua vim.lsp.buf.type_definition()<CR>", opt)
       -- vim.keymap.set("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", opt)
-      vim.keymap.set("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>", opt)
-      vim.keymap.set("n", "<leader>cf", ":lua vim.lsp.buf.code_action({ context = { only = {'source'} } })<CR>", opt)
+      -- vim.keymap.set("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>", opt)
+      vim.keymap.set("n", "grc", ":lua vim.lsp.buf.code_action({ context = { only = {'source'} } })<CR>", opt)
       vim.keymap.set("n", "gh", ":lua vim.lsp.buf.hover()<CR>", opt)
       vim.keymap.set("n", "<leader>e", ":lua vim.diagnostic.open_float()<CR>", opt)
       vim.keymap.set("n", "[d", ":lua vim.diagnostic.goto_prev()<CR>", opt)
@@ -49,6 +49,11 @@ return {
 
       -- bash
       lspconfig.bashls.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+      })
+
+      lspconfig.postgres_lsp.setup({
         on_attach = on_attach,
         capabilities = capabilities,
       })
