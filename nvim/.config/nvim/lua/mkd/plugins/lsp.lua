@@ -5,38 +5,13 @@ return {
     dependencies = {
       "hrsh7th/nvim-cmp",
       "onsails/lspkind-nvim",
-      {
-        "luckasRanarison/tailwind-tools.nvim",
-        name = "tailwind-tools",
-        build = ":UpdateRemotePlugins",
-        opts = {
-          document_color = {
-            enabled = true, -- can be toggled by commands
-            kind = "inline", -- "inline" | "foreground" | "background"
-            inline_symbol = "■", -- only used in inline mode
-            debounce = 200, -- in milliseconds, only applied in insert mode
-          },
-        },
-      },
     },
     config = function()
-      local lspconfig = require("lspconfig")
-
-      -- local cmp_lsp = require "cmp_nvim_lsp"
-      --
-      -- local capabilities = cmp_lsp.default_capabilities()
-
       -- uncomment to see logs under .cache/
-      -- vim.lsp.set_log_level "debug"
-
+      -- vim.lsp.set_log_level("debug")
       local opt = { noremap = true, silent = false }
       vim.keymap.set("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opt)
-      -- vim.keymap.set("n", "gi", ":lua vim.lsp.buf.implementation()<CR>", opt)
       vim.keymap.set("n", "K", ":lua vim.lsp.buf.signature_help()<CR>", opt)
-      -- vim.keymap.set("n", "gr", ":lua vim.lsp.buf.references()<CR>", opt)
-      -- vim.keymap.set("n", "gt", ":lua vim.lsp.buf.type_definition()<CR>", opt)
-      -- vim.keymap.set("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", opt)
-      -- vim.keymap.set("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>", opt)
       vim.keymap.set("n", "grc", ":lua vim.lsp.buf.code_action({ context = { only = {'source'} } })<CR>", opt)
       vim.keymap.set("n", "gh", ":lua vim.lsp.buf.hover()<CR>", opt)
       vim.keymap.set("n", "<leader>e", ":lua vim.diagnostic.open_float()<CR>", opt)
@@ -47,21 +22,14 @@ return {
         client.server_capabilities.documentFormattingProvider = false
       end
 
-      -- bash
-      lspconfig.bashls.setup({
+      -- Postgres
+      vim.lsp.config("postgres_lsp", {
         on_attach = on_attach,
-        capabilities = capabilities,
       })
 
-      lspconfig.postgres_lsp.setup({
+      -- Typos
+      vim.lsp.config("typos_lsp", {
         on_attach = on_attach,
-        capabilities = capabilities,
-      })
-
-      -- typo
-      lspconfig.typos_lsp.setup({
-        on_attach = on_attach,
-        capabilities = capabilities,
         init_options = {
           diagnosticSeverity = "Hint",
         },
@@ -69,12 +37,10 @@ return {
 
       -- Typescript
       -- NOTE: ts_ls repeatedly restarts the server when `tsconfig.json` has uncommitted changes
-      lspconfig.ts_ls.setup({
-        capabilities = capabilities,
+      vim.lsp.config("ts_ls", {
         on_attach = on_attach,
         init_options = {
           preferences = {
-            -- other preferences...
             importModuleSpecifierPreference = "relative",
             importModuleSpecifierEnding = "minimal",
           },
@@ -82,126 +48,110 @@ return {
       })
 
       -- GraphQL
-      lspconfig.graphql.setup({
-        filetypes = { "graphql", "gql" },
+      vim.lsp.config("graphql", {
         on_attach = on_attach,
-        capabilities = capabilities,
+        filetypes = { "graphql", "gql" },
       })
 
-      -- golang
-      lspconfig.gopls.setup({
-        capabilities = capabilities,
+      -- Go
+      vim.lsp.config("gopls", {
         on_attach = on_attach,
       })
 
       -- Rust
-      lspconfig.rust_analyzer.setup({
-        capabilities = capabilities,
+      vim.lsp.config("rust_analyzer", {
         on_attach = on_attach,
         settings = {
           ["rust-analyzer"] = {
-            check = {
-              command = "clippy",
-            },
-            diagnostics = {
-              enable = true,
-            },
+            check = { command = "clippy" },
+            diagnostics = { enable = true },
           },
         },
       })
 
-      -- lua
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities,
+      -- Lua
+      vim.lsp.config("lua_ls", {
         on_attach = on_attach,
         settings = {
           Lua = {
-            runtime = {
-              -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-              version = "LuaJIT",
-            },
-            diagnostics = {
-              -- Get the language server to recognize the `vim` global
-              globals = { "vim" },
-            },
+            runtime = { version = "LuaJIT" },
+            diagnostics = { globals = { "vim" } },
             workspace = {
-              -- Make the server aware of Neovim runtime files
               library = vim.api.nvim_get_runtime_file("", true),
               checkThirdParty = "Disable",
             },
-            -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = {
-              enable = false,
-            },
+            telemetry = { enable = false },
           },
         },
       })
 
-      -- Python
-      lspconfig.ruff.setup({
-        capabilities = capabilities,
-        on_attach = function(client)
-          client.server_capabilities.documentFormattingProvider = false
-          client.server_capabilities.hover = false
-          -- client.server_capabilities = false
-        end,
-        handlers = {
-          ["textDocument/publishDiagnostics"] = function() end,
-        },
-      })
-
-      lspconfig.pyright.setup({
-        capabilities = capabilities,
-        on_attach = function(client)
-          client.server_capabilities.documentFormattingProvider = false
-          vim.keymap.set("n", "<leader>oi", ":PyrightOrganizeImports<CR>", { noremap = true, silent = false })
-        end,
-        on_new_config = function(new_config, root_dir)
-          local pipfile_exists = require("lspconfig").util.search_ancestors(root_dir, function(path)
-            local pipfile = require("lspconfig").util.path.join(path, "Pipfile")
-            if require("lspconfig").util.path.is_file(pipfile) then
-              return true
-            else
-              return false
-            end
-          end)
-
-          if pipfile_exists then
-            new_config.cmd = { "pipenv", "run", "pyright-langserver", "--stdio" }
-          end
-        end,
-      })
-
-      -- java
-      lspconfig.jdtls.setup({
+      vim.lsp.config("sourcekit", {
         on_attach = on_attach,
-        capabilities = capabilities,
       })
 
-      -- Other
-      lspconfig.eslint.setup({
-        on_attach = on_attach,
-        capabilities = capabilities,
-      })
+      -- Ruff
+      -- vim.lsp.config("ruff", {
+      --   on_attach = on_attach,
+      --   -- silence diagnostics from ruff (if you prefer pyright/mypy etc.)
+      --   handlers = {
+      --     ["textDocument/publishDiagnostics"] = function() end,
+      --   },
+      -- })
 
-      lspconfig.cssls.setup({
-        on_attach = on_attach,
-        capabilities = capabilities,
-      })
+      -- Pyright (use Pipenv if a Pipfile exists upwards from root_dir)
+      -- vim.lsp.config("pyright", {
+      --   on_attach = on_attach,
+      -- })
 
-      lspconfig.tailwindcss.setup({
-        on_attach = on_attach,
-        capabilities = capabilities,
-      })
+      -- Java
+      -- vim.lsp.config("jdtls", {
+      --   on_attach = on_attach,
+      -- })
 
-      lspconfig.html.setup({
-        on_attach = on_attach,
-        capabilities = capabilities,
-      })
+      -- ESLint
+      -- vim.lsp.config("eslint", {
+      --   -- on_attach = on_attach,
+      -- })
 
-      lspconfig.terraformls.setup({
-        on_attach = on_attach,
-        capabilities = capabilities,
+      -- CSS
+      -- vim.lsp.config("cssls", {
+      --   on_attach = on_attach,
+      -- })
+
+      -- Tailwind
+      -- vim.lsp.config("tailwindcss", {
+      --   on_attach = on_attach,
+      -- })
+
+      -- HTML
+      -- vim.lsp.config("html", {
+      --   on_attach = on_attach,
+      -- })
+
+      -- Terraform
+      -- vim.lsp.config("terraformls", {
+      --   on_attach = on_attach,
+      -- })
+
+      vim.lsp.enable({
+        "bashls",
+        "cssls",
+        "eslint",
+        "gopls",
+        "graphql",
+        "html",
+        "jdtls",
+        "lua_ls",
+        "postgres_lsp",
+        "pyright",
+        "rust_analyzer",
+        "sourcekit",
+        "tailwindcss",
+        "terraformls",
+        "ts_ls",
+        "typos_lsp",
+        -- "basedpyright",
+        -- "ruff",
       })
     end,
   },

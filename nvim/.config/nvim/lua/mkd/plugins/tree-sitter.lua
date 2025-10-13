@@ -4,16 +4,11 @@ return {
   build = ":TSUpdate",
   dependencies = {
     "nvim-treesitter/nvim-treesitter-context",
-    {
-      "nvim-treesitter/playground",
-      lazy = true,
-    },
+    -- {
+    --   "nvim-treesitter/playground",
+    --   lazy = true,
+    -- },
     { "nvim-treesitter/nvim-treesitter-textobjects", lazy = true },
-    {
-      "https://github.com/apple/pkl-neovim",
-      lazy = true,
-      event = "BufReadPre *.pkl",
-    },
   },
   config = function()
     local tree_sitter_configs = require("nvim-treesitter.configs")
@@ -46,10 +41,10 @@ return {
         "make",
         "markdown",
         "markdown_inline",
-        "pkl",
         "python",
         "regex",
         "requirements",
+        "swift",
         "rust",
         "scss",
         "sql",

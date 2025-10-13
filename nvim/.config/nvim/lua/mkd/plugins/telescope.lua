@@ -54,6 +54,7 @@ return {
     })
 
     require("telescope").load_extension("fzf")
+    require("telescope").load_extension("yank_history")
 
     vim.keymap.set("n", "<C-t>", ":Telescope <CR>", { noremap = true, silent = true })
     vim.keymap.set(

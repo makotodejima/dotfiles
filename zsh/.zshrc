@@ -25,7 +25,7 @@ gw() {
 bindkey '^f' forward-word
 bindkey '^b' backward-word
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
@@ -110,4 +110,5 @@ alias wifi-password='~/wifi-password.sh'
 export IA_TEMP_PATH="$HOME/Library/Mobile Documents/27N4MQEA55~pro~writer/Documents/temp"
 export IA_LLM_PATH="$HOME/Library/Mobile Documents/27N4MQEA55~pro~writer/Documents/llm"
 
-. "$HOME/.local/bin/env"
+# . "$HOME/.local/bin/env"
+export PATH="$HOME/.local/bin:$PATH"

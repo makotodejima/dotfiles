@@ -7,25 +7,17 @@ return {
       vim.cmd([[colorscheme bob]])
     end,
   },
-  -- { "rebelot/kanagawa.nvim" },
   -- {
-  --   "rose-pine/neovim",
-  --   name = "rose-pine",
-  --   -- config = function()
-  --   --   vim.cmd("colorscheme rose-pine")
-  --   -- end,
+  --   "m4xshen/hardtime.nvim",
+  --   event = { "BufReadPre", "BufNewFile" },
+  --   dependencies = { "MunifTanjim/nui.nvim" },
+  --   opts = { max_count = 10 },
   -- },
-  {
-    "m4xshen/hardtime.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = { "MunifTanjim/nui.nvim" },
-    opts = {},
-  },
-  {
-    dir = "~/dev/mrkdwn.nvim",
-    opts = {},
-    ft = { "markdown", "codecompanion" },
-  },
+  -- {
+  --   dir = "~/dev/mrkdwn.nvim",
+  --   opts = {},
+  --   ft = { "markdown", "codecompanion" },
+  -- },
   {
     "brenoprata10/nvim-highlight-colors",
     event = { "BufReadPre", "BufNewFile" },
@@ -33,12 +25,6 @@ return {
       enable_tailwind = false,
     },
   },
-
-  -- tpopes
-  -- {
-  --   "tpope/vim-abolish",
-  --   event = "CmdlineEnter",
-  -- },
   {
     "tpope/vim-surround",
     event = { "BufReadPre", "BufNewFile" },
@@ -87,7 +73,30 @@ return {
   },
 
   -- util
-  -- { "LunarVim/bigfile.nvim" },
+  {
+    "gbprod/yanky.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("yanky").setup({
+        ring = {
+          storage = "shada",
+        },
+        highlight = {
+          on_put = true,
+          on_yank = false,
+          timer = 55,
+        },
+      })
+
+      vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
+      vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
+      vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
+      vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
+      vim.keymap.set("n", "<c-n>", "<Plug>(YankyPreviousEntry)")
+      -- vim.keymap.set("n", "<c-n>", "<Plug>(YankyNextEntry)")
+    end,
+  },
+  --
   -- {
   --   "lukas-reineke/indent-blankline.nvim",
   --   version = "2.20.8",
@@ -126,11 +135,9 @@ return {
   {
     "folke/snacks.nvim",
     event = "VeryLazy",
-    -- ft = { "png", "jpg", "jpeg", "gif", "webp" },
     opts = {
-      image = { enabled = true, doc = {
-        enabled = false,
-      } },
+      image = { enabled = true, doc = { enabled = false } },
+      bigfile = { enabled = true },
     },
   },
 }
