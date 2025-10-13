@@ -18,13 +18,6 @@ return {
         require("luasnip.loaders.from_lua").load({ paths = { vim.fn.expand("~/.config/nvim/lua/mkd/snippets") } })
       end,
     },
-    {
-      "hrsh7th/nvim-pasta",
-      config = function()
-        vim.keymap.set({ "n", "x" }, "p", require("pasta.mapping").p)
-        vim.keymap.set({ "n", "x" }, "P", require("pasta.mapping").P)
-      end,
-    },
   },
   config = function()
     local lspkind = require("lspkind")
@@ -50,7 +43,6 @@ return {
       }),
       formatting = {
         format = lspkind.cmp_format({
-          before = require("tailwind-tools.cmp").lspkind_format,
           menu = {
             buffer = "buf",
             nvim_lsp = "lsp",
@@ -59,33 +51,6 @@ return {
             tmux = "tmux",
             cmdline = "cmdline",
             cmdline_history = "history",
-          },
-          symbol_map = {
-            Text = "",
-            Method = "",
-            Function = "",
-            Constructor = "",
-            Field = "",
-            Variable = "",
-            Class = "",
-            Interface = "",
-            Module = "",
-            Property = "",
-            Unit = "",
-            Value = "",
-            Enum = "",
-            Keyword = "",
-            Snippet = "",
-            Color = "",
-            File = "",
-            Reference = "",
-            Folder = "",
-            EnumMember = "",
-            Constant = "",
-            Struct = "",
-            Event = "",
-            Operator = "",
-            TypeParameter = "",
           },
         }),
       },
@@ -104,30 +69,6 @@ return {
         { name = "cmdline_history", keyword_length = 2, max_item_count = 12 },
         { name = "cmdline", max_item_count = 10 },
       }),
-    })
-
-    -- If file is huge disable cmp
-    local bufIsBig = function(bufnr)
-      local max_filesize = 100 * 1024 -- 100 KB
-      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
-      if ok and stats and stats.size > max_filesize then
-        return true
-      else
-        return false
-      end
-    end
-
-    vim.api.nvim_create_autocmd("BufReadPre", {
-      callback = function(t)
-        if bufIsBig(t.buf) then
-          cmp.setup.buffer({
-            enabled = function()
-              return false
-            end,
-            -- sources = {},
-          })
-        end
-      end,
     })
   end,
 }

@@ -16,6 +16,8 @@ return {
         python = { "black" },
         rust = { "rustfmt" },
         sh = { "shfmt" },
+        sql = { "pg_format" },
+        swift = { "swiftformat" },
         terraform = { "terraform_fmt" },
         typescript = { "prettier" },
         typescriptreact = { "prettier" },

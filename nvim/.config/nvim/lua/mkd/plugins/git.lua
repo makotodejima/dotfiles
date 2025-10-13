@@ -9,7 +9,7 @@ return {
   "tpope/vim-fugitive",
   {
     "tpope/vim-rhubarb",
-    cmd = { "GBrowse" },
+    event = "CmdlineEnter",
   },
   {
     "lewis6991/gitsigns.nvim",

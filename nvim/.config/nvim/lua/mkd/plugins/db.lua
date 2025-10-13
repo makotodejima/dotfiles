@@ -13,6 +13,7 @@ return {
   init = function()
     vim.g.dbs = {
       { name = "dev", url = "mongodb://localhost:3001/meteor" },
+      { name = "spater", url = "sqlite:spater.db" },
     }
     vim.g.db_ui_use_nerd_fonts = 1
   end,
