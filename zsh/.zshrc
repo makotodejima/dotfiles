@@ -58,6 +58,7 @@ set_eslint_flat_config() {
   fi
 }
 
+# Set GIT_WORKTREE environment variable for Gitmux and lualine
 set_worktree_name() {
   local git_root=$(git rev-parse --show-toplevel 2>/dev/null)
   local worktree_name=$(git worktree list 2>/dev/null | grep -i "$git_root" | awk -F'/' '{print $NF}' | awk '{print $1}')
@@ -80,7 +81,10 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
+# jump
 eval "$(jump shell zsh)"
+
+# direnv
 eval "$(direnv hook zsh)"
 
 # gcloud
@@ -93,20 +97,18 @@ case ":$PATH:" in
 *":$PNPM_HOME:"*) ;;
 *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
 
 # Go
 export GOPATH="$HOME/go"
 export PATH=$PATH:$GOPATH/bin
 
+# PostgreSQL
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 
 # tz
 export TZ_LIST="America/Los_Angeles;Europe/Berlin;Asia/Tokyo"
 
-# wifi-password
-alias wifi-password='~/wifi-password.sh'
-
+# IA Writer
 export IA_TEMP_PATH="$HOME/Library/Mobile Documents/27N4MQEA55~pro~writer/Documents/temp"
 export IA_LLM_PATH="$HOME/Library/Mobile Documents/27N4MQEA55~pro~writer/Documents/llm"
 
