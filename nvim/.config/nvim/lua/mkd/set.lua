@@ -22,7 +22,7 @@ vim.o.tabstop = 4
 vim.o.termguicolors = true
 vim.o.undodir = os.getenv("HOME") .. "/.local/share/nvim/undodir"
 vim.o.undofile = true
-vim.o.winborder = "solid"
+vim.o.winborder = "none"
 vim.o.wrap = false
 
 -- ripgrep for :grep

@@ -74,6 +74,18 @@ return {
 
   -- util
   {
+    "nat-418/boole.nvim",
+    config = function()
+      require("boole").setup({
+        mappings = {
+          increment = "<C-a>",
+          decrement = "<C-x>",
+        },
+      })
+    end,
+    event = { "BufReadPre", "BufNewFile" },
+  },
+  {
     "gbprod/yanky.nvim",
     event = "VeryLazy",
     config = function()
