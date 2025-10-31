@@ -37,15 +37,7 @@ return {
 
       -- Typescript
       -- NOTE: ts_ls repeatedly restarts the server when `tsconfig.json` has uncommitted changes
-      vim.lsp.config("ts_ls", {
-        on_attach = on_attach,
-        init_options = {
-          preferences = {
-            importModuleSpecifierPreference = "relative",
-            importModuleSpecifierEnding = "minimal",
-          },
-        },
-      })
+      vim.lsp.config("ts_ls", { on_attach = on_attach })
 
       -- GraphQL
       vim.lsp.config("graphql", {
