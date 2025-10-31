@@ -1,74 +1,23 @@
 return {
-  -- {
-  --   "github/copilot.vim",
-  --   config = function()
-  --     local patterns = { "mkd-lang", "kata-machine", "personal" }
-  --     vim.api.nvim_create_autocmd({ "InsertEnter", "BufNewFile", "BufRead" }, {
-  --       callback = function()
-  --         local filepath = vim.fn.expand("%:p")
-  --         for _, path in ipairs(patterns) do
-  --           if string.find(filepath, path:gsub("%-", "%%-")) then
-  --             vim.b.copilot_enabled = false
-  --             return
-  --           end
-  --         end
-  --       end,
-  --     })
-  --   end,
-  -- },
-  -- {
-  --   "olimorris/codecompanion.nvim",
-  --   cmd = { "CodeCompanion", "CodeCompanionChat" },
-  --   config = function()
-  --     require("codecompanion").setup({
-  --       strategies = {
-  --         chat = {
-  --           adapter = {
-  --             name = "copilot",
-  --             model = "claude-sonnet-4",
-  --           },
-  --         },
-  --         inline = {
-  --           adapter = {
-  --             name = "copilot",
-  --             model = "claude-sonnet-4",
-  --           },
-  --         },
-  --       },
-  --       display = {
-  --         chat = {
-  --           window = {
-  --             position = "right",
-  --           },
-  --         },
-  --       },
-  --     })
-  --     require("mkd.llm.codecompanion-spinner"):init()
-  --     require("mkd.llm.chat-spinner"):init()
-  --   end,
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-treesitter/nvim-treesitter",
-  --   },
-  --   keys = {
-  --     { "<leader>cc", "<cmd>CodeCompanionChat Toggle<cr>", mode = { "n", "v" } },
-  --     { "<leader>cca", "<cmd>CodeCompanionChat Add<cr>", mode = "v" },
-  --   },
-  --   keymaps = {
-  --     send = {
-  --       callback = function(chat)
-  --         vim.cmd("stopinsert")
-  --         chat:submit()
-  --         chat:add_buf_message({ role = "llm", content = "" })
-  --       end,
-  --       index = 1,
-  --       description = "Send",
-  --     },
-  --   },
-  -- },
+  {
+    "github/copilot.vim",
+    config = function()
+      local patterns = { "mkd-lang", "kata-machine", "personal" }
+      vim.api.nvim_create_autocmd({ "InsertEnter", "BufNewFile", "BufRead" }, {
+        callback = function()
+          local filepath = vim.fn.expand("%:p")
+          for _, path in ipairs(patterns) do
+            if string.find(filepath, path:gsub("%-", "%%-")) then
+              vim.b.copilot_enabled = false
+              return
+            end
+          end
+        end,
+      })
+    end,
+  },
   {
     "coder/claudecode.nvim",
-    -- dir = "~/dev/claudecode.nvim",
     cmd = { "ClaudeCode", "ClaudeCodeSend" },
     opts = {
       terminal = {
@@ -96,29 +45,4 @@ return {
       { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
     },
   },
-  {
-    "supermaven-inc/supermaven-nvim",
-    config = true,
-    event = { "InsertEnter" },
-  },
-
-  -- {
-  --   "jacob411/Ollama-Copilot",
-  --   opts = {
-  --     model_name = "deepseek-coder:1.3b",
-  --     -- ollama_url = "http://localhost:11434", -- URL for Ollama server, Leave blank to use default local instance.
-  --     stream_suggestion = true,
-  --     -- python_command = "python3",
-  --     filetypes = { "python", "lua", "vim", "markdown", "typescript", "typescriptreact" },
-  --     ollama_model_opts = {
-  --       num_predict = 40,
-  --       temperature = 0.1,
-  --     },
-  --     keymaps = {
-  --       suggestion = "<leader>os",
-  --       reject = "<leader>or",
-  --       insert_accept = "<Tab>",
-  --     },
-  --   },
-  -- },
 }
