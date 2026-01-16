@@ -1,15 +1,16 @@
+set -o vi
+# Fix for backspace in vi mode (?)
+bindkey -v '^?' backward-delete-char
+
 export HOMEBREW_PREFIX="$(brew --prefix)"
-export ZSH="$HOME/.oh-my-zsh"
 export EDITOR=nvim
 
-ZSH_THEME="lambda"
-
-plugins=(kubectl kubectx)
-source $ZSH/oh-my-zsh.sh
+export HISTSIZE=1000000000
+export SAVEHIST=$HISTSIZE
+setopt EXTENDED_HISTORY
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 alias vim='nvim'
-alias n='node --version'
 alias tmux='env TERM=screen-256color tmux'
 alias gs='git status'
 gc() {
@@ -28,27 +29,28 @@ bindkey '^b' backward-word
 source <(fzf --zsh)
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+
+autoload -U add-zsh-hook
 
 # place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
-      nvm use
-    fi
-  elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
+# load-nvmrc() {
+#   local nvmrc_path="$(nvm_find_nvmrc)"
+#
+#   if [ -n "$nvmrc_path" ]; then
+#     local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+#
+#     if [ "$nvmrc_node_version" = "N/A" ]; then
+#       nvm install
+#     elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+#       nvm use
+#     fi
+#   elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
+#     echo "Reverting to nvm default version"
+#     nvm use default
+#   fi
+# }
 
 set_eslint_flat_config() {
   if [[ -f "$PWD/eslint.config.js" ]]; then
@@ -69,11 +71,11 @@ set_worktree_name() {
   export GIT_WORKTREE="$worktree_name"
 }
 
-add-zsh-hook chpwd load-nvmrc
-add-zsh-hook chpwd set_eslint_flat_config
+# add-zsh-hook chpwd load-nvmrc
+# add-zsh-hook chpwd set_eslint_flat_config
 add-zsh-hook chpwd set_worktree_name
-load-nvmrc
-set_eslint_flat_config
+# load-nvmrc
+# set_eslint_flat_config
 set_worktree_name
 
 # pyenv
@@ -114,3 +116,8 @@ export IA_LLM_PATH="$HOME/Library/Mobile Documents/27N4MQEA55~pro~writer/Documen
 
 # . "$HOME/.local/bin/env"
 export PATH="$HOME/.local/bin:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/makotodejima/.antigravity/antigravity/bin:$PATH"
+
+eval "$(starship init zsh)"
