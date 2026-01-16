@@ -6,7 +6,7 @@ return {
       -- log_level = vim.log.levels.DEBUG,
       formatters_by_ft = {
         css = { "prettier" },
-        go = { "gofmt" },
+        go = { "gofumpt" },
         graphql = { "prettier" },
         html = { "prettier" },
         javascript = { "prettier" },
