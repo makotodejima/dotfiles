@@ -82,13 +82,13 @@ return {
       })
 
       -- Ruff
-      -- vim.lsp.config("ruff", {
-      --   on_attach = on_attach,
-      --   -- silence diagnostics from ruff (if you prefer pyright/mypy etc.)
-      --   handlers = {
-      --     ["textDocument/publishDiagnostics"] = function() end,
-      --   },
-      -- })
+      vim.lsp.config("ruff", {
+        on_attach = on_attach,
+        -- silence diagnostics from ruff (if you prefer pyright/mypy etc.)
+        handlers = {
+          ["textDocument/publishDiagnostics"] = function() end,
+        },
+      })
 
       -- Pyright (use Pipenv if a Pipfile exists upwards from root_dir)
       -- vim.lsp.config("pyright", {
