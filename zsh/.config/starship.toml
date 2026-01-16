@@ -1,0 +1,117 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+
+continuation_prompt = "[.](bright-black) "
+
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$character\
+"""
+
+# right_format = """$all"""
+
+[character]
+success_symbol = "[%](default)"
+error_symbol = "[-](red)"
+vimcmd_symbol = "[█](green)"
+vimcmd_visual_symbol = "[<](yellow)"
+vimcmd_replace_symbol = "[<](purple)"
+vimcmd_replace_one_symbol = "[<](purple)"
+
+[git_commit]
+tag_symbol = " tag "
+
+[git_status]
+style = "default"
+format = '$all_status$ahead_behind($style) '
+conflicted = "="
+ahead = ">"
+behind = "<"
+diverged = "<>"
+up_to_date = ""
+
+untracked = "?"
+stashed = ""
+modified = "*"
+staged = "+"
+renamed = "r"
+deleted = "x"
+
+[aws]
+symbol = "aws "
+
+[azure]
+symbol = "az "
+
+[battery]
+full_symbol = "full "
+charging_symbol = "charging "
+discharging_symbol = "discharging "
+unknown_symbol = "unknown "
+empty_symbol = "empty "
+
+[directory]
+style = "bright-black"
+read_only = " ro"
+
+[git_branch]
+style = "blue"
+format = "[$branch]($style) "
+symbol = ""
+truncation_symbol = "..."
+
+[status]
+symbol = "[x](red) "
+not_executable_symbol = "noexec"
+not_found_symbol = "notfound"
+sigint_symbol = "sigint"
+signal_symbol = "sig"
+
+[docker_context]
+symbol = "docker "
+
+[gcloud]
+symbol = "gcp "
+disabled = true
+
+[hostname]
+ssh_symbol = "ssh "
+
+[lua]
+symbol = "lua "
+
+[nodejs]
+symbol = "node "
+
+[golang]
+symbol = "go "
+
+[memory_usage]
+symbol = "memory "
+
+[package]
+symbol = "pkg "
+
+[python]
+symbol = "py "
+
+
+[sudo]
+symbol = "sudo "
+
+[swift]
+symbol = "swift "
+
+[typst]
+symbol = "typst "
+
+[terraform]
+symbol = "terraform "
