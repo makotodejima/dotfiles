@@ -7,12 +7,11 @@ return {
       vim.cmd([[colorscheme bob]])
     end,
   },
-  -- {
-  --   "m4xshen/hardtime.nvim",
-  --   event = { "BufReadPre", "BufNewFile" },
-  --   dependencies = { "MunifTanjim/nui.nvim" },
-  --   opts = { max_count = 10 },
-  -- },
+  {
+    "esmuellert/codediff.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    cmd = "CodeDiff",
+  },
   -- {
   --   dir = "~/dev/mrkdwn.nvim",
   --   opts = {},
@@ -149,7 +148,7 @@ return {
     event = "VeryLazy",
     opts = {
       image = { enabled = true, doc = { enabled = false } },
-      bigfile = { enabled = true },
+      bigfile = { enabled = true, notify = false },
     },
   },
 }
