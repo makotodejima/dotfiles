@@ -11,6 +11,7 @@ setopt EXTENDED_HISTORY
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 alias vim='nvim'
+alias c='claude'
 alias tmux='env TERM=screen-256color tmux'
 alias gs='git status'
 gc() {
