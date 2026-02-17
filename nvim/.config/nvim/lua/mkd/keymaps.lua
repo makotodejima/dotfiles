@@ -49,3 +49,27 @@ vim.keymap.set("n", "<leader>f", ":lua vim.lsp.buf.format()<CR>")
 vim.keymap.set("n", "[t", function()
   require("treesitter-context").go_to_context(vim.v.count1)
 end, { silent = false })
+
+-- Copy current file path with line number to clipboard
+vim.keymap.set("n", "<leader>cl", function()
+  local filepath = vim.fn.expand("%")
+  local line = vim.fn.line(".")
+  vim.fn.setreg("+", "@" .. filepath .. "#L" .. line)
+end)
+
+-- Copy selected lines file path with line numbers to clipboard
+vim.keymap.set("v", "<leader>cl", function()
+  local filepath = vim.fn.expand("%")
+  local start_line = vim.fn.line("v")
+  local end_line = vim.fn.line(".")
+
+  if start_line > end_line then
+    start_line, end_line = end_line, start_line
+  end
+
+  if start_line == end_line then
+    vim.fn.setreg("+", "@" .. filepath .. "#L" .. start_line)
+  else
+    vim.fn.setreg("+", "@" .. filepath .. "#L" .. start_line .. "-" .. end_line)
+  end
+end)
