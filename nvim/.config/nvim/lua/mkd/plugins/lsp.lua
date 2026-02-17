@@ -90,6 +90,30 @@ return {
         },
       })
 
+      vim.lsp.config("basedpyright", {
+        before_init = function(params, config)
+          -- Try to find pipenv venv for the project root
+          local root = params.rootPath
+          if root then
+            local venv = vim.fn.system("cd " .. root .. " && pipenv --venv 2>/dev/null"):gsub("\n", "")
+            if venv ~= "" and vim.fn.isdirectory(venv) == 1 then
+              config.settings = config.settings or {}
+              config.settings.python = config.settings.python or {}
+              config.settings.python.pythonPath = venv .. "/bin/python"
+            end
+          end
+        end,
+        settings = {
+          basedpyright = {
+            analysis = {
+              autoSearchPaths = true,
+              diagnosticMode = "openFilesOnly",
+              exclude = { "**/*.ipynb" },
+            },
+          },
+        },
+      })
+
       -- Pyright (use Pipenv if a Pipfile exists upwards from root_dir)
       -- vim.lsp.config("pyright", {
       --   on_attach = on_attach,
@@ -126,6 +150,7 @@ return {
       -- })
 
       vim.lsp.enable({
+        "basedpyright",
         "bashls",
         "cssls",
         "eslint",
@@ -135,14 +160,13 @@ return {
         "jdtls",
         "lua_ls",
         "postgres_lsp",
-        "pyright",
         "rust_analyzer",
         "sourcekit",
         "tailwindcss",
         "terraformls",
         "ts_ls",
         "typos_lsp",
-        -- "basedpyright",
+        -- "pyright",
         -- "ruff",
       })
     end,
