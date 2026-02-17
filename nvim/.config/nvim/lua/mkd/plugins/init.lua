@@ -12,11 +12,6 @@ return {
     dependencies = { "MunifTanjim/nui.nvim" },
     cmd = "CodeDiff",
   },
-  -- {
-  --   dir = "~/dev/mrkdwn.nvim",
-  --   opts = {},
-  --   ft = { "markdown", "codecompanion" },
-  -- },
   {
     "brenoprata10/nvim-highlight-colors",
     event = { "BufReadPre", "BufNewFile" },
@@ -28,10 +23,8 @@ return {
     "tpope/vim-surround",
     event = { "BufReadPre", "BufNewFile" },
   },
-  -- "tpope/vim-repeat",
   "tpope/vim-vinegar",
-  -- { "tpope/vim-unimpaired", event = "VeryLazy" },
-  -- "tpope/vim-sleuth",
+  { "tpope/vim-unimpaired", event = "VeryLazy" },
 
   -- navigation
   {
