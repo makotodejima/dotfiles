@@ -13,12 +13,48 @@
     "deny": []
   },
   "model": "opus",
-  "alwaysThinkingEnabled": true,
-  "enabledPlugins": {
-    "typescript-lsp@claude-plugins-official": true
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "printf '\\a' > /dev/tty"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "printf '\\a' > /dev/tty"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "printf '\\a' > /dev/tty"
+          }
+        ]
+      }
+    ]
   },
   "statusLine": {
     "type": "command",
     "command": "~/.claude/scripts/context-bar.sh"
-  }
+  },
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true,
+    "document-skills@anthropic-agent-skills": false,
+    "pyright-lsp@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": true
 }
