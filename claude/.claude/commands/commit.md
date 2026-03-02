@@ -1,6 +1,7 @@
 ---
 allowed-tools: Bash(git add:*), Bash(git status:*), Bash(git commit:*)
 description: Create a git commit
+model: sonnet
 ---
 
 ## Context
@@ -19,7 +20,7 @@ Based on the above changes, create a single git commit.
 - **Atomic commits**: Each commit should contain related changes that serve a single purpose
 - **Split large changes**: If changes touch multiple concerns, split them into separate commits
 - **Present tense, imperative mood**: Write commit messages as commands (e.g., "add feature" not "added feature")
-- **Concise first line**: Keep the first line under 72 characters
+- **Concise first line**: Keep the first line under 72 characters — a single line is best; only add a body if the change genuinely needs more explanation
 - **Conventional commit format**: Use the format `<type>: <description>` where type is one of:
   - `feat`: A new feature
   - `fix`: A bug fix
