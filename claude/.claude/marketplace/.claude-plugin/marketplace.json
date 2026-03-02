@@ -1,0 +1,10 @@
+{
+  "name": "mkd",
+  "owner": { "name": "Makoto" },
+  "plugins": [
+    {
+      "name": "obsidian",
+      "source": "./obsidian"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "obsidian": {
+      "command": "npx",
+      "args": [
+        "@mauricio.wolff/mcp-obsidian@latest",
+        "/Users/makotodejima/Documents/obsidian"
+      ],
+      "env": {}
+    }
+  }
+}
