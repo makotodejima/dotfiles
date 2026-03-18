@@ -1,6 +1,6 @@
 return {
   {
-    dir = "~/dev/bob",
+    "makotodejima/bob",
     lazy = false,
     priority = 1000,
     config = function()
