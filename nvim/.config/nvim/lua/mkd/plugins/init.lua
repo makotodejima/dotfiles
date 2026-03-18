@@ -64,19 +64,6 @@ return {
     end,
   },
 
-  -- util
-  {
-    "nat-418/boole.nvim",
-    config = function()
-      require("boole").setup({
-        mappings = {
-          increment = "<C-a>",
-          decrement = "<C-x>",
-        },
-      })
-    end,
-    event = { "BufReadPre", "BufNewFile" },
-  },
   {
     "gbprod/yanky.nvim",
     event = "VeryLazy",
@@ -100,29 +87,9 @@ return {
       -- vim.keymap.set("n", "<c-n>", "<Plug>(YankyNextEntry)")
     end,
   },
-  --
-  -- {
-  --   "lukas-reineke/indent-blankline.nvim",
-  --   version = "2.20.8",
-  --   ft = { "python", "yaml", "toml" },
-  --   config = function()
-  --     require("indent_blankline").setup({
-  --       filetype = { "python", "yaml", "toml" },
-  --     })
-  --   end,
-  -- },
   {
     "numToStr/Comment.nvim",
     event = "VeryLazy",
-    dependencies = {
-      "JoosepAlviste/nvim-ts-context-commentstring",
-    },
-    config = function()
-      require("Comment").setup({
-        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-      })
-      vim.g.skip_ts_context_commentstring_module = true
-    end,
   },
   {
     "toppair/peek.nvim",

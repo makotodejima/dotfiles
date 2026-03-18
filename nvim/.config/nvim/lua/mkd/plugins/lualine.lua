@@ -64,7 +64,7 @@ return {
       },
       sections = {
         lualine_a = { "mode" },
-        lualine_b = { worktree, { "branch", fmt = trunc(120, 7, 60) }, { "filename", path = 4 } },
+        lualine_b = { worktree, { "branch", fmt = trunc(180, 15, 80) }, { "filename", path = 4 } },
         lualine_c = { diff, diagnostics },
         lualine_x = {
           { "encoding", fmt = trunc(100, 50, 120) },

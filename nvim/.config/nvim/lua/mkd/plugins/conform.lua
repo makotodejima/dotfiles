@@ -12,7 +12,7 @@ return {
         javascript = { "prettier" },
         json = { "prettier" },
         lua = { "stylua" },
-        markdown = { "prettier" },
+        markdown = { "deno_fmt" },
         python = { "black" },
         rust = { "rustfmt" },
         sh = { "shfmt" },

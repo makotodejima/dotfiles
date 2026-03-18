@@ -13,7 +13,6 @@ source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 alias vim='nvim'
 alias c='claude'
 alias tmux='env TERM=screen-256color tmux'
-alias gs='git status'
 gc() {
   git branch --sort=-committerdate | fzf | sed 's/^[*+ ]*//' | xargs -r git checkout
 }
@@ -35,48 +34,18 @@ export NVM_DIR="$HOME/.nvm"
 
 autoload -U add-zsh-hook
 
-# place this after nvm initialization!
-# load-nvmrc() {
-#   local nvmrc_path="$(nvm_find_nvmrc)"
-#
-#   if [ -n "$nvmrc_path" ]; then
-#     local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-#
-#     if [ "$nvmrc_node_version" = "N/A" ]; then
-#       nvm install
-#     elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
-#       nvm use
-#     fi
-#   elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
-#     echo "Reverting to nvm default version"
-#     nvm use default
-#   fi
-# }
-
-set_eslint_flat_config() {
-  if [[ -f "$PWD/eslint.config.js" ]]; then
-    export ESLINT_USE_FLAT_CONFIG=true
-  else
-    unset ESLINT_USE_FLAT_CONFIG
-  fi
-}
-
 # Set GIT_WORKTREE environment variable for Gitmux and lualine
 set_worktree_name() {
-  local git_root=$(git rev-parse --show-toplevel 2>/dev/null)
-  local worktree_name=$(git worktree list 2>/dev/null | grep -i "$git_root" | awk -F'/' '{print $NF}' | awk '{print $1}')
-  if [ -z "$worktree_name" ]; then
+  local root
+  root=$(git rev-parse --show-toplevel 2>/dev/null) || {
     unset GIT_WORKTREE
     return
-  fi
-  export GIT_WORKTREE="$worktree_name"
+  }
+
+  export GIT_WORKTREE="$(basename "$root")"
 }
 
-# add-zsh-hook chpwd load-nvmrc
-# add-zsh-hook chpwd set_eslint_flat_config
 add-zsh-hook chpwd set_worktree_name
-# load-nvmrc
-# set_eslint_flat_config
 set_worktree_name
 
 # pyenv
@@ -89,10 +58,6 @@ eval "$(jump shell zsh)"
 
 # direnv
 eval "$(direnv hook zsh)"
-
-# gcloud
-source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
-source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
 
 # pnpm
 export PNPM_HOME="/Users/makotodejima/Library/pnpm"
@@ -118,7 +83,7 @@ export IA_LLM_PATH="$HOME/Library/Mobile Documents/27N4MQEA55~pro~writer/Documen
 # . "$HOME/.local/bin/env"
 export PATH="$HOME/.local/bin:$PATH"
 
-# Added by Antigravity
-export PATH="/Users/makotodejima/.antigravity/antigravity/bin:$PATH"
+# Added by Obsidian
+export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
 
 eval "$(starship init zsh)"
