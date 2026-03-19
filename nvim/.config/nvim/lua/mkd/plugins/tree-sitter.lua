@@ -49,6 +49,7 @@ return {
         "vim",
         "yaml",
       },
+      highlight = { enable = true },
     })
     require("treesitter-context").setup({
       enable = true,
