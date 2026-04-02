@@ -12,11 +12,8 @@ return {
     event = "CmdlineEnter",
   },
   {
-    "sindrets/diffview.nvim",
-    config = true,
-  },
-  {
     "lewis6991/gitsigns.nvim",
+    lazy = false,
     config = function()
       require("gitsigns").setup({
         signs = {
