@@ -13,13 +13,6 @@ return {
     cmd = "CodeDiff",
   },
   {
-    "brenoprata10/nvim-highlight-colors",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = {
-      enable_tailwind = false,
-    },
-  },
-  {
     "tpope/vim-surround",
     event = { "BufReadPre", "BufNewFile" },
   },
@@ -43,14 +36,6 @@ return {
     end,
   },
 
-  -- files
-  {
-    "mbbill/undotree",
-    cmd = { "UndotreeToggle" },
-    keys = {
-      { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Undotree" },
-    },
-  },
   {
     "stevearc/oil.nvim",
     cmd = { "Oil" },
@@ -108,7 +93,7 @@ return {
     event = "VeryLazy",
     opts = {
       image = { enabled = true, doc = { enabled = false } },
-      bigfile = { enabled = true, notify = false },
+      bigfile = { enabled = true, notify = true },
     },
   },
 }

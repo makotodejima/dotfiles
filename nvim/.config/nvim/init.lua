@@ -128,3 +128,6 @@ vim.keymap.set("n", "<leader><space>", function()
   run_conform()
   print("done conform")
 end, { noremap = true, silent = true })
+
+vim.cmd("packadd nvim.undotree")
+vim.keymap.set("n", "<leader>u", require("undotree").open)
