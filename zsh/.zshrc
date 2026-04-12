@@ -10,9 +10,12 @@ export SAVEHIST=$HISTSIZE
 setopt EXTENDED_HISTORY
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+autoload -Uz compinit
+compinit
+
 alias vim='nvim'
-alias c='claude'
 alias tmux='env TERM=screen-256color tmux'
+
 gc() {
   git branch --sort=-committerdate | fzf | sed 's/^[*+ ]*//' | xargs -r git checkout
 }
