@@ -15,8 +15,8 @@ return {
       vim.keymap.set("n", "grc", ":lua vim.lsp.buf.code_action({ context = { only = {'source'} } })<CR>", opt)
       vim.keymap.set("n", "gh", ":lua vim.lsp.buf.hover()<CR>", opt)
       vim.keymap.set("n", "<leader>e", ":lua vim.diagnostic.open_float()<CR>", opt)
-      vim.keymap.set("n", "[d", ":lua vim.diagnostic.goto_prev()<CR>", opt)
-      vim.keymap.set("n", "]d", ":lua vim.diagnostic.goto_next()<CR>", opt)
+      vim.keymap.set("n", "[d", ":lua vim.diagnostic.jump({ count = -1 })<CR>", opt)
+      vim.keymap.set("n", "]d", ":lua vim.diagnostic.jump({ count = 1 })<CR>", opt)
 
       local function on_attach(client)
         client.server_capabilities.documentFormattingProvider = false
@@ -45,10 +45,6 @@ return {
           },
         },
       })
-
-      -- vim.lsp.config("sourcekit", {
-      --   on_attach = on_attach,
-      -- })
 
       vim.lsp.enable({
         "bashls",
