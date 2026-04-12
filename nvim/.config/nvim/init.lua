@@ -1,5 +1,8 @@
 require("mkd")
 
+vim.cmd("packadd nvim.undotree")
+vim.keymap.set("n", "<leader>u", require("undotree").open)
+
 -- Quickfixlist
 vim.cmd([[
   function! ToggleQuickFix()
@@ -82,23 +85,6 @@ end
 vim.api.nvim_create_user_command("OpenPreview", open_with_preview, {})
 vim.keymap.set("n", "<leader>o", ":OpenPreview<CR>")
 
-local function tsNodeOnBuffer()
-  local current_file_path = vim.api.nvim_buf_get_name(0)
-
-  if current_file_path == "" then
-    print("No file is currently open in the buffer.")
-    return
-  end
-
-  local output = vim.fn.system("ts-node " .. current_file_path)
-  vim.cmd("split")
-  local buf = vim.api.nvim_create_buf(false, true)
-  vim.api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(output, "\n"))
-  vim.api.nvim_set_current_buf(buf)
-end
-
-vim.api.nvim_create_user_command("TSNode", tsNodeOnBuffer, {})
-
 vim.keymap.set("n", "<leader><space>", function()
   local bufnr = vim.api.nvim_get_current_buf()
   local clients = vim.lsp.get_clients({ bufnr = bufnr })
@@ -128,6 +114,3 @@ vim.keymap.set("n", "<leader><space>", function()
   run_conform()
   print("done conform")
 end, { noremap = true, silent = true })
-
-vim.cmd("packadd nvim.undotree")
-vim.keymap.set("n", "<leader>u", require("undotree").open)
