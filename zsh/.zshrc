@@ -1,6 +1,5 @@
-set -o vi
-# Fix for backspace in vi mode (?)
-bindkey -v '^?' backward-delete-char
+# EDITOR=nvim makes zsh auto-pick vi keymap; force emacs.
+bindkey -e
 
 export HOMEBREW_PREFIX="$(brew --prefix)"
 export EDITOR=nvim
