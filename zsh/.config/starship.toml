@@ -21,10 +21,10 @@ $character\
 [character]
 success_symbol = "[%](default)"
 error_symbol = "[-](red)"
-vimcmd_symbol = "[█](green)"
-vimcmd_visual_symbol = "[<](yellow)"
-vimcmd_replace_symbol = "[<](purple)"
-vimcmd_replace_one_symbol = "[<](purple)"
+# vimcmd_symbol = "[█](green)"
+# vimcmd_visual_symbol = "[<](yellow)"
+# vimcmd_replace_symbol = "[<](purple)"
+# vimcmd_replace_one_symbol = "[<](purple)"
 
 [git_commit]
 tag_symbol = " tag "
