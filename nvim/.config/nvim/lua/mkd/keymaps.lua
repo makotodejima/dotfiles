@@ -36,11 +36,12 @@ vim.keymap.set("v", "<leader>jp", [["_dP]])
 
 vim.keymap.set("v", "<leader>s", ":sort<CR>")
 
+vim.keymap.set("n", "<leader>hs", ":split<CR>")
 vim.keymap.set("n", "<leader>vs", ":vsplit<CR>")
 
 vim.keymap.set("n", "<leader>cp", ":let @+ = expand('%')<CR>")
 
-vim.keymap.set("t", "<C-o>", [[<C-\><C-n>]])
+vim.keymap.set("t", "<C-q>", [[<C-\><C-n>]])
 
 vim.keymap.set("n", "<leader>f", ":lua vim.lsp.buf.format()<CR>")
 
@@ -67,3 +68,9 @@ vim.keymap.set("v", "<leader>cl", function()
     vim.fn.setreg("+", "@" .. filepath .. "#L" .. start_line .. "-" .. end_line)
   end
 end)
+
+-- Terminal mode mappings for tmux navigation
+vim.keymap.set("t", "<C-h>", [[<C-\><C-n><cmd>lua require("tmux").move_left()<CR>]], { silent = true })
+vim.keymap.set("t", "<C-j>", [[<C-\><C-n><cmd>lua require("tmux").move_bottom()<CR>]], { silent = true })
+vim.keymap.set("t", "<C-k>", [[<C-\><C-n><cmd>lua require("tmux").move_top()<CR>]], { silent = true })
+vim.keymap.set("t", "<C-l>", [[<C-\><C-n><cmd>lua require("tmux").move_right()<CR>]], { silent = true })
