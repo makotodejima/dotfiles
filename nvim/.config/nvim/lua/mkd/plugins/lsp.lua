@@ -47,6 +47,7 @@ return {
       })
 
       vim.lsp.enable({
+        "astro",
         "bashls",
         "cssls",
         "eslint",
