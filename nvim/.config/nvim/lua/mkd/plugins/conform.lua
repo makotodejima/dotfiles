@@ -17,7 +17,7 @@ return {
         rust = { "rustfmt" },
         sh = { "shfmt" },
         sql = { "pg_format" },
-        swift = { "swiftformat" },
+        swift = { "swift" },
         terraform = { "terraform_fmt" },
         typescript = { "prettier" },
         typescriptreact = { "prettier" },
