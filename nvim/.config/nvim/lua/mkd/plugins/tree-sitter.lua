@@ -2,21 +2,12 @@
 ---@type LazySpec
 return {
   "nvim-treesitter/nvim-treesitter",
-  -- dependencies = {
-  --   {
-  --     "nvim-treesitter/nvim-treesitter-context",
-  --     opts = {
-  --       max_lines = 4,
-  --       multiline_threshold = 2,
-  --     },
-  --   },
-  -- },
   lazy = false,
   branch = "main",
   build = ":TSUpdate",
   config = function()
     local ts = require("nvim-treesitter")
-    local languages = {
+    local langs = {
       "bash",
       "comment",
       "cpp",
@@ -71,7 +62,7 @@ return {
 
     local function get_supported_lang(filetype)
       local lang = vim.treesitter.language.get_lang(filetype) or filetype
-      if not vim.tbl_contains(languages, lang) then
+      if not vim.tbl_contains(langs, lang) then
         return nil
       end
       return lang
@@ -92,7 +83,7 @@ return {
       pattern = "LazyDone",
       once = true,
       callback = function()
-        ts.install(languages, {
+        ts.install(langs, {
           max_jobs = 8,
         })
       end,
