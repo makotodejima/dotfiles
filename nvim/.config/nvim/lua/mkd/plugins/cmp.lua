@@ -11,23 +11,11 @@ return {
     "hrsh7th/cmp-cmdline",
     "dmitmel/cmp-cmdline-history",
     "andersevenrud/cmp-tmux",
-    {
-      "L3MON4D3/LuaSnip",
-      dependencies = { "saadparwaiz1/cmp_luasnip" },
-      config = function()
-        require("luasnip.loaders.from_lua").load({ paths = { vim.fn.expand("~/.config/nvim/lua/mkd/snippets") } })
-      end,
-    },
   },
   config = function()
     local lspkind = require("lspkind")
     local cmp = require("cmp")
     cmp.setup({
-      snippet = {
-        expand = function(args)
-          require("luasnip").lsp_expand(args.body)
-        end,
-      },
       mapping = cmp.mapping.preset.insert({
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
@@ -35,7 +23,7 @@ return {
       }),
       sources = cmp.config.sources({
         { name = "nvim_lsp", priority = 1000, max_item_count = 30 },
-        { name = "luasnip", max_item_count = 10 },
+        -- { name = "luasnip", max_item_count = 10 },
         { name = "path", max_item_count = 20 },
         { name = "nvim_lsp_signature_help" },
         { name = "tmux", keyword_length = 2, max_item_count = 4 },
@@ -47,7 +35,6 @@ return {
             buffer = "buf",
             nvim_lsp = "lsp",
             path = "path",
-            luasnip = "snip",
             tmux = "tmux",
             cmdline = "cmdline",
             cmdline_history = "history",
