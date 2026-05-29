@@ -4,7 +4,7 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd([[colorscheme bob]])
+      vim.cmd.colorscheme("bob")
     end,
   },
   {
@@ -86,14 +86,5 @@ return {
       vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
       vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
     end,
-  },
-  { "j-hui/fidget.nvim", event = "VeryLazy", opts = {} },
-  {
-    "folke/snacks.nvim",
-    event = "VeryLazy",
-    opts = {
-      image = { enabled = true, doc = { enabled = false } },
-      bigfile = { enabled = true, notify = true },
-    },
   },
 }
