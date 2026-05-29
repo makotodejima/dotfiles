@@ -114,3 +114,22 @@ vim.keymap.set("n", "<leader><space>", function()
   run_conform()
   print("done conform")
 end, { noremap = true, silent = true })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "netrw",
+  callback = function()
+    local tmux = require("tmux")
+
+    vim.keymap.set("n", "<C-h>", tmux.move_left, {
+      buffer = true,
+      silent = true,
+      desc = "Tmux navigate left",
+    })
+
+    vim.keymap.set("n", "<C-l>", tmux.move_right, {
+      buffer = true,
+      silent = true,
+      desc = "Tmux navigate right",
+    })
+  end,
+})
