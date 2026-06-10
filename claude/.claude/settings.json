@@ -8,53 +8,42 @@
       "Bash(git show:*)",
       "mcp__ide__getDiagnostics",
       "Bash(npm run type-check:*)",
-      "Bash(npm run lint:*)"
+      "Bash(npm run lint:*)",
+      "WebSearch",
+      "WebFetch(domain:docs.temporal.io)",
+      "WebFetch(domain:learn.temporal.io)",
+      "WebFetch(domain:typescript.temporal.io)"
     ],
-    "deny": []
-  },
-  "model": "opus",
-  "hooks": {
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "printf '\\a' > /dev/tty"
-          }
-        ]
-      }
-    ],
-    "PermissionRequest": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "printf '\\a' > /dev/tty"
-          }
-        ]
-      }
-    ],
-    "Notification": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "printf '\\a' > /dev/tty"
-          }
-        ]
-      }
-    ]
+    "deny": [],
+    "defaultMode": "default"
   },
   "statusLine": {
     "type": "command",
-    "command": "~/.claude/scripts/context-bar.sh"
+    "command": "~/.claude/scripts/statusline.sh"
   },
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
     "document-skills@anthropic-agent-skills": false,
     "pyright-lsp@claude-plugins-official": true,
-    "gopls-lsp@claude-plugins-official": true
+    "gopls-lsp@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true,
+    "core-data-expert@core-data-agent-skill": true
   },
-  "alwaysThinkingEnabled": true
+  "extraKnownMarketplaces": {
+    "core-data-agent-skill": {
+      "source": {
+        "source": "github",
+        "repo": "AvdLee/Core-Data-Agent-Skill"
+      }
+    }
+  },
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "high",
+  "theme": "dark-daltonized",
+  "editorMode": "normal",
+  "preferredNotifChannel": "terminal_bell",
+  "autoCompactEnabled": true,
+  "fileCheckpointingEnabled": true,
+  "skipAutoPermissionPrompt": true
 }
