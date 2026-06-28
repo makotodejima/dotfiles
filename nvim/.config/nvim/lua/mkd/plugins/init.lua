@@ -8,6 +8,9 @@ return {
     end,
   },
   {
+    "barrettruth/diffs.nvim",
+  },
+  {
     "esmuellert/codediff.nvim",
     dependencies = { "MunifTanjim/nui.nvim" },
     cmd = "CodeDiff",
