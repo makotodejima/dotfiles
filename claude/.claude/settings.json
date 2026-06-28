@@ -15,7 +15,7 @@
       "WebFetch(domain:typescript.temporal.io)"
     ],
     "deny": [],
-    "defaultMode": "default"
+    "defaultMode": "auto"
   },
   "statusLine": {
     "type": "command",
@@ -28,7 +28,8 @@
     "pyright-lsp@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": true,
-    "core-data-expert@core-data-agent-skill": true
+    "core-data-expert@core-data-agent-skill": true,
+    "rust-analyzer-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "core-data-agent-skill": {
@@ -39,11 +40,12 @@
     }
   },
   "alwaysThinkingEnabled": true,
-  "effortLevel": "high",
+  "effortLevel": "xhigh",
   "theme": "dark-daltonized",
   "editorMode": "normal",
   "preferredNotifChannel": "terminal_bell",
   "autoCompactEnabled": true,
+  "autoScrollEnabled": true,
   "fileCheckpointingEnabled": true,
   "skipAutoPermissionPrompt": true
 }
