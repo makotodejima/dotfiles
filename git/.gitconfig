@@ -5,8 +5,10 @@
 	editor = nvim
 [user]
 	name = Makoto Dejima
-	email = makoto@flank.ai
-	signingkey = /Users/makotodejima/.ssh/id_ed25519
+	email = makotodejima@gmail.com
+	signingkey = /Users/mkd/.ssh/id_ed25519
+[includeIf "gitdir:~/dev/flank/"]
+    path = ~/.gitconfig_work
 [delta]
     line-numbers = true
 [pull]
