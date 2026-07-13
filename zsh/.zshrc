@@ -13,7 +13,7 @@ autoload -Uz compinit
 compinit
 
 alias vim='nvim'
-alias tmux='env TERM=screen-256color tmux'
+alias tmuxdev='env TERM=screen-256color tmux new -A -s dev \; set status-style bg=black'
 
 gc() {
   git branch --sort=-committerdate | fzf | sed 's/^[*+ ]*//' | xargs -r git checkout
@@ -72,3 +72,4 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
 
 eval "$(starship init zsh)"
+eval "$(fnm env --use-on-cd --shell zsh)"
