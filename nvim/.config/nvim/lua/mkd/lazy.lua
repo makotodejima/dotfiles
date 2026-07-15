@@ -12,6 +12,11 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("mkd.plugins", {
+  -- Keep Neovim's package paths available while vim.pack and lazy.nvim
+  -- coexist during the migration.
+  performance = {
+    reset_packpath = false,
+  },
   ui = {
     icons = {
       cmd = "",
