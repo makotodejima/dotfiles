@@ -32,6 +32,7 @@ vim.opt.rtp:prepend(vim.fn.expand("~/dev/bob"))
 
 vim.pack.add({
   "https://github.com/barrettruth/diffs.nvim",
+  "https://github.com/github/copilot.vim",
   "https://github.com/MunifTanjim/nui.nvim",
   "https://github.com/esmuellert/codediff.nvim",
   "https://github.com/tpope/vim-surround",
@@ -50,6 +51,10 @@ vim.pack.add({
 })
 
 vim.cmd.colorscheme("bob")
+
+vim.g.copilot_filetypes = {
+  gitcommit = true,
+}
 
 require("tmux").setup({
   copy_sync = {
