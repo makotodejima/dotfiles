@@ -1,6 +1,6 @@
 ---
 name: notes
-description: Use this skill when the user wants to create, update, or read markdown notes in the shared note repository at "/Users/makotodejima/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Obsidian".
+description: Use this skill when the user wants to create, update, or read markdown notes in the shared note repository at "~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Obsidian".
 
 allowed-tools:
   - rg
@@ -18,7 +18,7 @@ General purpose note-taking in the shared markdown repository.
 
 ## Path
 
-- `/Users/makotodejima/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Obsidian`.
+- `~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Obsidian`.
 
 ## Retrieval
 
