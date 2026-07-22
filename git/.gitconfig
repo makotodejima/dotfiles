@@ -6,7 +6,7 @@
 [user]
 	name = Makoto Dejima
 	email = makotodejima@gmail.com
-	signingkey = /Users/mkd/.ssh/id_ed25519
+	signingkey = ~/.ssh/id_ed25519
 [includeIf "gitdir:~/dev/flank/"]
     path = ~/.gitconfig_work
 [delta]
