@@ -2,10 +2,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      "hrsh7th/nvim-cmp",
-      "onsails/lspkind-nvim",
-    },
     config = function()
       -- uncomment to see logs under .cache/
       -- vim.lsp.set_log_level("debug")
