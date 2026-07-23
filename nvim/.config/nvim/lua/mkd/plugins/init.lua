@@ -1,27 +1,34 @@
 local pack_group = vim.api.nvim_create_augroup("MkdPackHooks", { clear = true })
 
+-- Build steps to run after a plugin is installed or updated.
+local pack_builds = {
+  ["telescope-fzf-native.nvim"] = {
+    { "cmake", "-S.", "-Bbuild", "-DCMAKE_BUILD_TYPE=Release" },
+    { "cmake", "--build", "build", "--config", "Release", "--target", "install" },
+  },
+}
+
 vim.api.nvim_create_autocmd("PackChanged", {
   group = pack_group,
   callback = function(event)
     local name = event.data.spec.name
     local kind = event.data.kind
+    local commands = pack_builds[name]
 
-    if name ~= "peek.nvim" or (kind ~= "install" and kind ~= "update") then
+    if not commands or (kind ~= "install" and kind ~= "update") then
       return
     end
 
-    local result = vim
-      .system({ "deno", "task", "--quiet", "build:fast" }, {
-        cwd = event.data.path,
-        text = true,
-      })
-      :wait()
+    for _, command in ipairs(commands) do
+      local result = vim.system(command, { cwd = event.data.path, text = true }):wait()
 
-    if result.code ~= 0 then
-      vim.notify(
-        "Failed to build peek.nvim:\n" .. (result.stderr or result.stdout or "Unknown error"),
-        vim.log.levels.ERROR
-      )
+      if result.code ~= 0 then
+        vim.notify(
+          ("Failed to build %s:\n%s"):format(name, result.stderr or result.stdout or "Unknown error"),
+          vim.log.levels.ERROR
+        )
+        return
+      end
     end
   end,
 })
