@@ -1,11 +1,20 @@
 local pack_group = vim.api.nvim_create_augroup("MkdPackHooks", { clear = true })
 
--- Build steps to run after a plugin is installed or updated.
+-- Build steps to run after a plugin is installed or updated: either a list of
+-- shell commands (run in the plugin directory) or a Lua function.
 local pack_builds = {
   ["telescope-fzf-native.nvim"] = {
     { "cmake", "-S.", "-Bbuild", "-DCMAKE_BUILD_TYPE=Release" },
     { "cmake", "--build", "build", "--config", "Release", "--target", "install" },
   },
+  ["nvim-treesitter"] = function(event)
+    -- On fresh installs the plugin is not on the runtimepath yet; parsers get
+    -- installed at startup anyway (see tree-sitter.lua). Only updates need to
+    -- re-sync parsers with the new plugin revision.
+    if event.data.kind == "update" then
+      require("nvim-treesitter").update()
+    end
+  end,
 }
 
 vim.api.nvim_create_autocmd("PackChanged", {
@@ -13,13 +22,18 @@ vim.api.nvim_create_autocmd("PackChanged", {
   callback = function(event)
     local name = event.data.spec.name
     local kind = event.data.kind
-    local commands = pack_builds[name]
+    local build = pack_builds[name]
 
-    if not commands or (kind ~= "install" and kind ~= "update") then
+    if not build or (kind ~= "install" and kind ~= "update") then
       return
     end
 
-    for _, command in ipairs(commands) do
+    if type(build) == "function" then
+      build(event)
+      return
+    end
+
+    for _, command in ipairs(build) do
       local result = vim.system(command, { cwd = event.data.path, text = true }):wait()
 
       if result.code ~= 0 then
