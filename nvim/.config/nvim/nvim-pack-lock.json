@@ -37,7 +37,7 @@
       "src": "https://github.com/github/copilot.vim"
     },
     "diffs.nvim": {
-      "rev": "c5383f828e7e5d364bb959197589be15b167938c",
+      "rev": "70882fe6364dfe7f46463b712c6e0e0c0712b408",
       "src": "https://github.com/barrettruth/diffs.nvim"
     },
     "gitsigns.nvim": {
@@ -110,7 +110,7 @@
       "src": "https://github.com/tpope/vim-vinegar"
     },
     "yanky.nvim": {
-      "rev": "020c22d0cfa60358569e49d1d7b91630f175aef0",
+      "rev": "dd6689fdda85f66cab7d9b1a1664625f3be0920d",
       "src": "https://github.com/gbprod/yanky.nvim"
     }
   }
