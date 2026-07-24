@@ -1,11 +1,6 @@
 vim.pack.add({
   { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
-}, {
-  confirm = false,
-  -- Temporary while lazy.nvim still owns startup: it sources plugin scripts
-  -- from these runtime paths. Change this to true at the final cutover.
-  load = false,
-})
+}, { confirm = false })
 
 local ts = require("nvim-treesitter")
 local langs = {
@@ -79,8 +74,7 @@ local function queue_parser(buf, lang)
   table.insert(parsers_pending, { buf = buf, lang = lang, key = key })
 end
 
--- Install core parsers once the editor is up (was hooked on LazyDone before
--- the vim.pack migration)
+-- Install core parsers once the editor is up
 vim.api.nvim_create_autocmd("VimEnter", {
   once = true,
   callback = function()
@@ -140,7 +134,3 @@ vim.api.nvim_create_autocmd("FileType", {
     ts.install({ lang })
   end,
 })
-
--- lazy.nvim expects every imported module to return a table of specs. This
--- plugin is now owned by vim.pack, so this module contributes none.
-return {}

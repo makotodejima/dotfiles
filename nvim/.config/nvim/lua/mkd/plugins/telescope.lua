@@ -2,12 +2,7 @@ vim.pack.add({
   "https://github.com/nvim-lua/plenary.nvim",
   "https://github.com/nvim-telescope/telescope.nvim",
   "https://github.com/nvim-telescope/telescope-fzf-native.nvim",
-}, {
-  confirm = false,
-  -- Temporary while lazy.nvim still owns startup: it sources plugin scripts
-  -- from these runtime paths. Change this to true at the final cutover.
-  load = false,
-})
+}, { confirm = false })
 
 local actions = require("telescope.actions")
 require("telescope").setup({
@@ -73,7 +68,3 @@ vim.keymap.set(
   [[<cmd>lua require'telescope.builtin'.find_files({cwd=os.getenv("IA_TEMP_PATH")})<CR>]],
   { noremap = true, silent = true }
 )
-
--- lazy.nvim expects every imported module to return a table of specs. This
--- plugin is now owned by vim.pack, so this module contributes none.
-return {}

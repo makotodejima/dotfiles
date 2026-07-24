@@ -1,11 +1,6 @@
 vim.pack.add({
   "https://github.com/stevearc/conform.nvim",
-}, {
-  confirm = false,
-  -- Temporary while lazy.nvim still owns startup: it sources plugin scripts
-  -- from these runtime paths. Change this to true at the final cutover.
-  load = false,
-})
+}, { confirm = false })
 
 require("conform").setup({
   -- log_level = vim.log.levels.DEBUG,
@@ -41,7 +36,3 @@ require("conform").setup({
     },
   },
 })
-
--- lazy.nvim expects every imported module to return a table of specs. This
--- plugin is now owned by vim.pack, so this module contributes none.
-return {}

@@ -62,12 +62,7 @@ vim.pack.add({
   "https://github.com/stevearc/oil.nvim",
   "https://github.com/gbprod/yanky.nvim",
   "https://github.com/numToStr/Comment.nvim",
-}, {
-  confirm = false,
-  -- Temporary while lazy.nvim still owns startup: it sources plugin scripts
-  -- from these runtime paths. Change this to true at the final cutover.
-  load = false,
-})
+}, { confirm = false })
 
 vim.cmd.colorscheme("bob")
 
@@ -108,7 +103,3 @@ vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
 vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
 vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
 vim.keymap.set("n", "<c-n>", "<Plug>(YankyPreviousEntry)")
-
--- lazy.nvim expects every imported module to return a table of specs. The
--- plugins above are now owned by vim.pack, so this module contributes none.
-return {}

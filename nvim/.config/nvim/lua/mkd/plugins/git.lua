@@ -9,12 +9,7 @@ vim.pack.add({
   "https://github.com/tpope/vim-fugitive",
   "https://github.com/tpope/vim-rhubarb",
   "https://github.com/lewis6991/gitsigns.nvim",
-}, {
-  confirm = false,
-  -- Temporary while lazy.nvim still owns startup: it sources plugin scripts
-  -- from these runtime paths. Change this to true at the final cutover.
-  load = false,
-})
+}, { confirm = false })
 
 require("gitsigns").setup({
   signs = {
@@ -96,7 +91,3 @@ vim.keymap.set("n", "<leader>gs", ":G<CR>", { noremap = true, silent = false })
 vim.keymap.set("n", "<leader>gh", ":diffget //2", { noremap = true, silent = false })
 vim.keymap.set("n", "<leader>gl", ":diffget //3", { noremap = true, silent = false })
 vim.keymap.set("n", "<leader>gw", ":Gwrite<CR>", { noremap = true, silent = false })
-
--- lazy.nvim expects every imported module to return a table of specs. The
--- plugins above are now owned by vim.pack, so this module contributes none.
-return {}
