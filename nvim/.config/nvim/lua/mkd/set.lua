@@ -42,7 +42,7 @@ vim.g.markdown_fenced_languages = { "html", "python", "javascript", "typescript"
 
 -- Use an expression-based fold, driven by Tree-sitter
 vim.o.foldmethod = "expr"
-vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 -- Start with all folds open
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true -- ensure folding is on
