@@ -54,7 +54,7 @@ vim.lsp.enable({
   "sourcekit",
   -- "tailwindcss",
   "terraformls",
-  "tsgo",
+  "tsc",
   "typos_lsp",
   "ty",
 })
