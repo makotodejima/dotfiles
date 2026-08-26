@@ -27,6 +27,7 @@ local langs = {
   "make",
   "markdown",
   "python",
+  "regex",
   "rust",
   "sql",
   "terraform",
