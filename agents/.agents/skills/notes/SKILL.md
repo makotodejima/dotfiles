@@ -1,6 +1,9 @@
 ---
 name: notes
-description: Use this skill when the user wants to create, update, or read markdown notes in the shared note repository at "~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Obsidian".
+description:
+  Use this skill when the user wants to create, update, or read markdown notes
+  in the shared note repository at "~/Library/Mobile\
+  Documents/iCloud~md~obsidian/Documents/Obsidian".
 
 allowed-tools:
   - rg
@@ -9,7 +12,7 @@ allowed-tools:
   - cat
   - sed
   - tail
-  - deno
+  - bun
 ---
 
 # Notes
@@ -28,7 +31,8 @@ General purpose note-taking in the shared markdown repository.
 ## Editing
 
 - Simply create or update markdown files in the repository as needed.
-- Run `deno fmt` after edting.
+- Run `bun fmt` after edting.
 
 ## Important Notes
+
 - Do not use `obsidian` command line tool.
