@@ -12,7 +12,7 @@ require("conform").setup({
     javascript = { "prettier" },
     json = { "prettier" },
     lua = { "stylua" },
-    markdown = { "deno_fmt" },
+    markdown = { "bun_fmt" },
     python = { "black" },
     rust = { "rustfmt" },
     sh = { "shfmt" },
@@ -25,6 +25,11 @@ require("conform").setup({
     zsh = { "shfmt" },
   },
   formatters = {
+    bun_fmt = {
+      command = "bun",
+      args = { "fmt", "--prose-wrap=always", "--stdin-filepath", "$FILENAME" },
+      stdin = true,
+    },
     shfmt = {
       prepend_args = { "--indent", 2 },
     },
